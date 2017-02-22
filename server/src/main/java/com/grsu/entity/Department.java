@@ -8,19 +8,18 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "department")
-public class Department implements Serializable {
+public class    Department implements Serializable {
 
     @Id
     @GeneratedValue
     @Column
     private Long id;
+
     @Column
     private String name;
+
     @Column
     private String address;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "education_institution_id")
-    private EducationInstitution educationInstitution;
 
     public Department() {
     }
@@ -36,14 +35,6 @@ public class Department implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public EducationInstitution getEducationInstitution() {
-        return educationInstitution;
-    }
-
-    public void setEducationInstitution(EducationInstitution educationInstitution) {
-        this.educationInstitution = educationInstitution;
     }
 
     public Long getId() {

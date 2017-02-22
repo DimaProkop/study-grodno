@@ -7,7 +7,7 @@ import java.util.List;
  * Created by dionp on 22.02.2017.
  */
 @Entity
-@Table(name = "specially")
+@Table(name = "speciality")
 public class Specially {
 
     @Id
@@ -18,15 +18,16 @@ public class Specially {
     private String name;
     @Column
     private String code;
+
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "form_of_education_specially",
+    @JoinTable(name = "speciality_form_of_education",
             joinColumns = {@JoinColumn(name = "form_of_education_id")},
-            inverseJoinColumns = {@JoinColumn(name = "specially_id")})
+            inverseJoinColumns = {@JoinColumn(name = "speciality_id")})
     private List<FormOfEducation> formOfEducations;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "specially_language_learning",
-            joinColumns = {@JoinColumn(name = "specially_id")},
+    @JoinTable(name = "speciality_language_learning",
+            joinColumns = {@JoinColumn(name = "speciality_id")},
             inverseJoinColumns = {@JoinColumn(name = "language_learning_id")})
     private List<LanguageLearning> languageLearnings;
 

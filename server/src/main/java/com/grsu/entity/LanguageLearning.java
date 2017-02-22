@@ -13,6 +13,7 @@ public class LanguageLearning {
     @GeneratedValue
     @Column
     private Long id;
+
     @Column
     private String name;
 

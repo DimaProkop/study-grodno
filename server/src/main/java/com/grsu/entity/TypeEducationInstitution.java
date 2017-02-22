@@ -6,8 +6,8 @@ import javax.persistence.*;
  * Created by dionp on 22.02.2017.
  */
 @Entity
-@Table(name = "type_educaton_instituion")
-public class TypeEducatonInstituion {
+@Table(name = "type_education_institution")
+public class TypeEducationInstitution {
 
     @Id
     @GeneratedValue
@@ -17,10 +17,10 @@ public class TypeEducatonInstituion {
     @Column
     private String name;
 
-    public TypeEducatonInstituion() {
+    public TypeEducationInstitution() {
     }
 
-    public TypeEducatonInstituion(String name) {
+    public TypeEducationInstitution(String name) {
         this.name = name;
     }
 

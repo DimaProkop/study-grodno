@@ -37,15 +37,12 @@ public class PersonalInfo implements Serializable {
     @Column
     private String motivationLetter;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     private Citizenship citizenship;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     private LevelOfEducation levelOfEducation;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     private Skill skill;
 

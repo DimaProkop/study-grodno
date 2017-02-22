@@ -13,6 +13,7 @@ public class FormOfEducation {
     @GeneratedValue
     @Column
     private Long id;
+
     @Column
     private String name;
 

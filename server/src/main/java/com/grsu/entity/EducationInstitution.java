@@ -14,14 +14,21 @@ public class EducationInstitution {
     @GeneratedValue
     @Column
     private Long id;
+
     @Column
     private String name;
+
     @Column
     private String email;
+
     @Column
     private String site;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
+
+    @OneToMany
     private List<Department> departments;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private TypeEducationInstitution typeEducationInstitution;
 
     public EducationInstitution() {
     }
@@ -30,14 +37,6 @@ public class EducationInstitution {
         this.name = name;
         this.email = email;
         this.site = site;
-    }
-
-    public List<Department> getDepartments() {
-        return departments;
-    }
-
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
     }
 
     public String getEmail() {
@@ -70,5 +69,13 @@ public class EducationInstitution {
 
     public void setSite(String site) {
         this.site = site;
+    }
+
+    public List<Department> getDepartmens() {
+        return departments;
+    }
+
+    public void setDepartmens(List<Department> departments) {
+        this.departments = departments;
     }
 }

@@ -21,11 +21,9 @@ public class User implements Serializable {
     @Column
     private String password;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     private Role role;
 
-    @Column
     @ManyToOne(fetch = FetchType.LAZY)
     private PersonalInfo info;
 
