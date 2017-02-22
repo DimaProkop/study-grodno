@@ -18,11 +18,11 @@ public class Citizenship implements Serializable {
     @Column
     private String name;
 
-    public Citizenship(String name) {
-        this.name = name;
+    public Citizenship() {
     }
 
-    public Citizenship() {
+    public Citizenship(String name) {
+        this.name = name;
     }
 
     public Long getId() {

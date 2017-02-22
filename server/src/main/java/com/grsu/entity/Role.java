@@ -18,11 +18,11 @@ public class Role implements Serializable {
     @Column
     private String name;
 
-    public Role(String name) {
-        this.name = name;
+    public Role() {
     }
 
-    public Role() {
+    public Role(String name) {
+        this.name = name;
     }
 
     public Long getId() {

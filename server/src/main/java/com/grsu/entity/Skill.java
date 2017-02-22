@@ -24,13 +24,13 @@ public class Skill implements Serializable {
     @Column
     private String englishLanguage;
 
+    public Skill() {
+    }
+
     public Skill(String nativeLanguage, String russianLanguage, String englishLanguage) {
         this.nativeLanguage = nativeLanguage;
         this.russianLanguage = russianLanguage;
         this.englishLanguage = englishLanguage;
-    }
-
-    public Skill() {
     }
 
     public Long getId() {
