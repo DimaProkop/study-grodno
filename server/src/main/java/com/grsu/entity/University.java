@@ -7,8 +7,8 @@ import java.util.List;
  * Created by dionp on 22.02.2017.
  */
 @Entity
-@Table(name = "education_institution")
-public class EducationInstitution {
+@Table(name = "university")
+public class University {
 
     @Id
     @GeneratedValue
@@ -27,13 +27,16 @@ public class EducationInstitution {
     @OneToMany
     private List<Department> departments;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private TypeEducationInstitution typeEducationInstitution;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "university_learning_option",
+            joinColumns = {@JoinColumn(name = "learning_option_id")},
+            inverseJoinColumns = {@JoinColumn(name = "university_id")})
+    private List<LearningOption> learningOptions;
 
-    public EducationInstitution() {
+    public University() {
     }
 
-    public EducationInstitution(String name, String email, String site) {
+    public University(String name, String email, String site) {
         this.name = name;
         this.email = email;
         this.site = site;
@@ -71,11 +74,19 @@ public class EducationInstitution {
         this.site = site;
     }
 
-    public List<Department> getDepartmens() {
+    public List<Department> getDepartments() {
         return departments;
     }
 
-    public void setDepartmens(List<Department> departments) {
+    public void setDepartments(List<Department> departments) {
         this.departments = departments;
+    }
+
+    public List<LearningOption> getLearningOptions() {
+        return learningOptions;
+    }
+
+    public void setLearningOptions(List<LearningOption> learningOptions) {
+        this.learningOptions = learningOptions;
     }
 }
