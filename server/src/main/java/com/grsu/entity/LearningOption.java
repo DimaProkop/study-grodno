@@ -1,13 +1,14 @@
 package com.grsu.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
- * Created by dionp on 22.02.2017.
+ * Created by dionp on 25.02.2017.
  */
 @Entity
-@Table(name = "type_education_institution")
-public class TypeEducationInstitution {
+@Table(name = "learning_option")
+public class LearningOption implements Serializable {
 
     @Id
     @GeneratedValue
@@ -17,11 +18,11 @@ public class TypeEducationInstitution {
     @Column
     private String name;
 
-    public TypeEducationInstitution() {
+    public LearningOption(String name) {
+        this.name = name;
     }
 
-    public TypeEducationInstitution(String name) {
-        this.name = name;
+    public LearningOption() {
     }
 
     public Long getId() {
