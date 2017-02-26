@@ -3,7 +3,7 @@ import {Http, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
-import {Message} from "../model/message";
+import {Message} from "../../model/message";
 
 @Injectable()
 export class HomeService {

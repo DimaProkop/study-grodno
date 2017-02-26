@@ -55,9 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/users").hasRole("USER")
                 .antMatchers(HttpMethod.GET, "/console/**").permitAll();
 
-        http.addFilterBefore(
-                new StatelessLoginFilter("/api/login", tokenAuthenticationService, userService, authenticationManager()),
-                UsernamePasswordAuthenticationFilter.class);
 
         http.addFilterBefore(
                 new StatelessAuthenticationFilter(tokenAuthenticationService),
