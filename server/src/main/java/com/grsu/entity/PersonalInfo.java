@@ -29,9 +29,6 @@ public class PersonalInfo implements Serializable {
     private LocalDate dateOfBirth;
 
     @Column
-    private String email;
-
-    @Column
     private String phone;
 
     @Column
@@ -46,12 +43,11 @@ public class PersonalInfo implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Skill skill;
 
-    public PersonalInfo(String firstName, String lastName, String middleName, LocalDate dateOfBirth, String email, String phone, String motivationLetter) {
+    public PersonalInfo(String firstName, String lastName, String middleName, LocalDate dateOfBirth, String phone, String motivationLetter) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
         this.dateOfBirth = dateOfBirth;
-        this.email = email;
         this.phone = phone;
         this.motivationLetter = motivationLetter;
         this.citizenship = null;
@@ -100,14 +96,6 @@ public class PersonalInfo implements Serializable {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPhone() {

@@ -2,6 +2,7 @@ package com.grsu.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Created by dionp on 22.02.2017.
@@ -17,6 +18,13 @@ public class Role implements Serializable {
 
     @Column
     private String name;
+
+    @OneToMany
+    @JoinTable(name = "user_role",
+            joinColumns = {@JoinColumn(name = "role_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+    )
+    private Set<User> userRoles;
 
     public Role() {
     }
