@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by dionp on 22.02.2017.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "\"user\"")
 public class User implements Serializable {
 
     @Id
@@ -16,25 +16,20 @@ public class User implements Serializable {
     private Long id;
 
     @Column
-    private String username;
+    private String login;
 
     @Column
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Role role;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private PersonalInfo info;
-
-    public User(String username, String password, Role role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
-        this.info = null;
-    }
+    @Column
+    private String role;
 
     public User() {
+    }
+
+    public User(String login, String password) {
+        this.login = login;
+        this.password = password;
     }
 
     public Long getId() {
@@ -45,12 +40,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -61,19 +56,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
-    }
-
-    public PersonalInfo getInfo() {
-        return info;
-    }
-
-    public void setInfo(PersonalInfo info) {
-        this.info = info;
     }
 }

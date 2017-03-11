@@ -1,6 +1,6 @@
 CREATE TABLE role(
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(10) NOT NULL
+  name VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE citizenship(
@@ -30,7 +30,6 @@ CREATE TABLE personal_info(
   middle_name VARCHAR(40) NOT NULL,
   gender VARCHAR(10) NOT NULL,
   date_of_birth DATE NOT NULL,
-  email VARCHAR(30) NOT NULL,
   phone VARCHAR(30) NOT NULL,
   motivation_letter VARCHAR(500) NOT NULL,
   citizenship_id INT NOT NULL REFERENCES citizenship(id),
@@ -40,8 +39,14 @@ CREATE TABLE personal_info(
 
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY NOT NULL,
-  login VARCHAR(40) UNIQUE NOT NULL,
-  password VARCHAR(40) NOT NULL,
+  username VARCHAR(40) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
   role_id INT NOT NULL REFERENCES role(id),
   personal_info_id INT REFERENCES personal_info(id)
+);
+
+CREATE TABLE user_role(
+  user_id INT REFERENCES "user" (id),
+  role_id INT REFERENCES role(id),
+  PRIMARY KEY (user_id, role_id)
 );
