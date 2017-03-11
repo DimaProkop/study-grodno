@@ -5,16 +5,16 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by dionp on 11.03.2017.
  */
-public class SmartJournalUsernamePasswordAuthToken extends UsernamePasswordAuthenticationToken {
+public class TokenUsernamePasswordAuthToken extends UsernamePasswordAuthenticationToken {
 
     private HttpServletRequest httpServletRequest;
 
-    public SmartJournalUsernamePasswordAuthToken(Object principal, Object credentials, HttpServletRequest httpServletRequest) {
+    public TokenUsernamePasswordAuthToken(Object principal, Object credentials, HttpServletRequest httpServletRequest) {
         super(principal, credentials);
         this.httpServletRequest = httpServletRequest;
     }
 
-    public SmartJournalUsernamePasswordAuthToken(Object principal, Object credentials) {
+    public TokenUsernamePasswordAuthToken(Object principal, Object credentials) {
         super(principal, credentials);
     }
 

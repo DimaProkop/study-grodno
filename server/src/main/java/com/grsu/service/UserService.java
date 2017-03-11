@@ -8,10 +8,7 @@ import com.grsu.entity.User;
 
 import java.util.Optional;
 
-public interface UserService extends org.springframework.security.core.userdetails.UserDetailsService {
+public interface UserService  {
 
-    User update(User user, UserDTO params);
-    Optional<User> findUser(Long id);
-    User createUser(UserDTO userDTO);
 
 }

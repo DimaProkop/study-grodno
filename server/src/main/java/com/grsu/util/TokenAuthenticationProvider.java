@@ -18,12 +18,12 @@ import java.util.List;
  * Created by dionp on 11.03.2017.
  */
 @Component
-public class SmartJournalAuthenticationProvider implements AuthenticationProvider {
+public class TokenAuthenticationProvider implements AuthenticationProvider {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public SmartJournalAuthenticationProvider(UserRepository userRepository) {
+    public TokenAuthenticationProvider(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -39,7 +39,7 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
                 throw new BadCredentialsException("No pre-authenticated credentials found in request.");
             }
 
-            ((SmartJournalUsernamePasswordAuthToken) authentication).setDetails(user);
+            ((TokenUsernamePasswordAuthToken) authentication).setDetails(user);
 
             List<GrantedAuthority> grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
 
@@ -51,6 +51,6 @@ public class SmartJournalAuthenticationProvider implements AuthenticationProvide
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return SmartJournalUsernamePasswordAuthToken.class.isAssignableFrom(aClass);
+        return TokenUsernamePasswordAuthToken.class.isAssignableFrom(aClass);
     }
 }

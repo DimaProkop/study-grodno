@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDTO {
 
-    private String login;
-
     private String email;
 
     private String password;
@@ -15,18 +13,9 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String login, String email, String password) {
-        this.login = login;
+    public UserDTO(String email, String password) {
         this.email = email;
         this.password = password;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getEmail() {

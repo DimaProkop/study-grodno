@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li  *ngIf="!isSignedIn">
-          <a [routerLink]="['/login']">Log in</a>
+          <a [routerLink]="['/email']">Log in</a>
         </li>
         <li  *ngIf="isSignedIn">
           <a href="#" (click)="logout(); $event.preventDefault()">Sign out</a>

@@ -1,6 +1,6 @@
 package com.grsu.config;
 
-import com.grsu.util.SmartJournalAuthenticationProvider;
+import com.grsu.util.TokenAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,16 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     public final static String AUTHORIZATION_HEADER = "x-auth-token";
 
-    private final SmartJournalAuthenticationProvider smartJournalAuthenticationProvider;
+    private final TokenAuthenticationProvider tokenAuthenticationProvider;
 
     @Autowired
-    public SecurityConfig(SmartJournalAuthenticationProvider smartJournalAuthenticationProvider) {
-        this.smartJournalAuthenticationProvider = smartJournalAuthenticationProvider;
+    public SecurityConfig(TokenAuthenticationProvider tokenAuthenticationProvider) {
+        this.tokenAuthenticationProvider = tokenAuthenticationProvider;
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(smartJournalAuthenticationProvider).eraseCredentials(false);
+        auth.authenticationProvider(tokenAuthenticationProvider).eraseCredentials(false);
     }
 
     @Override
