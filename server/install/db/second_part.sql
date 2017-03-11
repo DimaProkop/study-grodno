@@ -5,7 +5,7 @@ CREATE TABLE learning_option(
 CREATE TABLE university(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
-  email VARCHAR(30) NOT NULL,
+  login VARCHAR(30) NOT NULL,
   site VARCHAR(100) NOT NULL
 );
 

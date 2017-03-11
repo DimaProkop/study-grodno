@@ -43,7 +43,7 @@ public class AuthenticateController {
         DeferredResult deferredResult = new DeferredResult();
 
         TokenUsernamePasswordAuthToken authenticationToken =
-                new TokenUsernamePasswordAuthToken(loginDTO.getEmail(), loginDTO.getPassword(), request);
+                new TokenUsernamePasswordAuthToken(loginDTO.getLogin(), loginDTO.getPassword(), request);
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
         SecurityContext securityContext = SecurityContextHolder.getContext();
         securityContext.setAuthentication(authentication);

@@ -10,21 +10,24 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LoginDTO implements Serializable {
 
-    private String email;
+    private String login;
 
     private String password;
 
-    public LoginDTO(String email, String password) {
-        this.email = email;
+    public LoginDTO() {
+    }
+
+    public LoginDTO(String login, String password) {
+        this.login = login;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {

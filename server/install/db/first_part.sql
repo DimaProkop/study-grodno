@@ -46,7 +46,7 @@ CREATE TABLE "user"(
 );
 
 CREATE TABLE user_role(
-  user_id INT REFERENCES "user"(id),
+  user_id INT REFERENCES "user" (id),
   role_id INT REFERENCES role(id),
   PRIMARY KEY (user_id, role_id)
 );

@@ -29,11 +29,11 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String username = (String) authentication.getPrincipal();
+        String login = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
 
         try {
-            User user = userRepository.findOneUserByEmailAndPassword(username, password);
+            User user = userRepository.findOneUserByLoginAndPassword(login, password);
 
             if (authentication.getCredentials() == null || user == null) {
                 throw new BadCredentialsException("No pre-authenticated credentials found in request.");
@@ -43,7 +43,7 @@ public class TokenAuthenticationProvider implements AuthenticationProvider {
 
             List<GrantedAuthority> grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority("USER"));
 
-            return new UsernamePasswordAuthenticationToken(username, password, grantedAuthorities);
+            return new UsernamePasswordAuthenticationToken(login, password, grantedAuthorities);
         } catch (Exception e) {
             throw new BadCredentialsException("Login is incorrect", e);
         }

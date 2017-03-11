@@ -3,36 +3,38 @@ import {Injectable} from "@angular/core";
 import {Response} from "@angular/http";
 import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
+import {LoginModel} from "../../model/login.model";
 
 
 @Injectable()
 export class LoginService {
 
-  constructor(private http:Http) {}
+  private loginURL: string;
 
-  login(email, password):Observable<Response> {
-    let loginRequest = JSON.stringify({email: email, password: password});
-    let headers = new Headers({'Content-Type': 'application/json', 'Accept': 'application/json'});
-    console.log(loginRequest);
-    return this.http.post('http://localhost:8080/api/login', loginRequest, { headers: headers })
+  private headers = new Headers({
+    'Content-Type': 'application/json'
+  });
+
+  constructor(private http: Http) {
+    this.loginURL = "http://localhost:8080/api/login";
+  }
+
+  login(loginModel: LoginModel): Observable<any> {
+    return this.http
+      .post(this.loginURL, JSON.stringify(loginModel), {headers: this.headers})
       .do(resp => {
+        console.log(resp.headers.get('x-auth-token'));
         localStorage.setItem('x-auth-token', resp.headers.get('x-auth-token'));
       });
   }
 
-  logout():void {
-    localStorage.removeItem('jwt');
+  private static extractData(res: Response) {
+    return res.json();
   }
 
-  private handleError(error:Response) {
-    console.error(error);
-    return Observable.throw(error.json().error || 'Server error');
+  private static handleError(error: any): Promise<any> {
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
-
-
-  isSignedIn():boolean {
-    return localStorage.getItem('jwt') !== null;
-  }
-
 
 }

@@ -8,7 +8,7 @@ import java.util.Set;
  * Created by dionp on 22.02.2017.
  */
 @Entity
-@Table(name = "role")
+@javax.persistence.Table(name = "role")
 public class Role implements Serializable {
 
     @Id

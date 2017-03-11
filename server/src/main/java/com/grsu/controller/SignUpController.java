@@ -3,7 +3,6 @@ package com.grsu.controller;
 import com.grsu.dto.SignUpDTO;
 import com.grsu.entity.User;
 import com.grsu.repository.UserRepository;
-import com.grsu.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,7 @@ public class SignUpController {
 
         DeferredResult deferredResult = new DeferredResult();
         User user = new User();
-        user.setEmail(signUpDTO.getEmail());
+        user.setLogin(signUpDTO.getEmail());
         user.setPassword(signUpDTO.getPassword());
         userRepository.save(user);
 

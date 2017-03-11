@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../../service/login/login.service";
-import {Router} from "@angular/router";
+import {LoginModel} from "../../model/login.model";
+import {User} from "../../model/user.model";
 
 @Component({
   selector: 'app-login',
@@ -9,28 +10,29 @@ import {Router} from "@angular/router";
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
-  ngOnInit(): void {
+
+  private errorMessage: string;
+
+  private login: string;
+
+  private password: string;
+
+  private user: User;
+
+  constructor(private loginService: LoginService) { }
+
+  ngOnInit() {
   }
 
-  constructor(private router:Router, private loginService:LoginService) {
+  private authenticate(){
+    this.loginService.login(new LoginModel(this.login, this.password))
+      .subscribe(
+        user => {
+          console.log(user);
+          this.user = user;
+        },
+        error => this.errorMessage = <any>error
+      );
   }
-
-  login(event, email, password) {
-    event.preventDefault();
-    this.loginService.login(email, password)
-      .subscribe(() => {
-        this.router.navigate(['/add']);
-      }, this.handleError);
-  }
-
-  logout():void {
-    localStorage.removeItem('jwt');
-  }
-
-
-  handleError(error) {
-    console.log(error.status);
-  }
-
 
 }
