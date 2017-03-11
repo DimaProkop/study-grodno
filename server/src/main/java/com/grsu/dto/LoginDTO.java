@@ -1,23 +1,21 @@
 package com.grsu.dto;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.io.Serializable;
+
 /**
  * Created by dionp on 11.03.2017.
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDTO {
+public class LoginDTO implements Serializable {
 
     private String login;
 
-    private String email;
-
     private String password;
 
-    public UserDTO() {
-    }
-
-    public UserDTO(String login, String email, String password) {
+    public LoginDTO(String login, String password) {
         this.login = login;
-        this.email = email;
         this.password = password;
     }
 
@@ -27,14 +25,6 @@ public class UserDTO {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {

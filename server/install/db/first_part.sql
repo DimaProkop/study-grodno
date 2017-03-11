@@ -40,7 +40,7 @@ CREATE TABLE personal_info(
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY NOT NULL,
   username VARCHAR(40) UNIQUE NOT NULL,
-  password VARCHAR(40) NOT NULL,
+  password VARCHAR(255) NOT NULL,
   role_id INT NOT NULL REFERENCES role(id),
   personal_info_id INT REFERENCES personal_info(id)
 );

@@ -1,6 +1,5 @@
 package com.grsu.controller;
 
-import com.grsu.config.security.JwtTokenHandler;
 import com.grsu.dto.UserDTO;
 import com.grsu.repository.UserRepository;
 import com.grsu.service.UserService;

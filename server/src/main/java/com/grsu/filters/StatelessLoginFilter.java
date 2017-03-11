@@ -2,8 +2,6 @@ package com.grsu.filters;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.grsu.config.security.TokenAuthenticationService;
-import com.grsu.config.security.UserAuthentication;
 import com.grsu.dto.UserDTO;
 import com.grsu.service.UserService;
 import org.springframework.security.authentication.AuthenticationManager;

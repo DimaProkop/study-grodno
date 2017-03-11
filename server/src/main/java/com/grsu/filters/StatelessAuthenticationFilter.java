@@ -1,6 +1,5 @@
 package com.grsu.filters;
 
-import com.grsu.config.security.TokenAuthenticationService;
 import io.jsonwebtoken.JwtException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
