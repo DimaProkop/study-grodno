@@ -8,7 +8,7 @@ import {AppComponent} from './component/app/app.component';
 import {AppRouting} from "./app.routing";
 import {LoginComponent} from './component/login/login.component';
 import { HomeComponent } from './component/home/home.component';
-import { FooterComponent } from './footer/footer.component';
+import { FooterComponent } from './component/footer/footer.component';
 import { HeaderComponent } from './component/header/header.component';
 
 @NgModule({

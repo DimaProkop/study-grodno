@@ -9,7 +9,8 @@
       "dependencies": {
         "denodeify": {
           "version": "1.2.1",
-          "from": "denodeify@1.2.1"
+          "from": "denodeify@1.2.1",
+          "resolved": "https://registry.npmjs.org/denodeify/-/denodeify-1.2.1.tgz"
         },
         "rxjs": {
           "version": "5.1.0",
@@ -18,11 +19,13 @@
         },
         "symbol-observable": {
           "version": "1.0.4",
-          "from": "symbol-observable@1.0.4"
+          "from": "symbol-observable@1.0.4",
+          "resolved": "https://registry.npmjs.org/symbol-observable/-/symbol-observable-1.0.4.tgz"
         },
         "typescript": {
           "version": "2.0.10",
-          "from": "typescript@2.0.10"
+          "from": "typescript@2.0.10",
+          "resolved": "https://registry.npmjs.org/typescript/-/typescript-2.0.10.tgz"
         }
       }
     },
@@ -82,26 +85,14 @@
       "resolved": "https://registry.npmjs.org/@angular/tsc-wrapped/-/tsc-wrapped-0.5.2.tgz"
     },
     "@ngtools/json-schema": {
-      "version": "1.0.2",
-      "from": "@ngtools/json-schema@1.0.2",
-      "resolved": "https://registry.npmjs.org/@ngtools/json-schema/-/json-schema-1.0.2.tgz"
+      "version": "1.0.4",
+      "from": "@ngtools/json-schema@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/@ngtools/json-schema/-/json-schema-1.0.4.tgz"
     },
     "@ngtools/webpack": {
-      "version": "1.2.8",
-      "from": "@ngtools/webpack@1.2.8",
-      "resolved": "https://registry.npmjs.org/@ngtools/webpack/-/webpack-1.2.8.tgz",
-      "dependencies": {
-        "enhanced-resolve": {
-          "version": "2.3.0",
-          "from": "enhanced-resolve@>=2.3.0 <3.0.0",
-          "resolved": "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-2.3.0.tgz"
-        },
-        "memory-fs": {
-          "version": "0.3.0",
-          "from": "memory-fs@>=0.3.0 <0.4.0",
-          "resolved": "https://registry.npmjs.org/memory-fs/-/memory-fs-0.3.0.tgz"
-        }
-      }
+      "version": "1.2.10",
+      "from": "@ngtools/webpack@>=1.2.3 <2.0.0",
+      "resolved": "https://registry.npmjs.org/@ngtools/webpack/-/webpack-1.2.10.tgz"
     },
     "@types/jasmine": {
       "version": "2.5.38",
@@ -351,9 +342,9 @@
       "resolved": "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
     },
     "autoprefixer": {
-      "version": "6.7.5",
+      "version": "6.7.4",
       "from": "autoprefixer@>=6.5.3 <7.0.0",
-      "resolved": "https://registry.npmjs.org/autoprefixer/-/autoprefixer-6.7.5.tgz"
+      "resolved": "https://registry.npmjs.org/autoprefixer/-/autoprefixer-6.7.4.tgz"
     },
     "aws-sign2": {
       "version": "0.6.0",
@@ -482,6 +473,11 @@
       "from": "boom@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/boom/-/boom-2.10.1.tgz"
     },
+    "bootstrap": {
+      "version": "3.3.7",
+      "from": "bootstrap@latest",
+      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-3.3.7.tgz"
+    },
     "boxen": {
       "version": "0.6.0",
       "from": "boxen@>=0.6.0 <0.7.0",
@@ -541,7 +537,7 @@
     },
     "browserslist": {
       "version": "1.7.5",
-      "from": "browserslist@>=1.7.5 <2.0.0",
+      "from": "browserslist@>=1.7.4 <2.0.0",
       "resolved": "https://registry.npmjs.org/browserslist/-/browserslist-1.7.5.tgz"
     },
     "buffer": {
@@ -2732,9 +2728,9 @@
       "resolved": "https://registry.npmjs.org/macaddress/-/macaddress-0.2.8.tgz"
     },
     "magic-string": {
-      "version": "0.16.0",
-      "from": "magic-string@>=0.16.0 <0.17.0",
-      "resolved": "https://registry.npmjs.org/magic-string/-/magic-string-0.16.0.tgz"
+      "version": "0.19.0",
+      "from": "magic-string@>=0.19.0 <0.20.0",
+      "resolved": "https://registry.npmjs.org/magic-string/-/magic-string-0.19.0.tgz"
     },
     "make-error": {
       "version": "1.2.1",
@@ -3210,7 +3206,7 @@
     },
     "postcss": {
       "version": "5.2.15",
-      "from": "postcss@>=5.2.15 <6.0.0",
+      "from": "postcss@>=5.2.14 <6.0.0",
       "resolved": "https://registry.npmjs.org/postcss/-/postcss-5.2.15.tgz"
     },
     "postcss-calc": {
