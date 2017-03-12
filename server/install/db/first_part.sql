@@ -41,12 +41,6 @@ CREATE TABLE "user"(
   id SERIAL PRIMARY KEY NOT NULL,
   username VARCHAR(40) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
-  role_id INT NOT NULL REFERENCES role(id),
+  role VARCHAR(10) DEFAULT ('user'),
   personal_info_id INT REFERENCES personal_info(id)
-);
-
-CREATE TABLE user_role(
-  user_id INT REFERENCES "user" (id),
-  role_id INT REFERENCES role(id),
-  PRIMARY KEY (user_id, role_id)
 );
