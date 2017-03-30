@@ -1,0 +1,93 @@
+<div class="row">
+  <div *ngIf="!isExistUniversity">
+    <div class="col-md-6">
+      <div *ngIf="!isExistFaculty">
+        <div *ngFor="let tag of tags" class="col-md-5">
+          <button class="btn btn-default button-custom" (click)="selectTag(tag)" [class.absent]="isExist(tag)">
+            {{tag.name}}
+          </button>
+        </div>
+        <div class="col-md-12">
+          <button class="button-custom btn btn-primary" (click)="findTags()">Подобрать специальности</button>
+        </div>
+      </div>
+
+      <div *ngIf="isExistFaculty">
+        <div class="panel panel-info">
+          <div class="panel-heading"><h2>Факультет {{selectedFaculty.name}}</h2></div>
+          <div class="panel-body">{{selectedFaculty.address}}</div>
+        </div>
+        <div class="col-md-20">
+          <button class="btn btn-warning" (click)="getUniversity(selectedFaculty.id)">Подбробнее об университете
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div *ngIf="specialities" class="col-md-6">
+      <table class="table table-hover">
+
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Code</th>
+          <th>Price</th>
+          <th>Free Education</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let spec of specialities">
+          <td>{{spec.name}}</td>
+          <td>{{spec.code}}</td>
+          <td>{{spec.price}}</td>
+          <td *ngIf="spec.free">Yes</td>
+          <td *ngIf="!spec.free">No</td>
+          <button class="btn btn-danger" (click)="selectFaculty(spec.id)">Факультет</button>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div *ngIf="isExistUniversity" class="col-lg-6">
+    <div class=" panel-center panel panel-info">
+      <div class="panel-heading"><h1>{{selectedUniversity.name}}</h1></div>
+      <div class="panel-body">{{selectedUniversity.email}}</div>
+      <div class="panel-body"><a href="{{selectedUniversity.site}}">{{selectedUniversity.site}}</a></div>
+    </div>
+    <div class="panel-heading"><h2>Факультеты</h2></div>
+    <div class="panel panel-danger panel-center" *ngFor="let dep of departments">
+      <div class="panel-heading">{{dep.name}}</div>
+      <div>
+        <button class="btn btn-warning" (click)="getDepartment(dep.id)">..к специальностям</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="specialities && isNewSpec" class="col-md-6">
+    <div class="panel panel-default">
+
+    <table class="table table-hover">
+
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="success" *ngFor="let spec of specialities">
+        <td>{{spec.name}}</td>
+        <td>{{spec.price}}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+
+</div>

@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/signUp").permitAll()
-                .antMatchers("/**").authenticated();
+                .antMatchers("/**").permitAll();
     }
 
     @Bean

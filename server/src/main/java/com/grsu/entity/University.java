@@ -24,14 +24,8 @@ public class University {
     @Column
     private String site;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "university")
     private List<Department> departments;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "university_learning_option",
-            joinColumns = {@JoinColumn(name = "learning_option_id")},
-            inverseJoinColumns = {@JoinColumn(name = "university_id")})
-    private List<LearningOption> learningOptions;
 
     public University() {
     }
@@ -80,13 +74,5 @@ public class University {
 
     public void setDepartments(List<Department> departments) {
         this.departments = departments;
-    }
-
-    public List<LearningOption> getLearningOptions() {
-        return learningOptions;
-    }
-
-    public void setLearningOptions(List<LearningOption> learningOptions) {
-        this.learningOptions = learningOptions;
     }
 }
