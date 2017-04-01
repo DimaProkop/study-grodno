@@ -18,6 +18,11 @@ import {HomeService} from "./service/home/home.service";
 import { SpecialityComponent } from './components/speciality/speciality.component';
 import {FacultyService} from "./service/faculty/faculty.service";
 import {UniversityService} from "./service/university/university.service";
+import {SpecialityBuilderComponent} from "./components/speciality-builder/speciality-builder.component";
+import {SpecialityService} from "./service/speciality/speciality.service";
+import {AdminPanelComponent} from "./components/admin-panel/admin-panel.component";
+import {FacultyBuilderComponent} from "./components/faculty-builder/faculty-builder.component";
+import {UniversityBuilderComponent} from "./components/university-builder/university-builder.component";
 
 @NgModule({
   imports: [
@@ -37,8 +42,13 @@ import {UniversityService} from "./service/university/university.service";
     InstitutionComponent,
     InstituionDetailComponent,
     SpecialityComponent,
+    AdminPanelComponent,
+    SpecialityBuilderComponent,
+    FacultyBuilderComponent,
+    UniversityBuilderComponent
+
   ],
-  providers: [HomeService, FacultyService, UniversityService],
+  providers: [HomeService, FacultyService, UniversityService, SpecialityService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

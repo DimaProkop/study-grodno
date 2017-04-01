@@ -2,8 +2,7 @@ package com.grsu.controller;
 
 import com.grsu.entity.Department;
 import com.grsu.entity.University;
-import com.grsu.repository.DepartmentRepository;
-import com.grsu.repository.UniversityRepository;
+import com.grsu.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

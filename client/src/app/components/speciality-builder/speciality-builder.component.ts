@@ -5,6 +5,8 @@ import {Component, OnInit} from '@angular/core';
 import {SpecialityModel} from "../../model/speciality.model";
 import {isNullOrUndefined} from "util";
 import {SpecialityService} from "../../service/speciality/speciality.service";
+import {LanguageLearning} from "../../model/language-learning.model";
+import {FormOfEducation} from "../../model/form-of-education.model";
 
 @Component({
   selector: 'app-speciality-builder',
@@ -16,12 +18,19 @@ export class SpecialityBuilderComponent implements OnInit {
   errorMessage: string;
   speciality: SpecialityModel;
   specialities: SpecialityModel[];
+  formsOfEducation: FormOfEducation[];
+  languagesLearning: LanguageLearning[];
 
   constructor(private specialityService: SpecialityService ) {
     this.speciality = new SpecialityModel();
+    this.formsOfEducation = [];
+    this.languagesLearning = [];
   }
 
   ngOnInit() {
+
+    this.initLanguageLearning();
+    this.initFormOfEducation();
 
     this.specialityService.getAll()
       .subscribe(
@@ -35,8 +44,6 @@ export class SpecialityBuilderComponent implements OnInit {
 
   save(): void {
 
-    console.log(this.speciality);
-
     this.specialityService.create(this.speciality)
       .subscribe(
         speciality => {
@@ -47,5 +54,16 @@ export class SpecialityBuilderComponent implements OnInit {
         },
         error => this.errorMessage = <any>error
       );
+  }
+
+  initLanguageLearning() {
+    this.languagesLearning.push(new LanguageLearning(1, "Русский"));
+    this.languagesLearning.push(new LanguageLearning(2, "Английский"));
+  }
+
+  initFormOfEducation() {
+    this.formsOfEducation.push(new FormOfEducation(1, "Очная"));
+    this.formsOfEducation.push(new FormOfEducation(2, "Заочная"));
+    this.formsOfEducation.push(new FormOfEducation(3, "Дистанционная"));
   }
 }

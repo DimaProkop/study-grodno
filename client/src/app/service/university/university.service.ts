@@ -23,6 +23,19 @@ export class UniversityService {
     return headers;
   }
 
+  create(university: any): Observable<any> {
+    return this.http
+      .post(this.getUnivUrl, JSON.stringify(university), {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getAll(): Observable<any[]> {
+    return this.http.get(this.getUnivUrl, {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   getUniversityById(id: number): Observable<UniversityModel> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
@@ -30,7 +43,6 @@ export class UniversityService {
       .map(this.extractData)
       .catch(this.handleError);
   }
-
 
   private extractData(res: Response) {
     return res.json();

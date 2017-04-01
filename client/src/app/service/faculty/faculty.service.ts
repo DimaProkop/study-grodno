@@ -21,6 +21,19 @@ export class FacultyService {
     return headers;
   }
 
+  create(faculty: any): Observable<any> {
+    return this.http
+      .post(this.getFacultyUrl, JSON.stringify(faculty), {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getAll(): Observable<any[]> {
+    return this.http.get(this.getFacultyUrl, {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   getFacultyById(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);

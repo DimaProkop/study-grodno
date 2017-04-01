@@ -2,8 +2,7 @@ package com.grsu.controller;
 
 import com.grsu.entity.Department;
 import com.grsu.entity.Speciality;
-import com.grsu.repository.DepartmentRepository;
-import com.grsu.repository.SpecialityRepository;
+import com.grsu.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/faculty")
 public class FacultyController {
 
-    private DepartmentRepository departmentRepository;
-    private SpecialityRepository specialityRepository;
+    private final DepartmentRepository departmentRepository;
+    private final SpecialityRepository specialityRepository;
 
     @Autowired
     public FacultyController(DepartmentRepository departmentRepository, SpecialityRepository specialityRepository) {
