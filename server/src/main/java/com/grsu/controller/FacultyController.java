@@ -19,8 +19,8 @@ import java.util.List;
 @RequestMapping("api/faculty")
 public class FacultyController {
 
-    private final DepartmentRepository departmentRepository;
-    private final SpecialityRepository specialityRepository;
+    private DepartmentRepository departmentRepository;
+    private SpecialityRepository specialityRepository;
 
     @Autowired
     public FacultyController(DepartmentRepository departmentRepository, SpecialityRepository specialityRepository) {
@@ -28,18 +28,12 @@ public class FacultyController {
         this.specialityRepository = specialityRepository;
     }
 
-    /*@RequestMapping()
-    public ResponseEntity findById(@RequestParam(value = "id") Long id) {
+    @RequestMapping
+    public ResponseEntity findById(@RequestParam(name = "id") Long id) {
         Speciality speciality = specialityRepository.findOne(id);
         Department department = departmentRepository.findOne(speciality.getDepartment().getId());
         return new ResponseEntity(department, HttpStatus.OK);
     }
-
-    @RequestMapping(name = "get")
-    public ResponseEntity getById(@RequestParam(value = "id") Long id) {
-        Department department = departmentRepository.findOne(id);
-        return new ResponseEntity(department.getSpecialities(), HttpStatus.OK);
-    }*/
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody FacultyDTO facultyDTO){
