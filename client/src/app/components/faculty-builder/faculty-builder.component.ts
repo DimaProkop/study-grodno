@@ -22,19 +22,28 @@ export class FacultyBuilderComponent implements OnInit {
     this.faculties = [];
   }
   ngOnInit() {
+    this.initFaculty();
+  }
 
-    this.facultyService.getAll()
+  save(): void {
+    this.facultyService.create(this.faculty)
       .subscribe(
-        faculties => {
-          this.faculties = faculties;
-          console.log(this.faculties);
+        faculty => {
+          this.faculty = faculty;
+          this.faculties.push(this.faculty);
         },
         error => this.errorMessage = <any>error
       );
   }
 
-  save(): void {
-    this.faculties.push(this.faculty);
+  initFaculty() {
+    this.facultyService.getAll()
+      .subscribe(
+        faculties => {
+          this.faculties = faculties;
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
 }

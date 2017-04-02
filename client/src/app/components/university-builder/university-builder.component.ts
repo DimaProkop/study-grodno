@@ -21,7 +21,7 @@ export class UniversityBuilderComponent implements OnInit {
     this.universities = [];
   }
   ngOnInit() {
-
+    this.initUniversity();
   }
 
   save(): void {
@@ -29,10 +29,20 @@ export class UniversityBuilderComponent implements OnInit {
     this.universityService.create(this.university)
       .subscribe(
         university => {
-
           this.university = university;
           this.universities.push(this.university);
+          console.log(this.university);
+        },
+        error => this.errorMessage = <any>error
+      );
+  }
 
+  initUniversity() {
+    this.universityService.getAll()
+      .subscribe(
+        universities => {
+          this.universities = universities;
+          console.log(this.universities);
         },
         error => this.errorMessage = <any>error
       );

@@ -15,7 +15,7 @@ import java.util.List;
 public class Department implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
@@ -26,7 +26,7 @@ public class Department implements Serializable {
     private String address;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JoinColumn(name = "university_id")
     private University university;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

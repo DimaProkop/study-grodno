@@ -10,10 +10,10 @@ import {UniversityModel} from "../../model/university.model";
 @Injectable()
 export class UniversityService {
 
-  private getUnivUrl : string;
+  private universityURL : string;
 
   constructor(private http: Http) {
-    this.getUnivUrl = "http://localhost:8080/univ";
+    this.universityURL = "http://localhost:8080/api/university";
   }
 
   prepareHeaders() {
@@ -25,13 +25,13 @@ export class UniversityService {
 
   create(university: any): Observable<any> {
     return this.http
-      .post(this.getUnivUrl, JSON.stringify(university), {headers: this.prepareHeaders()})
+      .post(this.universityURL, JSON.stringify(university), {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getAll(): Observable<any[]> {
-    return this.http.get(this.getUnivUrl, {headers: this.prepareHeaders()})
+    return this.http.get(this.universityURL, {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -39,7 +39,7 @@ export class UniversityService {
   getUniversityById(id: number): Observable<UniversityModel> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.getUnivUrl, {search: params, headers: this.prepareHeaders()})
+    return this.http.get(this.universityURL, {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }

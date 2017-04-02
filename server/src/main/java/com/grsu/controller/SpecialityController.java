@@ -42,7 +42,6 @@ public class SpecialityController {
     public ResponseEntity<List<Speciality>> getAll() {
 
         List<Speciality> specialities = this.speciallyRepository.findAll();
-
         return ResponseEntity.ok(specialities);
     }
 }

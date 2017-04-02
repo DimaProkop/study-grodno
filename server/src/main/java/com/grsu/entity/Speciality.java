@@ -13,7 +13,7 @@ import java.util.List;
 public class Speciality {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
     @Column
@@ -26,7 +26,7 @@ public class Speciality {
     private Boolean free;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JsonIgnore
+    @JoinColumn(name = "department_id")
     private Department department;
 
     public Speciality() {

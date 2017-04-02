@@ -7,11 +7,11 @@ import {FacultyModel} from "../../model/faculty.model";
 @Injectable()
 export class FacultyService {
 
-  private getFacultyUrl : string;
+  private facultyURL : string;
   private getDep : string;
 
   constructor(private http: Http) {
-    this.getFacultyUrl = "http://localhost:8080/faculty";
+    this.facultyURL = "http://localhost:8080/api/faculty";
   }
 
   prepareHeaders() {
@@ -23,13 +23,13 @@ export class FacultyService {
 
   create(faculty: any): Observable<any> {
     return this.http
-      .post(this.getFacultyUrl, JSON.stringify(faculty), {headers: this.prepareHeaders()})
+      .post(this.facultyURL, JSON.stringify(faculty), {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getAll(): Observable<any[]> {
-    return this.http.get(this.getFacultyUrl, {headers: this.prepareHeaders()})
+    return this.http.get(this.facultyURL, {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -37,7 +37,7 @@ export class FacultyService {
   getFacultyById(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.getFacultyUrl, {search: params, headers: this.prepareHeaders()})
+    return this.http.get(this.facultyURL, {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }

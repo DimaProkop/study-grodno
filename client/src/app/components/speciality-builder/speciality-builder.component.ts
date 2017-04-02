@@ -28,18 +28,9 @@ export class SpecialityBuilderComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.initLanguageLearning();
     this.initFormOfEducation();
-
-    this.specialityService.getAll()
-      .subscribe(
-        specialities => {
-          this.specialities = specialities;
-          console.log(this.specialities);
-        },
-        error => this.errorMessage = <any>error
-      );
+    this.initSpecialities();
   }
 
   save(): void {
@@ -47,10 +38,8 @@ export class SpecialityBuilderComponent implements OnInit {
     this.specialityService.create(this.speciality)
       .subscribe(
         speciality => {
-
           this.speciality = speciality;
           this.specialities.push(this.speciality);
-
         },
         error => this.errorMessage = <any>error
       );
@@ -65,5 +54,15 @@ export class SpecialityBuilderComponent implements OnInit {
     this.formsOfEducation.push(new FormOfEducation(1, "Очная"));
     this.formsOfEducation.push(new FormOfEducation(2, "Заочная"));
     this.formsOfEducation.push(new FormOfEducation(3, "Дистанционная"));
+  }
+
+  initSpecialities() {
+    this.specialityService.getAll()
+      .subscribe(
+        specialities => {
+          this.specialities = specialities;
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 }
