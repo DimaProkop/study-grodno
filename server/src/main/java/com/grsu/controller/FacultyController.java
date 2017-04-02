@@ -31,10 +31,4 @@ public class FacultyController {
         Department department = departmentRepository.findOne(speciality.getDepartment().getId());
         return new ResponseEntity(department, HttpStatus.OK);
     }
-
-    @RequestMapping(name = "get")
-    public ResponseEntity getById(@RequestParam(name = "id") Long id) {
-        Department department = departmentRepository.findOne(id);
-        return new ResponseEntity(department.getSpecialities(), HttpStatus.OK);
-    }
 }

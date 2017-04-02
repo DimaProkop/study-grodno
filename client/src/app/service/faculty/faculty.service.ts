@@ -30,7 +30,7 @@ export class FacultyService {
   }
 
   getDepartment(id: number): Observable<any> {
-    this.getDep = "http://localhost:8080/faculty/get";
+    this.getDep = "http://localhost:8080/faculty";
     let params = new URLSearchParams();
     params.set('id', "" + id);
     return this.http.get(this.getDep, {search: params, headers: this.prepareHeaders()})
