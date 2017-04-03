@@ -1,21 +1,22 @@
 package com.grsu.controller;
 
+import com.grsu.dto.FacultyDTO;
+import com.grsu.dto.UniversityDTO;
 import com.grsu.entity.Department;
 import com.grsu.entity.University;
-import com.grsu.repository.DepartmentRepository;
-import com.grsu.repository.UniversityRepository;
+import com.grsu.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by dionp on 27.03.2017.
  */
 @RestController
-@RequestMapping("/univ")
+@RequestMapping("api/university")
 public class UniversityController {
 
     private UniversityRepository universityRepository;
@@ -32,5 +33,31 @@ public class UniversityController {
         Department department = departmentRepository.findOne(id);
         University university = universityRepository.findOne(department.getUniversity().getId());
         return new ResponseEntity(university, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity add(@RequestBody UniversityDTO universityDTO){
+
+        University university = new University();
+        university.setName(universityDTO.getName());
+        university.setEmail(universityDTO.getEmail());
+        university.setSite(universityDTO.getSite());
+
+        universityRepository.save(university);
+
+        universityDTO.getDepartments().stream().forEach(speciality -> {
+            Department newDepartment = departmentRepository.findOne(speciality.getId());
+            newDepartment.setUniversity(university);
+            departmentRepository.save(newDepartment);
+        });
+
+        return ResponseEntity.ok(university);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity getAll() {
+
+        List<University> universities = this.universityRepository.findAll();
+        return ResponseEntity.ok(universities);
     }
 }

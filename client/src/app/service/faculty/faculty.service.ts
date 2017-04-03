@@ -7,11 +7,11 @@ import {FacultyModel} from "../../model/faculty.model";
 @Injectable()
 export class FacultyService {
 
-  private getFacultyUrl : string;
+  private facultyUrl : string;
   private getDep : string;
 
   constructor(private http: Http) {
-    this.getFacultyUrl = "http://localhost:8080/faculty";
+    this.facultyUrl = "http://localhost:8080/api/faculty";
   }
 
   prepareHeaders() {
@@ -24,7 +24,7 @@ export class FacultyService {
   getFacultyById(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.getFacultyUrl, {search: params, headers: this.prepareHeaders()})
+    return this.http.get(this.facultyUrl, {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -38,7 +38,6 @@ export class FacultyService {
       .catch(this.handleError);
   }
 
-
   private extractData(res: Response) {
     return res.json();
   }
@@ -46,5 +45,18 @@ export class FacultyService {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  create(faculty: any): Observable<any> {
+    return this.http
+      .post(this.facultyUrl, JSON.stringify(faculty), {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getAll(): Observable<any[]> {
+    return this.http.get(this.facultyUrl, {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 }

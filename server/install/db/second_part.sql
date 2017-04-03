@@ -5,7 +5,7 @@ CREATE TABLE learning_option(
 CREATE TABLE university(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
-  login VARCHAR(30) NOT NULL,
+  email VARCHAR(30) NOT NULL,
   site VARCHAR(100) NOT NULL
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE department(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
   address VARCHAR(255) NOT NULL,
-  education_institution_id INT REFERENCES university(id)
+  university_id INT REFERENCES university(id)
 );
 
 CREATE TABLE speciality(
