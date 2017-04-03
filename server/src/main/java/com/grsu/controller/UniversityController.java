@@ -44,6 +44,13 @@ public class UniversityController {
         university.setSite(universityDTO.getSite());
 
         universityRepository.save(university);
+
+        universityDTO.getDepartments().stream().forEach(speciality -> {
+            Department newDepartment = departmentRepository.findOne(speciality.getId());
+            newDepartment.setUniversity(university);
+            departmentRepository.save(newDepartment);
+        });
+
         return ResponseEntity.ok(university);
     }
 

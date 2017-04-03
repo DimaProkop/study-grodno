@@ -7,11 +7,11 @@ import {FacultyModel} from "../../model/faculty.model";
 @Injectable()
 export class FacultyService {
 
-  private facultyURL : string;
+  private facultyUrl : string;
   private getDep : string;
 
   constructor(private http: Http) {
-    this.facultyURL = "http://localhost:8080/api/faculty";
+    this.facultyUrl = "http://localhost:8080/api/faculty";
   }
 
   prepareHeaders() {
@@ -21,36 +21,22 @@ export class FacultyService {
     return headers;
   }
 
-  create(faculty: any): Observable<any> {
-    return this.http
-      .post(this.facultyURL, JSON.stringify(faculty), {headers: this.prepareHeaders()})
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  getAll(): Observable<any[]> {
-    return this.http.get(this.facultyURL, {headers: this.prepareHeaders()})
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
   getFacultyById(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.facultyURL, {search: params, headers: this.prepareHeaders()})
+    return this.http.get(this.facultyUrl, {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getDepartment(id: number): Observable<any> {
-    this.getDep = "http://localhost:8080/faculty/get";
+    this.getDep = "http://localhost:8080/faculty";
     let params = new URLSearchParams();
     params.set('id', "" + id);
     return this.http.get(this.getDep, {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
-
 
   private extractData(res: Response) {
     return res.json();
@@ -59,5 +45,18 @@ export class FacultyService {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  create(faculty: any): Observable<any> {
+    return this.http
+      .post(this.facultyUrl, JSON.stringify(faculty), {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getAll(): Observable<any[]> {
+    return this.http.get(this.facultyUrl, {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
   }
 }

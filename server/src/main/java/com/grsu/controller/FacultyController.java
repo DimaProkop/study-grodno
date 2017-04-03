@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by dionp on 27.03.2017.
@@ -41,9 +42,15 @@ public class FacultyController {
         Department department = new Department();
         department.setName(facultyDTO.getName());
         department.setAddress(facultyDTO.getAddress());
-        department.setSpecialities(facultyDTO.getSpecialities());
 
         departmentRepository.save(department);
+
+        facultyDTO.getSpecialities().stream().forEach(speciality -> {
+            Speciality newSpeciality = specialityRepository.findOne(speciality.getId());
+            newSpeciality.setDepartment(department);
+            specialityRepository.save(newSpeciality);
+        });
+
         return ResponseEntity.ok(department);
     }
 

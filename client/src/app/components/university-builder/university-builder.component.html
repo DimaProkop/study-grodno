@@ -22,22 +22,11 @@
     <legend>Факультеты</legend>
     <table class="table">
       <tbody>
-      <tr>
-        <td>Математики и информатики</td>
+      <tr *ngFor="let department of departments">
+        <td>{{department.name}}</td>
+        <td>{{department.code}}</td>
         <td>
-          <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
-        </td>
-      </tr>
-      <tr>
-        <td>Математики и информатики</td>
-        <td>
-          <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
-        </td>
-      </tr>
-      <tr>
-        <td>Математики и информатики</td>
-        <td>
-          <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+          <button (click)="addFaculty(department)" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
         </td>
       </tr>
       </tbody>
@@ -67,9 +56,9 @@
     <td>{{university.name}}</td>
     <td>{{university.site}}</td>
     <td>{{university.email}}</td>
-    <td *ngFor="let faculty of university.faculties">
-      <ul>
-        <li>{{faculty.name}}</li>
+    <td>
+      <ul *ngFor="let department of university.departments">
+        <li>{{department.name}}</li>
       </ul>
     </td>
     <td>

@@ -1,5 +1,7 @@
 package com.grsu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -24,7 +26,8 @@ public class University {
     @Column
     private String site;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "university")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "university", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Department> departments;
 
     public University() {

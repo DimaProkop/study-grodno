@@ -16,25 +16,12 @@
     <legend>Специальности</legend>
     <table class="table">
       <tbody>
-      <tr>
-        <td>Программное обеспечение ифнормационных технологий</td>
-        <td>14-000-111</td>
+      <tr *ngFor="let speciality of specialities">
+        <td>{{speciality.id}}</td>
+        <td>{{speciality.name}}</td>
+        <td>{{speciality.code}}</td>
         <td>
-          <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
-        </td>
-      </tr>
-      <tr>
-        <td>Программное обеспечение ифнормационных технологий</td>
-        <td>14-000-111</td>
-        <td>
-          <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
-        </td>
-      </tr>
-      <tr>
-        <td>Программное обеспечение ифнормационных технологий</td>
-        <td>14-000-111</td>
-        <td>
-          <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
+          <button (click)="addSpeciality(speciality)" type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>
         </td>
       </tr>
       </tbody>
@@ -61,9 +48,9 @@
   <tr *ngFor="let faculty of faculties">
     <td>{{faculty.id}}</td>
     <td>{{faculty.name}}</td>
-    <td>г. {{faculty.address.city}}, ул. {{faculty.address.street}}, {{faculty.address.number}}</td>
-    <td *ngFor="let speciality of faculty.specialities">
-      <ul>
+    <td>г. {{faculty.address}}</td>
+    <td>
+      <ul *ngFor="let speciality of faculty.specialities">
         <li>{{speciality.name}}</li>
       </ul>
     </td>
