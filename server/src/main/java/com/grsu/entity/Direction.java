@@ -4,14 +4,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Уровень образования
+ * Направление
  */
 @Entity
-@Table(name = "level_of_education")
-public class LevelOfEducation implements Serializable {
+@Table(name = "direction")
+public class Direction implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
@@ -20,9 +20,6 @@ public class LevelOfEducation implements Serializable {
      */
     @Column
     private String name;
-
-    public LevelOfEducation() {
-    }
 
     public Long getId() {
         return id;
