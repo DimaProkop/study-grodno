@@ -3,6 +3,7 @@ package com.grsu.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "tag")
-public class Tag {
+public class Tag implements Serializable {
     @Id
     @GeneratedValue
     @Column

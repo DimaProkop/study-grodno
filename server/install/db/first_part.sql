@@ -14,7 +14,7 @@ CREATE TABLE skill(
   russian_language VARCHAR(30) NOT NULL,
   english_language VARCHAR(30) NOT NULL
 );
-
+/*
 CREATE TABLE level_of_education(
   id SERIAL PRIMARY KEY NOT NULL,
   current_education VARCHAR(50) NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE level_of_education(
   name_education_institution VARCHAR(50) NOT NULL,
   year_of_ending INT NOT NULL
 );
-
+*/
 CREATE TABLE personal_info(
   id SERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(40) NOT NULL,

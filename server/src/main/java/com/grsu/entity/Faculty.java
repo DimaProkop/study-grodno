@@ -8,37 +8,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dionp on 22.02.2017.
+ * Факультет
  */
 @Entity
-@Table(name = "department")
-public class Department implements Serializable {
+@Table(name = "faculty")
+public class Faculty implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
+    /**
+     * Название
+     */
     @Column
     private String name;
 
+    /**
+     * Адрес
+     */
     @Column
     private String address;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    /**
+     * Университет
+     */
+    @ManyToOne
     @JoinColumn(name = "university_id")
     private University university;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
+    /**
+     * Специальности
+     */
+    @OneToMany(mappedBy = "faculty")
     private List<Speciality> specialities;
 
-    public Department() {
-    }
-
-    public Department(String name, String address) {
-        this.name = name;
-        this.address = address;
+    public Faculty() {
     }
 
     public String getAddress() {

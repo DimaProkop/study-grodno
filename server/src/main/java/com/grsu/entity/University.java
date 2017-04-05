@@ -3,48 +3,70 @@ package com.grsu.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by dionp on 22.02.2017.
+ * Университет
  */
 @Entity
 @Table(name = "university")
-public class University {
+public class University implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
+    /**
+     * Название
+     */
     @Column
     private String name;
 
-    @Column
-    private String email;
+    /**
+     * Основная почта
+     */
+    @Column(name = "primary_mail")
+    private String primaryMail;
 
+    /**
+     * Почта для обратной связи
+     */
+    @Column(name = "mail_feedback")
+    private String mailFeedback;
+
+    /**
+     * Сайт университета
+     */
     @Column
     private String site;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "university", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Department> departments;
+    /**
+     * Адрес
+     */
+    @Column
+    private String address;
+
+    /**
+     * Город
+     */
+    @Column
+    private String city;
+
+    /**
+     * Рейтинг в РБ
+     */
+    @Column(name = "local_rating")
+    private Integer localRating;
+
+    /**
+     * Факультеты
+     */
+    @OneToMany(mappedBy = "university")
+    private List<Faculty> faculties;
 
     public University() {
-    }
-
-    public University(String name, String email, String site) {
-        this.name = name;
-        this.email = email;
-        this.site = site;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Long getId() {
@@ -63,6 +85,22 @@ public class University {
         this.name = name;
     }
 
+    public String getPrimaryMail() {
+        return primaryMail;
+    }
+
+    public void setPrimaryMail(String primaryMail) {
+        this.primaryMail = primaryMail;
+    }
+
+    public String getMailFeedback() {
+        return mailFeedback;
+    }
+
+    public void setMailFeedback(String mailFeedback) {
+        this.mailFeedback = mailFeedback;
+    }
+
     public String getSite() {
         return site;
     }
@@ -71,11 +109,35 @@ public class University {
         this.site = site;
     }
 
-    public List<Department> getDepartments() {
-        return departments;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Integer getLocalRating() {
+        return localRating;
+    }
+
+    public void setLocalRating(Integer localRating) {
+        this.localRating = localRating;
+    }
+
+    public List<Faculty> getFaculties() {
+        return faculties;
+    }
+
+    public void setFaculties(List<Faculty> faculties) {
+        this.faculties = faculties;
     }
 }
