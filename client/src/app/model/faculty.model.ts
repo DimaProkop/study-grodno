@@ -8,9 +8,28 @@ export class FacultyModel {
   constructor() {
   }
 
+  /**
+   * ИД
+   */
   id: number;
+
+  /**
+   * Название
+   */
   name: string;
+
+  /**
+   * Адрес
+   */
   address: string;
+
+  /**
+   * Университет
+   */
   university: UniversityModel;
+
+  /**
+   * Специальности
+   */
   specialities: SpecialityModel[];
 }
