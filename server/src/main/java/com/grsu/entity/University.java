@@ -27,13 +27,13 @@ public class University implements Serializable {
     /**
      * Основная почта
      */
-    @Column(name = "primary_mail")
+    @Column(name = "email")
     private String primaryMail;
 
     /**
      * Почта для обратной связи
      */
-    @Column(name = "mail_feedback")
+    @Column(name = "feedback")
     private String mailFeedback;
 
     /**
