@@ -72,6 +72,7 @@ export class HomeComponent implements OnInit {
   selectFaculty(id: number) {
     this.isExistFaculty = true;
     this.facultyService.getFacultyById(id).subscribe(x => {
+      console.log(x);
       this.selectedFaculty = x;
     })
   }
@@ -80,13 +81,14 @@ export class HomeComponent implements OnInit {
     this.isExistUniversity = true;
     this.universityService.getUniversityById(id).subscribe(x => {
       this.selectedUniversity = x;
+      console.log(x.departments);
       this.departments = x.departments;
     })
   }
 
   getDepartment(id: number) {
     this.isNewSpec = true;
-    this.facultyService.getDepartment(id).subscribe(x => {
+    this.facultyService.getSpecByDepartment(id).subscribe(x => {
       this.specialities = x;
     })
   }

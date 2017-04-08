@@ -1,12 +1,12 @@
 CREATE TABLE university(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
-  primary_email VARCHAR(30) NOT NULL,
-  email_feedback VARCHAR(30) NOT NULL,
+  email VARCHAR(30) NOT NULL,
+  feedback VARCHAR(30) NOT NULL,
   site VARCHAR(100) NOT NULL,
   address VARCHAR(100) NOT NULL,
   city VARCHAR(100) NOT NULL,
-  local_rating INT NOT NULL,
+  local_rating INT NOT NULL
 );
 
 CREATE TABLE faculty(
@@ -24,11 +24,6 @@ CREATE TABLE speciality(
   duration INT NOT NULL,
   price INT NOT NULL,
   faculty_id INT REFERENCES faculty(id)
-);
-
-CREATE TABLE level_of_education(
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE language_learning(

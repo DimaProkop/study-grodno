@@ -36,15 +36,16 @@ export class UniversityService {
       .catch(this.handleError);
   }
 
-  getUniversityById(id: number): Observable<UniversityModel> {
+  getUniversityById(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.universityURL, {search: params, headers: this.prepareHeaders()})
+    return this.http.get(this.universityURL + "/findById", {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   private extractData(res: Response) {
+    console.log(res.json());
     return res.json();
   }
 

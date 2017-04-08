@@ -24,16 +24,15 @@ export class FacultyService {
   getFacultyById(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.facultyUrl, {search: params, headers: this.prepareHeaders()})
+    return this.http.get(this.facultyUrl + "/findById", {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getDepartment(id: number): Observable<any> {
-    this.getDep = "http://localhost:8080/faculty";
+  getSpecByDepartment(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.getDep, {search: params, headers: this.prepareHeaders()})
+    return this.http.get(this.facultyUrl + "/getByDep", {search: params, headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
