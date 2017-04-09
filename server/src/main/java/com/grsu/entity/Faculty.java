@@ -1,10 +1,7 @@
 package com.grsu.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,8 +32,8 @@ public class Faculty implements Serializable {
      * Университет
      */
     @ManyToOne
-    @JoinColumn(name = "university_id")
-    private University university;
+    @JoinColumn(name = "education_institution_id")
+    private EducationInstitution educationInstitution;
 
     /**
      * Специальности
@@ -79,11 +76,11 @@ public class Faculty implements Serializable {
         this.specialities = specialities;
     }
 
-    public University getUniversity() {
-        return university;
+    public EducationInstitution getEducationInstitution() {
+        return educationInstitution;
     }
 
-    public void setUniversity(University university) {
-        this.university = university;
+    public void setEducationInstitution(EducationInstitution educationInstitution) {
+        this.educationInstitution = educationInstitution;
     }
 }

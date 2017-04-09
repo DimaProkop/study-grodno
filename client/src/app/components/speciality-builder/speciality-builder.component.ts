@@ -1,12 +1,12 @@
 /**
  * Created by DENIS on 26.03.2017.
  */
-import {Component, OnInit} from '@angular/core';
-import {SpecialityModel} from "../../model/speciality.model";
-import {isNullOrUndefined} from "util";
-import {SpecialityService} from "../../service/speciality/speciality.service";
-import {LanguageLearning} from "../../model/language-learning.model";
-import {FormOfEducation} from "../../model/form-of-education.model";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { SpecialityModel } from "../../model/speciality.model";
+import { isNullOrUndefined } from "util";
+import { SpecialityService } from "../../service/speciality/speciality.service";
+import { LanguageLearning } from "../../model/language-learning.model";
+import { FormOfEducation } from "../../model/form-of-education.model";
 
 @Component({
   selector: 'app-speciality-builder',
@@ -15,34 +15,31 @@ import {FormOfEducation} from "../../model/form-of-education.model";
 })
 export class SpecialityBuilderComponent implements OnInit {
 
+  @Input()
+  formType: number;
+
+  @Input()
+  entity: SpecialityModel;
+  @Output() onChanged = new EventEmitter<SpecialityModel>();
+    save() {
+        this.onChanged.emit(this.entity);
+  }
+
   errorMessage: string;
   speciality: SpecialityModel;
   specialities: SpecialityModel[];
   formsOfEducation: FormOfEducation[];
   languagesLearning: LanguageLearning[];
 
-  constructor(private specialityService: SpecialityService ) {
+  constructor(private specialityService: SpecialityService) {
     this.speciality = new SpecialityModel();
     this.formsOfEducation = [];
     this.languagesLearning = [];
   }
 
   ngOnInit() {
-    this.initLanguageLearning();
     this.initFormOfEducation();
-    this.initSpecialities();
-  }
-
-  save(): void {
-
-    this.specialityService.create(this.speciality)
-      .subscribe(
-        speciality => {
-          this.speciality = speciality;
-          this.specialities.push(this.speciality);
-        },
-        error => this.errorMessage = <any>error
-      );
+    this.initLanguageLearning();
   }
 
   initLanguageLearning() {
@@ -59,10 +56,10 @@ export class SpecialityBuilderComponent implements OnInit {
   initSpecialities() {
     this.specialityService.getAll()
       .subscribe(
-        specialities => {
-          this.specialities = specialities;
-        },
-        error => this.errorMessage = <any>error
+      specialities => {
+        this.specialities = specialities;
+      },
+      error => this.errorMessage = <any>error
       );
   }
 }

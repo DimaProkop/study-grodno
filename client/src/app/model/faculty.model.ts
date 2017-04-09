@@ -1,5 +1,5 @@
-import {SpecialityModel} from "./speciality.model";
-import {UniversityModel} from "./university.model";
+import { SpecialityModel } from "./speciality.model";
+import { EducationInstitutionModel } from "./education-institution.model";
 /**
  * Created by dionp on 27.03.2017.
  */
@@ -26,7 +26,7 @@ export class FacultyModel {
   /**
    * Университет
    */
-  university: UniversityModel;
+  educationInstitution: EducationInstitutionModel;
 
   /**
    * Специальности

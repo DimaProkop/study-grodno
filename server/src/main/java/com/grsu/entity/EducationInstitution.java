@@ -10,8 +10,8 @@ import java.util.List;
  * Университет
  */
 @Entity
-@Table(name = "university")
-public class University implements Serializable {
+@Table(name = "education_institution")
+public class EducationInstitution implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,10 @@ public class University implements Serializable {
      */
     @Column(name = "email")
     private String primaryMail;
+
+    @Column(name = "type_education_institution")
+    @Enumerated(EnumType.STRING)
+    private TypeEducationInstitution typeEducationInstitution;
 
     /**
      * Почта для обратной связи
@@ -63,10 +67,18 @@ public class University implements Serializable {
     /**
      * Факультеты
      */
-    @OneToMany(mappedBy = "university")
+    @OneToMany(mappedBy = "educationInstitution")
     private List<Faculty> faculties;
 
-    public University() {
+    public EducationInstitution() {
+    }
+
+    public TypeEducationInstitution getTypeEducationInstitution() {
+        return typeEducationInstitution;
+    }
+
+    public void setTypeEducationInstitution(TypeEducationInstitution typeEducationInstitution) {
+        this.typeEducationInstitution = typeEducationInstitution;
     }
 
     public Long getId() {

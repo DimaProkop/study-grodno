@@ -1,6 +1,6 @@
-import {Observable} from "rxjs/Observable";
-import {Injectable} from "@angular/core";
-import {Response} from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import { Injectable } from "@angular/core";
+import { Response } from "@angular/http";
 import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
 import { SpecialityModel } from "../../model/speciality.model";
@@ -25,13 +25,13 @@ export class SpecialityService {
 
   create(speciality: SpecialityModel): Observable<SpecialityModel> {
     return this.http
-      .post(this.specialityURL, JSON.stringify(speciality), {headers: this.prepareHeaders()})
+      .post(this.specialityURL, JSON.stringify(speciality), { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getAll(): Observable<SpecialityModel[]> {
-    return this.http.get(this.specialityURL, {headers: this.prepareHeaders()})
+    return this.http.get(this.specialityURL, { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }

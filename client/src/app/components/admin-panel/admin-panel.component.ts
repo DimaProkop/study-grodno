@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+import { TreeViewComponent } from "../tree-view/tree-view.component";
 
 @Component({
   selector: 'app-admin-panel',
@@ -7,7 +8,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./admin-panel.component.css']
 })
 export class AdminPanelComponent implements OnInit {
-  constructor() { }
 
   ngOnInit() {
   }

@@ -1,10 +1,12 @@
-import {FacultyModel} from "./faculty.model";
+import { FacultyModel } from "./faculty.model";
+import { TypeEducationInstitution } from "./type-education-institution.model";
+
 /**
  * Created by dionp on 27.03.2017.
  */
-export class UniversityModel {
+export class EducationInstitutionModel {
 
-  constructor() {}
+  constructor() { }
 
   /**
    * ИД
@@ -15,6 +17,11 @@ export class UniversityModel {
    * Название
    */
   name: string;
+
+  /**
+    * Тип учреждения образования
+    */
+  typeEducationInstitution: TypeEducationInstitution;
 
   /**
    * Основная почта

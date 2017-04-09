@@ -1,11 +1,11 @@
 /**
  * Created by DENIS on 26.03.2017.
  */
-import {Component, OnInit } from '@angular/core';
-import {FacultyModel} from "../../model/faculty.model";
-import {FacultyService} from "../../service/faculty/faculty.service";
-import {SpecialityService} from "../../service/speciality/speciality.service";
-import {SpecialityModel} from "../../model/speciality.model";
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FacultyModel } from "../../model/faculty.model";
+import { FacultyService } from "../../service/faculty/faculty.service";
+import { SpecialityService } from "../../service/speciality/speciality.service";
+import { SpecialityModel } from "../../model/speciality.model";
 
 @Component({
   selector: 'app-faculty-builder',
@@ -14,55 +14,50 @@ import {SpecialityModel} from "../../model/speciality.model";
 })
 export class FacultyBuilderComponent implements OnInit {
 
+  @Input()
+  formType: number;
+  @Input()
+  entity: FacultyModel;
+  @Output() onChanged = new EventEmitter<FacultyModel>();
+    save() {
+        this.onChanged.emit(this.entity);
+  }
+
   errorMessage: string;
-  faculty: FacultyModel;
   faculties: FacultyModel[];
   specialities: SpecialityModel[];
 
-  constructor(private facultyService: FacultyService, private  specialityService: SpecialityService) {
-    this.faculty = new FacultyModel();
-    this.faculty.specialities = [];
+  constructor(private facultyService: FacultyService, private specialityService: SpecialityService) {
+    this.entity = new FacultyModel();
+    this.entity.specialities = [];
     this.faculties = [];
   }
   ngOnInit() {
-    this.initFaculty();
-    this.initSpeciality();
-  }
-
-  save(): void {
-    this.facultyService.create(this.faculty)
-      .subscribe(
-        faculty => {
-          this.faculty = faculty;
-          this.faculties.push(this.faculty);
-        },
-        error => this.errorMessage = <any>error
-      );
   }
 
   addSpeciality(item: SpecialityModel): void {
-    this.faculty.specialities.push(item);
-    console.log(this.faculty);
+    this.entity.specialities.push(item);
+    console.log(this.entity);
   }
 
   initFaculty() {
     this.facultyService.getAll()
       .subscribe(
-        faculties => {
-          this.faculties = faculties;
-          console.log(this.faculties);
-        },
-        error => this.errorMessage = <any>error
+      faculties => {
+        this.faculties = faculties;
+        console.log(this.faculties);
+      },
+      error => this.errorMessage = <any>error
       );
   }
 
   initSpeciality() {
     this.specialityService.getAll()
       .subscribe(
-        specialities => {
-          this.specialities = specialities;
-        },
-        error => this.errorMessage = <any>error
+      specialities => {
+        this.specialities = specialities;
+      },
+      error => this.errorMessage = <any>error
       );
   }
 

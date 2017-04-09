@@ -1,9 +1,9 @@
-import {Observable} from "rxjs/Observable";
-import {Injectable} from "@angular/core";
-import {Response} from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import { Injectable } from "@angular/core";
+import { Response } from "@angular/http";
 import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
-import {LoginModel} from "../../model/login.model";
+import { LoginModel } from "../../model/login.model";
 
 
 @Injectable()
@@ -21,7 +21,7 @@ export class LoginService {
 
   login(loginModel: LoginModel): Observable<any> {
     return this.http
-      .post(this.loginURL, JSON.stringify(loginModel), {headers: this.headers})
+      .post(this.loginURL, JSON.stringify(loginModel), { headers: this.headers })
       .do(resp => {
         console.log(resp.headers.get('x-auth-token'));
         localStorage.setItem('x-auth-token', resp.headers.get('x-auth-token'));

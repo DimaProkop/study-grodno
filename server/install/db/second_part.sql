@@ -1,4 +1,4 @@
-CREATE TABLE university(
+CREATE TABLE education_institution(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
   email VARCHAR(30) NOT NULL,
@@ -6,14 +6,15 @@ CREATE TABLE university(
   site VARCHAR(100) NOT NULL,
   address VARCHAR(100) NOT NULL,
   city VARCHAR(100) NOT NULL,
-  local_rating INT NOT NULL
+  local_rating INT NOT NULL,
+  type_education_institution VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE faculty(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
   address VARCHAR(255) NOT NULL,
-  university_id INT REFERENCES university(id)
+  university_id INT REFERENCES education_institution(id)
 );
 
 CREATE TABLE speciality(
