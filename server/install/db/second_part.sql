@@ -14,7 +14,7 @@ CREATE TABLE faculty(
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(100) NOT NULL,
   address VARCHAR(255) NOT NULL,
-  university_id INT REFERENCES education_institution(id)
+  education_institution_id INT REFERENCES education_institution(id)
 );
 
 CREATE TABLE speciality(

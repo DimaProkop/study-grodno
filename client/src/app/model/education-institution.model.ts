@@ -51,7 +51,7 @@ export class EducationInstitutionModel {
   /**
    * Рейтинг в РБ
    */
-  rating: number;
+  localRating: number;
 
   /**
    * Факультеты

@@ -11,8 +11,9 @@ import { isNullOrUndefined } from "util";
 
 export class TreeViewComponent implements OnInit {
 
+  errorMessage: string;
   formType: number;
-  entity: any;;
+  entity: any;
 
   focusedNode: any;
   nodes: any[];
@@ -23,7 +24,7 @@ export class TreeViewComponent implements OnInit {
 
   ngOnInit() {
     this.nodes = [];
-    this.educationInstitutionService.getAll();
+    this.loadHierarchy();
   };
 
   addNode(tree, node) {
@@ -97,11 +98,26 @@ export class TreeViewComponent implements OnInit {
         university.faculties[i].specialties.push(node.data.children[i].children[j].item);
       }
     }
-
-    this.educationInstitutionService.create(university);
+    this.educationInstitutionService.create(university)
+      .subscribe(
+        item => {
+          university = item;
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 
   loadHierarchy() {
-    var educationInstitutions = this.educationInstitutionService.getAll();
+
+    var educationInstitutions = [];
+
+    this.educationInstitutionService.getAll()
+      .subscribe(
+        items => {
+          educationInstitutions = items;
+          console.log(educationInstitutions);
+        },
+        error => this.errorMessage = <any>error
+      );
   }
 }

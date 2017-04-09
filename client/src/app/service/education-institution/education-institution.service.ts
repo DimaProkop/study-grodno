@@ -13,7 +13,7 @@ export class EducationInstitutionService {
   private universityURL: string;
 
   constructor(private http: Http) {
-    this.universityURL = "http://localhost:8080/api/university";
+    this.universityURL = "http://localhost:8080/education-institution";
   }
 
   prepareHeaders() {
@@ -23,8 +23,8 @@ export class EducationInstitutionService {
     return headers;
   }
 
-  create(university: any): Observable<any> {
-    
+  create(university: EducationInstitutionModel): Observable<EducationInstitutionModel> {
+    console.log(university);
     return this.http
       .post(this.universityURL, JSON.stringify(university), { headers: this.prepareHeaders() })
       .map(this.extractData)
