@@ -1,0 +1,18 @@
+<h1>Четкий поиск от Бати</h1>
+<form novalidate [formGroup]="myForm" (ngSubmit)="searchForParams(myForm)">
+  <label>Уровень образования: </label><br/>
+  <div class="col-md-4">
+    <select formControlName="level" class="form-control">
+      <option *ngFor="let l of array" [attr.value]="l">{{l}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label>Направление: </label><br/>
+    <select formControlName="vector" class="form-control">
+      <option *ngFor="let l of array" [attr.value]="l">{{l}}</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+  <button type="submit" class="btn btn-danger">Find this fu**ing sheet!</button>
+  </div>
+</form>
