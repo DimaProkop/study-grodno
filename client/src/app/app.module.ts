@@ -25,6 +25,7 @@ import { FacultyBuilderComponent } from "./components/faculty-builder/faculty-bu
 import { EducationInstitutionBuilderComponent } from "./components/education-institution-builder/education-institution-builder.component";
 import { TreeViewComponent } from "./components/tree-view/tree-view.component";
 import { TreeModule } from "angular-tree-component";
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { TreeModule } from "angular-tree-component";
     FormsModule,
     HttpModule,
     AppRouting,
-    TreeModule
+    TreeModule,
+    MultiselectDropdownModule
   ],
   declarations: [
     AppComponent,

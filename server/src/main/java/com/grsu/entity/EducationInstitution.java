@@ -68,7 +68,6 @@ public class EducationInstitution implements Serializable {
      * Факультеты
      */
     @OneToMany(mappedBy = "educationInstitution")
-    @JsonIgnore
     private List<Faculty> faculties;
 
     public EducationInstitution() {

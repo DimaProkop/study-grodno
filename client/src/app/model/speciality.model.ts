@@ -8,9 +8,6 @@ import { Direction } from "./direction.model";
  */
 export class SpecialityModel {
 
-  constructor() {
-  }
-
   /**
    * ИД
    */
@@ -65,4 +62,24 @@ export class SpecialityModel {
    * Направления
    */
   directions: Direction[];
+
+  constructor() {
+    this.formsOfEducation = [];
+    this.languagesLearning = [];
+    this.levelsOfEducation = [];
+    this.directions = [];
+  }
+
+  setProperties(item: SpecialityModel): void {
+      this.id = item.id;
+      this.name = item.name;
+      this.code = item.code;
+      this.duration = item.duration;
+      this.directions = item.directions;
+      this.languagesLearning = item.languagesLearning;
+      this.levelsOfEducation = item.levelsOfEducation;
+      this.price = item.price;
+      this.formsOfEducation = item.formsOfEducation;
+      this.freeEducation = item.freeEducation;
+  }
 }

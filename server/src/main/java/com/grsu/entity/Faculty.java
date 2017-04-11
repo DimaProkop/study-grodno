@@ -1,5 +1,7 @@
 package com.grsu.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -33,6 +35,7 @@ public class Faculty implements Serializable {
      */
     @ManyToOne
     @JoinColumn(name = "education_institution_id")
+    @JsonIgnore
     private EducationInstitution educationInstitution;
 
     /**

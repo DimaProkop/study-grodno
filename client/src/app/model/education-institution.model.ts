@@ -57,4 +57,16 @@ export class EducationInstitutionModel {
    * Факультеты
    */
   faculties: FacultyModel[];
+
+  setProperties(item: EducationInstitutionModel): void {
+      this.id = item.id;
+      this.address = item.address;
+      this.city = item.city;
+      this.localRating = item.localRating;
+      this.name = item.name;
+      this.site = item.site;
+      this.primaryMail = item.primaryMail;
+      this.mailFeedback = item.mailFeedback;
+      this.typeEducationInstitution = item.typeEducationInstitution;
+  }
 }

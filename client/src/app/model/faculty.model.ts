@@ -32,4 +32,10 @@ export class FacultyModel {
    * Специальности
    */
   specialities: SpecialityModel[];
+
+  setProperties(item: FacultyModel): void {
+      this.id = item.id;
+      this.address = item.address;
+      this.name = item.name;
+  }
 }

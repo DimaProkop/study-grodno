@@ -1,10 +1,10 @@
 <div class="col-lg-4" style="height: 500px; border: double black;">
     <button (click)="addNode(tree, node);">+ Добавить учреждение образования</button>
-    <tree-root #tree [nodes]="nodes" [options]="templateOptions" [focused]="true" (onEvent)="onEvent($event)">
+    <tree-root #tree [nodes]="nodes" [options]="templateOptions" [focused]="true" (onEvent)="onEvent($event);">
         <template #treeNodeTemplate let-node>
-            <span title="{{node.data.subTitle}}">{{ node.data.name }}</span>
+            <span>{{ node.data.name }}</span>
             <button *ngIf="node.level <= 2" (click)="onAdded($event, tree, node);">+ Добавить {{node.data.actionName}}</button>
-            <button *ngIf="node.level == 1" (click)="saveHierarchy($event, node);">Сохранить</button>
+            <button *ngIf="node.level == 1" (click)="saveTree(node);">Сохранить</button>
         </template>
     </tree-root>
 </div>

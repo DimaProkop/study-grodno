@@ -31,6 +31,14 @@ export class EducationInstitutionService {
       .catch(this.handleError);
   }
 
+  update(university: EducationInstitutionModel): Observable<EducationInstitutionModel> {
+    console.log(university);
+    return this.http
+      .put(this.universityURL, JSON.stringify(university), { headers: this.prepareHeaders() })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   getAll(): Observable<any[]> {
     return this.http.get(this.universityURL, { headers: this.prepareHeaders() })
       .map(this.extractData)

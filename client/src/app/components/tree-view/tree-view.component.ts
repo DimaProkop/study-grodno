@@ -1,7 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { TreeNode, TREE_ACTIONS, KEYS, IActionMapping, TreeComponent } from 'angular-tree-component';
-import { EducationInstitutionService } from "../../service/education-institution/education-institution.service";
-import { isNullOrUndefined } from "util";
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {TreeNode, TREE_ACTIONS, KEYS, IActionMapping, TreeComponent} from 'angular-tree-component';
+import {EducationInstitutionService} from "../../service/education-institution/education-institution.service";
+import {FacultyModel} from "../../model/faculty.model";
+import {SpecialityModel} from "../../model/speciality.model";
+import {EducationInstitutionModel} from "../../model/education-institution.model";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'tree-view',
@@ -16,7 +19,7 @@ export class TreeViewComponent implements OnInit {
   entity: any;
 
   focusedNode: any;
-  nodes: any[];
+  nodes: any[] = [];
 
   constructor(private educationInstitutionService: EducationInstitutionService) {
     this.entity = new Object();
@@ -24,7 +27,6 @@ export class TreeViewComponent implements OnInit {
 
   ngOnInit() {
     this.nodes = [];
-    this.loadHierarchy();
   };
 
   addNode(tree, node) {
@@ -53,9 +55,15 @@ export class TreeViewComponent implements OnInit {
     var name;
 
     switch (level) {
-      case 1: name = "Университет"; break;
-      case 2: name = "Факультет"; break;
-      case 3: name = "Специальность"; break;
+      case 1:
+        name = "Университет";
+        break;
+      case 2:
+        name = "Факультет";
+        break;
+      case 3:
+        name = "Специальность";
+        break;
     }
 
     return name;
@@ -88,36 +96,97 @@ export class TreeViewComponent implements OnInit {
     this.addNode(tree, node);
   }
 
-  saveHierarchy($event, node) {
-    var university = node.data.item;
+  saveTree(node) {
+    let university = node.data.item;
     university.faculties = [];
-    for (var i = 0; i < node.data.children.length; i++) {
+    for (let i = 0; i < node.data.children.length; i++) {
       university.faculties.push(node.data.children[i].item);
-      university.faculties[i].specialties = [];
-      for (var j = 0; j < node.data.children[i].children.length; j++) {
-        university.faculties[i].specialties.push(node.data.children[i].children[j].item);
+      university.faculties[i].specialities = [];
+      for (let j = 0; j < node.data.children[i].children.length; j++) {
+        university.faculties[i].specialities.push(node.data.children[i].children[j].item);
       }
     }
-    this.educationInstitutionService.create(university)
-      .subscribe(
-        item => {
-          university = item;
-        },
-        error => this.errorMessage = <any>error
-      );
+
+    if (isNullOrUndefined(university.id)) {
+      this.educationInstitutionService.create(university)
+        .subscribe(
+          item => {
+            university = item;
+          },
+          error => this.errorMessage = <any>error
+        );
+    } else {
+      this.educationInstitutionService.update(university)
+        .subscribe(
+          item => {
+            university = item;
+          },
+          error => this.errorMessage = <any>error
+        );
+    }
   }
 
-  loadHierarchy() {
+  loadTree(tree, node) {
 
-    var educationInstitutions = [];
+    let educationInstitutions = [];
+
+    this.addNode(tree, node);
 
     this.educationInstitutionService.getAll()
       .subscribe(
         items => {
           educationInstitutions = items;
-          console.log(educationInstitutions);
+          this.setNodes(educationInstitutions);
+
         },
         error => this.errorMessage = <any>error
       );
+  }
+
+  setNodes(items: any): any {
+
+    for (let i = 0; i < items.length; i++) {
+
+      let educationInstitution = new EducationInstitutionModel();
+      educationInstitution.setProperties(items[i]);
+
+      this.nodes.push({
+        name: this.getDefaultName(1),
+        actionName: this.getDefaultName(2),
+        children: [],
+        item: educationInstitution
+      });
+
+      if (!isNullOrUndefined(items[i].faculties)) {
+        for (let j = 0; j < items[i].faculties.length; j++) {
+
+          let faculty = new FacultyModel();
+          faculty.setProperties(items[i].faculties[j]);
+
+          this.nodes[i].children.push({
+            name: this.getDefaultName(2),
+            actionName: this.getDefaultName(3),
+            children: [],
+            item: faculty
+          });
+
+          if (!isNullOrUndefined(items[i].faculties[j].specialities)) {
+
+            for (let k = 0; k < items[i].faculties[j].specialities.length; k++) {
+
+              let speciality = new SpecialityModel();
+              speciality.setProperties(items[i].faculties[j].specialities[k]);
+
+              this.nodes[i].children[j].children.push({
+                name: this.getDefaultName(3),
+                actionName: "",
+                children: [],
+                item: speciality
+              });
+            }
+          }
+        }
+      }
+    }
   }
 }
