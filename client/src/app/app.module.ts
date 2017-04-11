@@ -27,6 +27,7 @@ import {TreeViewComponent} from "./components/tree-view/tree-view.component";
 import {TreeModule} from "angular-tree-component";
 import {ReactiveFormsModule} from '@angular/forms';
 import {SearchComponent} from './components/search/search.component';
+import {SearchService} from "./service/search/search.service";
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import {SearchComponent} from './components/search/search.component';
     FacultyService,
     EducationInstitutionService,
     SpecialityService,
-    appRoutingProviders],
+    appRoutingProviders,
+    SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

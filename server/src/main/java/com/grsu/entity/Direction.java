@@ -21,6 +21,13 @@ public class Direction implements Serializable {
     @Column
     private String name;
 
+    public Direction() {
+    }
+
+    public Direction(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

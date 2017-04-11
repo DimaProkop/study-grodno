@@ -28,3 +28,8 @@ INSERT INTO level_of_education(name) VALUES
   ('Магистратура'),
   ('Ординатура'),
   ('Специалитет');
+INSERT INTO form_of_education(name) VALUES
+  ('Дистанционная'),
+  ('Заочная'),
+  ('Очная'),
+  ('Вечерняя');
