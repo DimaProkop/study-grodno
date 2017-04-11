@@ -13,3 +13,18 @@ INSERT INTO speciality(name, code, free_education, duration, price, faculty_id) 
   ('DTH', 22, TRUE , 5, 950, 2),
   ('ИСИТ', 31, TRUE , 4, 1250, 3),
   ('Физрук', 43, TRUE , 3, 800, 4);
+INSERT INTO direction(name) VALUES
+  ('Архитектура'),
+  ('Биология'),
+  ('Социология'),
+  ('Кибербезопастность'),
+  ('Физика и астрономия'),
+  ('Фармация'),
+  ('Химия'),
+  ('Программирование');
+INSERT INTO level_of_education(name) VALUES
+  ('Аспирантура'),
+  ('Бакалавриат'),
+  ('Магистратура'),
+  ('Ординатура'),
+  ('Специалитет');
