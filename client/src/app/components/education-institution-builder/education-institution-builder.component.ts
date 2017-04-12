@@ -28,8 +28,13 @@ export class EducationInstitutionBuilderComponent implements OnInit {
     this.entity = new EducationInstitutionModel();
   }
 
-  ngOnInit() {
+  ngOnChanges(){
+    console.log(this.entity);
     this.initTypeEducationInstitution();
+  }
+
+  ngOnInit() {
+
   }
 
   initTypeEducationInstitution() {

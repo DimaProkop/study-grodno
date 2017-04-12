@@ -15,12 +15,19 @@ import java.util.List;
 @Service
 public class EducationInstitutionServiceImpl implements EducationInstitutionService {
 
-    @Autowired
     private EducationInstitutionRepository educationInstitutionRepository;
-    @Autowired
     private FacultyRepository facultyRepository;
-    @Autowired
     private SpecialityRepository specialityRepository;
+
+    @Autowired
+    public EducationInstitutionServiceImpl(EducationInstitutionRepository educationInstitutionRepository,
+                                           FacultyRepository facultyRepository,
+                                           SpecialityRepository specialityRepository) {
+
+        this.educationInstitutionRepository = educationInstitutionRepository;
+        this.facultyRepository = facultyRepository;
+        this.specialityRepository = specialityRepository;
+    }
 
     @Override
     public void adjustSave(EducationInstitution entity) {

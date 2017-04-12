@@ -1,4 +1,4 @@
-  <form *ngIf='formType == 3' class="form-horizontal">
+  <form *ngIf='formType === 3' class="form-horizontal">
     <legend>Специальность</legend>
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Название: </label>
@@ -39,13 +39,16 @@
     <div class="form-group">
       <label for="levelsEducationId" class="col-sm-2 control-label">Уровень образования: </label>
       <div class="col-sm-10">
-        <ss-multiselect-dropdown id="levelsEducationId" [settings]="settings" [texts]="texts" [options]="levelOfEducationOptions" [(ngModel)]="levelsOfEducationModel" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+        <ss-multiselect-dropdown id="levelsEducationId" [settings]="settings" [texts]="texts" [options]="levelOfEducationOptions" [(ngModel)]="entity.levelsOfEducation" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
       </div>
     </div>
     <div class="form-group">
       <label for="directionsId" class="col-sm-2 control-label">Направление: </label>
       <div class="col-sm-10">
-        <ss-multiselect-dropdown id="directionsId" [settings]="settings" [texts]="texts" [options]="directionOptions" [(ngModel)]="directionModel" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+        <ss-multiselect-dropdown id="directionsId" [settings]="settings" [texts]="texts" [options]="directionOptions" [(ngModel)]="entity.directions" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
       </div>
+    </div>
+    <div class="form-group">
+      <button (click)="save()">Сохранить</button>
     </div>
   </form>

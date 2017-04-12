@@ -10,10 +10,10 @@ import { EducationInstitutionModel } from "../../model/education-institution.mod
 @Injectable()
 export class EducationInstitutionService {
 
-  private universityURL: string;
+  private educationInstitutionURL: string;
 
   constructor(private http: Http) {
-    this.universityURL = "http://localhost:8080/education-institution";
+    this.educationInstitutionURL = "http://localhost:8080/education";
   }
 
   prepareHeaders() {
@@ -26,7 +26,7 @@ export class EducationInstitutionService {
   create(university: EducationInstitutionModel): Observable<EducationInstitutionModel> {
     console.log(university);
     return this.http
-      .post(this.universityURL, JSON.stringify(university), { headers: this.prepareHeaders() })
+      .post(this.educationInstitutionURL, JSON.stringify(university), { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -34,13 +34,13 @@ export class EducationInstitutionService {
   update(university: EducationInstitutionModel): Observable<EducationInstitutionModel> {
     console.log(university);
     return this.http
-      .put(this.universityURL, JSON.stringify(university), { headers: this.prepareHeaders() })
+      .put(this.educationInstitutionURL, JSON.stringify(university), { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getAll(): Observable<any[]> {
-    return this.http.get(this.universityURL, { headers: this.prepareHeaders() })
+    return this.http.get(this.educationInstitutionURL, { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -48,7 +48,7 @@ export class EducationInstitutionService {
   getUniversityById(id: number): Observable<any> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.universityURL, { search: params, headers: this.prepareHeaders() })
+    return this.http.get(this.educationInstitutionURL, { search: params, headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }

@@ -28,6 +28,10 @@ import { TreeModule } from "angular-tree-component";
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SearchComponent} from './components/search/search.component';
+import {FormOfEducationService} from "./service/form-of-education/form-of-education";
+import {LevelOfEducationService} from "./service/level-of-education/level-of-education.service";
+import {DirectionService} from "./service/direction/direction.service";
+import {LanguageLearningService} from "./service/language-learning/language-learning.service";
 
 @NgModule({
   imports: [
@@ -64,6 +68,10 @@ import {SearchComponent} from './components/search/search.component';
     FacultyService,
     EducationInstitutionService,
     SpecialityService,
+    FormOfEducationService,
+    LevelOfEducationService,
+    DirectionService,
+    LanguageLearningService,
     appRoutingProviders],
   bootstrap: [AppComponent]
 })

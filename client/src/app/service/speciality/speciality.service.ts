@@ -1,5 +1,5 @@
 import { Observable } from "rxjs/Observable";
-import { Injectable } from "@angular/core";
+import {Injectable, EventEmitter} from "@angular/core";
 import { Response } from "@angular/http";
 import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
@@ -9,8 +9,13 @@ import { SpecialityModel } from "../../model/speciality.model";
 @Injectable()
 export class SpecialityService {
 
-  spec: SpecialityModel[] = [];
   private specialityURL: string;
+
+  store: any[] = [{
+
+
+
+}];
 
   prepareHeaders() {
     let headers = new Headers();

@@ -14,19 +14,26 @@ import {isNullOrUndefined} from "util";
 
 export class TreeViewComponent implements OnInit {
 
-  errorMessage: string;
-  formType: number;
-  entity: any;
+  templateOptions = {
+    isExpandedField: 'expanded',
+    idField: 'uuid',
+    nodeHeight: 30,
+    allowDrag: true,
+    useVirtualScroll: true
+  }
 
+  errorMessage: string;
+  formType: number = 0;
+  entity: any;
+  temp: any[] = [];
   focusedNode: any;
   nodes: any[] = [];
 
   constructor(private educationInstitutionService: EducationInstitutionService) {
-    this.entity = new Object();
   }
 
   ngOnInit() {
-    this.nodes = [];
+    this.loadTree();
   };
 
   addNode(tree, node) {
@@ -69,17 +76,11 @@ export class TreeViewComponent implements OnInit {
     return name;
   }
 
-  templateOptions = {
-    isExpandedField: 'expanded',
-    idField: 'uuid',
-    nodeHeight: 23,
-    allowDrag: true,
-    useVirtualScroll: true
-  }
-
   onEvent(event) {
 
-    if (!isNullOrUndefined(event.node)) {
+    this.formType = 0;
+
+    if (event.eventName == "onFocus") {
 
       this.formType = event.node.level;
       this.focusedNode = event.node;
@@ -89,6 +90,7 @@ export class TreeViewComponent implements OnInit {
 
   onChanged(entity) {
     this.entity = entity;
+    console.log(entity);
   }
 
   onAdded($event, tree, node) {
@@ -96,61 +98,65 @@ export class TreeViewComponent implements OnInit {
     this.addNode(tree, node);
   }
 
-  saveTree(node) {
-    let university = node.data.item;
-    university.faculties = [];
+  createEntity(node){
+
+    let entity = node.data.item;
+    entity.faculties = [];
     for (let i = 0; i < node.data.children.length; i++) {
-      university.faculties.push(node.data.children[i].item);
-      university.faculties[i].specialities = [];
+
+      let faculty = node.data.children[i].item;
+      entity.faculties.push(faculty);
+      entity.faculties[i].specialities = [];
+
       for (let j = 0; j < node.data.children[i].children.length; j++) {
-        university.faculties[i].specialities.push(node.data.children[i].children[j].item);
+
+        let speciality = node.data.children[i].children[j].item;
+
+        entity.faculties[i].specialities.push(speciality);
       }
     }
 
-    if (isNullOrUndefined(university.id)) {
-      this.educationInstitutionService.create(university)
+    return  entity;
+  }
+
+  saveTree(entity) {
+    if (isNullOrUndefined(entity.id)) {
+      this.educationInstitutionService.create(entity)
         .subscribe(
           item => {
-            university = item;
+            entity = item;
           },
           error => this.errorMessage = <any>error
         );
     } else {
-      this.educationInstitutionService.update(university)
+      this.educationInstitutionService.update(entity)
         .subscribe(
           item => {
-            university = item;
+            entity = item;
           },
           error => this.errorMessage = <any>error
         );
     }
   }
 
-  loadTree(tree, node) {
-
-    let educationInstitutions = [];
-
-    this.addNode(tree, node);
-
+  loadTree() {
     this.educationInstitutionService.getAll()
       .subscribe(
         items => {
-          educationInstitutions = items;
-          this.setNodes(educationInstitutions);
-
+          this.initNodes(items);
         },
         error => this.errorMessage = <any>error
       );
   }
 
-  setNodes(items: any): any {
+  initNodes(items: any): any {
 
     for (let i = 0; i < items.length; i++) {
 
       let educationInstitution = new EducationInstitutionModel();
       educationInstitution.setProperties(items[i]);
 
-      this.nodes.push({
+      this.temp.push({
         name: this.getDefaultName(1),
         actionName: this.getDefaultName(2),
         children: [],
@@ -163,7 +169,7 @@ export class TreeViewComponent implements OnInit {
           let faculty = new FacultyModel();
           faculty.setProperties(items[i].faculties[j]);
 
-          this.nodes[i].children.push({
+          this.temp[i].children.push({
             name: this.getDefaultName(2),
             actionName: this.getDefaultName(3),
             children: [],
@@ -177,7 +183,7 @@ export class TreeViewComponent implements OnInit {
               let speciality = new SpecialityModel();
               speciality.setProperties(items[i].faculties[j].specialities[k]);
 
-              this.nodes[i].children[j].children.push({
+              this.temp[i].children[j].children.push({
                 name: this.getDefaultName(3),
                 actionName: "",
                 children: [],
@@ -188,5 +194,7 @@ export class TreeViewComponent implements OnInit {
         }
       }
     }
+
+    this.nodes = this.temp;
   }
 }

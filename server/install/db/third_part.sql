@@ -28,3 +28,9 @@ INSERT INTO level_of_education(name) VALUES
   ('Магистратура'),
   ('Ординатура'),
   ('Специалитет');
+INSERT INTO language_learning(name) VALUES
+  ('Русский'),
+  ('Английский');
+INSERT INTO form_of_education(name) VALUES
+  ('Очная'),
+  ('Заочная');
