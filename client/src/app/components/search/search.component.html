@@ -1,3 +1,66 @@
-<p>
-  search works!
-</p>
+<h1>Специальности</h1>
+<div class="row">
+  <div class="col-md-6">
+
+    <form novalidate [formGroup]="myForm" (ngSubmit)="searchForParams(myForm)">
+      <label>Уровень образования: </label><br/>
+      <div>
+        <select formControlName="level" class="form-control">
+          <option disabled selected value>
+          <option *ngFor="let l of levels" [attr.value]="l">{{l.name}}</option>
+        </select>
+      </div>
+      <div>
+        <label>Направление обучения: </label><br/>
+        <select formControlName="vector" class="form-control">
+          <option disabled selected value>
+          <option *ngFor="let v of vectors" [attr.value]="v">{{v.name}}</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Форма обучения: </label><br/>
+        <select formControlName="form" class="form-control">
+          <option disabled selected value>
+          <option *ngFor="let f of forms" [attr.value]="f">{{f.name}}</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Продолжительность обучения: </label><br/>
+        <input formControlName="duration" class="form-control"/>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary">Найти</button>
+      </div>
+    </form>
+
+  </div>
+
+  <div *ngIf="specialities" class="col-md-6">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Price</th>
+        <th>Free Education</th>
+        <th>Duration</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let spec of specialities">
+        <td>{{spec.name}}</td>
+        <td>{{spec.code}}</td>
+        <td>{{spec.price}}</td>
+        <td *ngIf="spec.free">Yes</td>
+        <td *ngIf="!spec.free">No</td>
+        <td>{{spec.duration}}</td>
+        <button class="btn btn-danger" (click)="selectFaculty(spec.id)">Факультет</button>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

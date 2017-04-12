@@ -24,6 +24,10 @@ public class LevelOfEducation implements Serializable {
     public LevelOfEducation() {
     }
 
+    public LevelOfEducation(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

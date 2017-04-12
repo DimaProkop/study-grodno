@@ -32,6 +32,7 @@ import {FormOfEducationService} from "./service/form-of-education/form-of-educat
 import {LevelOfEducationService} from "./service/level-of-education/level-of-education.service";
 import {DirectionService} from "./service/direction/direction.service";
 import {LanguageLearningService} from "./service/language-learning/language-learning.service";
+import {SearchService} from "./service/search/search.service";
 
 @NgModule({
   imports: [
@@ -72,7 +73,8 @@ import {LanguageLearningService} from "./service/language-learning/language-lear
     LevelOfEducationService,
     DirectionService,
     LanguageLearningService,
-    appRoutingProviders],
+    appRoutingProviders,
+    SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

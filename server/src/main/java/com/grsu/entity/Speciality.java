@@ -74,7 +74,7 @@ public class Speciality {
     private List<LanguageLearning> languagesLearning;
 
     /**
-     * Уровени образования
+     * Уровень образования
      */
     @ManyToMany
     @JoinTable(name = "speciality_level_of_education",
