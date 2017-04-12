@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   }
 
   searchForParams({ value }: { value: Vector }) {
+    console.log(value.level);
     this.router.navigate(['/search', {level: value.level, vector: value.vector}]);
   }
 
