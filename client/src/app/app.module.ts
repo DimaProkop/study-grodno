@@ -1,11 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 
 import { AppComponent } from './components/app/app.component';
-import { AppRouting } from "./app.routing";
+import {AppRouting, appRoutingProviders} from "./app.routing";
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -26,6 +26,8 @@ import { EducationInstitutionBuilderComponent } from "./components/education-ins
 import { TreeViewComponent } from "./components/tree-view/tree-view.component";
 import { TreeModule } from "angular-tree-component";
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import {ReactiveFormsModule} from '@angular/forms';
+import {SearchComponent} from './components/search/search.component';
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     HttpModule,
     AppRouting,
     TreeModule,
-    MultiselectDropdownModule
+    MultiselectDropdownModule,
+    BrowserModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
@@ -51,10 +55,16 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     SpecialityBuilderComponent,
     FacultyBuilderComponent,
     EducationInstitutionBuilderComponent,
-    TreeViewComponent
+    TreeViewComponent,
+    SearchComponent
 
   ],
-  providers: [HomeService, FacultyService, EducationInstitutionService, SpecialityService],
+  providers: [
+    HomeService,
+    FacultyService,
+    EducationInstitutionService,
+    SpecialityService,
+    appRoutingProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

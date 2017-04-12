@@ -1,5 +1,6 @@
 /**
- * Created by dionp on 22.02.2017.
+ * paths for all components, and export providers
+ * Dima Prokopovich on 22.02.2017.
  */
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,9 +13,11 @@ import { AdminPanelComponent } from "./components/admin-panel/admin-panel.compon
 import { SpecialityBuilderComponent } from "./components/speciality-builder/speciality-builder.component";
 import { FacultyBuilderComponent } from "./components/faculty-builder/faculty-builder.component";
 import { TreeViewComponent } from "./components/tree-view/tree-view.component";
+import {SearchComponent} from "./components/search/search.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'search', component: SearchComponent },
   { path: 'app', component: AppComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
@@ -25,6 +28,10 @@ const routes: Routes = [
       { path: 'education-institution', component: TreeViewComponent }
     ]
   },
+];
+
+export const appRoutingProviders: any[] = [
+
 ];
 
 
