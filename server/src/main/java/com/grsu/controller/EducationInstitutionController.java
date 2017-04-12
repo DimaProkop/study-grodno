@@ -22,11 +22,21 @@ public class EducationInstitutionController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody EducationInstitution requestBody){
 
-        EducationInstitution university = requestBody;
+        EducationInstitution educationInstitution = requestBody;
 
-        educationInstitutionService.adjustSave(university);
+        educationInstitutionService.adjustSave(educationInstitution);
 
-        return ResponseEntity.ok(university);
+        return ResponseEntity.ok(educationInstitution);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity update(@RequestBody EducationInstitution requestBody){
+
+        EducationInstitution educationInstitution = requestBody;
+
+        educationInstitutionService.adjustSave(educationInstitution);
+
+        return ResponseEntity.ok(educationInstitution);
     }
 
     @RequestMapping(method = RequestMethod.GET)

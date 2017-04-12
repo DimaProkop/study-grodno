@@ -3,54 +3,49 @@
     <div class="form-group">
       <label for="name" class="col-sm-2 control-label">Название: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="name" placeholder="Введите название..." [(ngModel)]="entity.name" [ngModelOptions]="{standalone: true}">
+        <input required type="text" class="form-control" id="name" placeholder="Введите название..." [(ngModel)]="entity.name" [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">Цена: </label>
+      <label for="price" class="col-sm-2 control-label">Цена: </label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="price" placeholder="Введите цену..." [(ngModel)]="entity.price" [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="form-group">
-      <label for="code" class="col-sm-2 control-label">Возможность бесплатного обучения: </label>
+      <label for="free" class="col-sm-2 control-label">Возможность бесплатного обучения: </label>
       <div class="col-sm-10">
-          <label><input id="free" type="checkbox"></label>
+          <label><input [(ngModel)]="entity.freeEducation" (change)="$event.target.checked ? entity.freeEducation == true : false" id="free" type="checkbox" [ngModelOptions]="{standalone: true}"></label>
       </div>
     </div>
     <div class="form-group">
-      <label for="name" class="col-sm-2 control-label">Продолжительность обучения: </label>
+      <label for="durationId" class="col-sm-2 control-label">Продолжительность обучения: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="price" placeholder="Введите продолжительность обучения..." [(ngModel)]="entity.duration" [ngModelOptions]="{standalone: true}">
+        <input type="text" class="form-control" id="durationId" placeholder="Введите продолжительность обучения..." [(ngModel)]="entity.duration" [ngModelOptions]="{standalone: true}">
       </div>
     </div>
     <div class="form-group">
-      <label for="code" class="col-sm-2 control-label">Форма обучения: </label>
+      <label for="formsOfEducationId" class="col-sm-2 control-label">Форма обучения: </label>
       <div class="col-sm-10">
-        <div class="checkbox" *ngFor="let formOfEducation of formsOfEducation">
-          <label><input id="{{formOfEducation.id}}" type="checkbox">{{formOfEducation.name}}</label>
-        </div>
+        <ss-multiselect-dropdown id="formsOfEducationId" [settings]="settings" [texts]="texts" [options]="formOfEducationOptions" [(ngModel)]="entity.formsOfEducation" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
       </div>
     </div>
     <div class="form-group">
-      <label for="code" class="col-sm-2 control-label">Язык обучения: </label>
+      <label for="languagesLearningId" class="col-sm-2 control-label">Язык обучения: </label>
       <div class="col-sm-10">
-        <div class="checkbox" *ngFor="let languageLearning of languagesLearning">
-          <label><input id="{{languageLearning.id}}" type="checkbox">{{languageLearning.name}}</label>
-        </div>
+        <ss-multiselect-dropdown id="languagesLearningId" [settings]="settings" [texts]="texts" [options]="languagesLearningOptions" [(ngModel)]="entity.languagesLearning" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
       </div>
     </div>
     <div class="form-group">
-      <label for="code" class="col-sm-2 control-label">Направление: </label>
+      <label for="levelsEducationId" class="col-sm-2 control-label">Уровень образования: </label>
       <div class="col-sm-10">
-        <div class="checkbox" *ngFor="let direction of directions">
-          <label><input id="{{direction.id}}" type="checkbox">{{direction.name}}</label>
-        </div>
+        <ss-multiselect-dropdown id="levelsEducationId" [settings]="settings" [texts]="texts" [options]="levelOfEducationOptions" [(ngModel)]="levelsOfEducationModel" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
       </div>
     </div>
     <div class="form-group">
+      <label for="directionsId" class="col-sm-2 control-label">Направление: </label>
       <div class="col-sm-10">
-        <button (click)="save()" type="button" class="btn btn-success">Сохранить</button>
+        <ss-multiselect-dropdown id="directionsId" [settings]="settings" [texts]="texts" [options]="directionOptions" [(ngModel)]="directionModel" (ngModelChange)="onChange($event)" [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
       </div>
     </div>
   </form>

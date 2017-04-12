@@ -22,6 +22,7 @@ public class EducationInstitutionServiceImpl implements EducationInstitutionServ
     @Autowired
     private SpecialityRepository specialityRepository;
 
+    @Override
     public void adjustSave(EducationInstitution entity) {
         educationInstitutionRepository.save(entity);
 
@@ -38,7 +39,6 @@ public class EducationInstitutionServiceImpl implements EducationInstitutionServ
                 specialityRepository.save(speciality);
             });
         });
-
     }
 
     @Override
