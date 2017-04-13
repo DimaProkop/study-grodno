@@ -1,5 +1,5 @@
 <div class="col-lg-4" style="height: 500px; border: double black;">
-    <button (click)="addNode(tree, node);">+ Добавить учреждение образования</button>
+    <button (click)="addNode(tree, node); tree.treeModel.expandAll();">+ Добавить учреждение образования</button>
     <tree-root #tree [nodes]="nodes" [options]="templateOptions" [focused]="true" (onEvent)="onEvent($event);">
         <template #treeNodeTemplate let-node>
             <span>{{ node.data.name }}</span>
@@ -9,7 +9,7 @@
     </tree-root>
 </div>
 <div class="col-lg-1"></div>
-<div class="col-lg-7">
+<div class="col-lg-7" *ngIf="formType > 0">
     <app-education-institution-builder [formType]='formType' [entity]="entity" (onChanged)="onChanged($event)"></app-education-institution-builder>
     <app-speciality-builder [formType]='formType' [entity]="entity" (onChanged)="onChanged($event)"></app-speciality-builder>
     <app-faculty-builder [formType]='formType' [entity]="entity" (onChanged)="onChanged($event)"></app-faculty-builder>

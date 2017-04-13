@@ -21,15 +21,51 @@ INSERT INTO direction(name) VALUES
   ('Физика и астрономия'),
   ('Фармация'),
   ('Химия'),
-  ('Программирование');
+  ('Программирование'),
+  ('Спорт');
 INSERT INTO level_of_education(name) VALUES
   ('Аспирантура'),
   ('Бакалавриат'),
   ('Магистратура'),
   ('Ординатура'),
   ('Специалитет');
+INSERT INTO language_learning(name) VALUES
+  ('Русский'),
+  ('Английский');
 INSERT INTO form_of_education(name) VALUES
   ('Дистанционная'),
   ('Заочная'),
   ('Очная'),
   ('Вечерняя');
+INSERT INTO speciality_direction(speciality_id, direction_id) VALUES
+  (1, 8),
+  (2, 4),
+  (2, 3),
+  (7, 9);
+INSERT INTO speciality_level_of_education(speciality_id, level_of_education_id) VALUES
+  (1, 1),
+  (2, 2),
+  (2, 3),
+  (7, 3);
+INSERT INTO speciality_form_of_education(speciality_id, form_of_education_id) VALUES
+  (1, 1),
+  (1, 2),
+  (2, 1),
+  (3, 1),
+  (4, 2),
+  (5, 1),
+  (5, 2),
+  (6, 2),
+  (7, 1),
+  (7, 2);
+INSERT INTO speciality_language_learning(speciality_id, language_learning_id) VALUES
+  (1, 1),
+  (1, 2),
+  (2, 1),
+  (3, 1),
+  (4, 2),
+  (5, 1),
+  (5, 2),
+  (6, 2),
+  (7, 1),
+  (7, 2);
