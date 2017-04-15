@@ -7,14 +7,14 @@
       <div>
         <select formControlName="level" class="form-control">
           <option disabled selected value>
-          <option *ngFor="let l of levels" [attr.value]="l">{{l.name}}</option>
+          <option *ngFor="let l of levels" [attr.value]="l.id">{{l.name}}</option>
         </select>
       </div>
       <div>
         <label>Направление обучения: </label><br/>
         <select formControlName="vector" class="form-control">
           <option disabled selected value>
-          <option *ngFor="let v of vectors" [attr.value]="v">{{v.name}}</option>
+          <option *ngFor="let v of vectors" [attr.value]="v.id">{{v.name}}</option>
         </select>
       </div>
 
@@ -22,7 +22,7 @@
         <label>Форма обучения: </label><br/>
         <select formControlName="form" class="form-control">
           <option disabled selected value>
-          <option *ngFor="let f of forms" [attr.value]="f">{{f.name}}</option>
+          <option *ngFor="let f of forms" [attr.value]="f.id">{{f.name}}</option>
         </select>
       </div>
 

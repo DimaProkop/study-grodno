@@ -1,6 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {Vector} from "../../model/home.module";
+import {TestModel} from "../../model/home.module";
 import {Router} from "@angular/router";
 import {LevelOfEducation} from "../../model/level-of-education.model";
 import {Direction} from "../../model/direction.model";
@@ -31,13 +31,12 @@ export class HomeComponent implements OnInit {
     this.vectors = [];
     this.loadData();
     this.myForm = new FormGroup({
-      level: new FormControl('', [<any>Validators.required]),
-      vector: new FormControl('', [<any>Validators.required])
+      level: new FormControl(''),
+      vector: new FormControl('')
     });
   }
 
-  searchForParams({ value }: { value: Vector }) {
-    console.log(value.level);
+  searchForParams({ value, valid }: { value: TestModel, valid: boolean }) {
     this.router.navigate(['/search', {level: value.level, vector: value.vector}]);
   }
 

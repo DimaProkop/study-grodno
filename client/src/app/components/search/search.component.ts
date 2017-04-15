@@ -18,8 +18,8 @@ export class SearchComponent implements OnInit {
 
   public myForm: FormGroup;
 
-  level: LevelOfEducation;
-  vector: Direction;
+  level: number;
+  vector: number;
 
   //списки
   public levels: LevelOfEducation[];
@@ -45,6 +45,7 @@ export class SearchComponent implements OnInit {
       .subscribe(params => {
         this.level = params['level'];
         this.vector = params['vector'];
+        console.log(this.level, this.vector);
       });
     this.loadData();
   }
@@ -60,6 +61,8 @@ export class SearchComponent implements OnInit {
       null,
       null
     );
+    console.log(request);
+
     this.findSpecialities(request);
 
     this.searchService.getLevels()
@@ -84,11 +87,9 @@ export class SearchComponent implements OnInit {
       values.direction,
       values.form,
       values.duration);
+    console.log(request);
 
-    this.searchService.findByParams(request)
-      .subscribe(result => {
-        this.specialities = result;
-      })
+    this.findSpecialities(request);
   }
 
   findSpecialities(req: SearchModel) {

@@ -1,9 +1,6 @@
 package com.grsu.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.grsu.entity.Direction;
-import com.grsu.entity.FormOfEducation;
-import com.grsu.entity.LevelOfEducation;
 
 import java.io.Serializable;
 
@@ -13,42 +10,42 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SearchDTO implements Serializable {
 
-    private LevelOfEducation level;
-    private Direction direction;
-    private FormOfEducation form;
+    private Integer level;
+    private Integer direction;
+    private Integer form;
     private Integer duration;
 
     public SearchDTO() {
     }
 
-    public SearchDTO(LevelOfEducation level, Direction direction, FormOfEducation form, Integer duration) {
+    public SearchDTO(Integer level, Integer direction, Integer form, Integer duration) {
         this.level = level;
         this.direction = direction;
         this.form = form;
         this.duration = duration;
     }
 
-    public LevelOfEducation getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(LevelOfEducation level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
-    public Direction getDirection() {
+    public Integer getDirection() {
         return direction;
     }
 
-    public void setDirection(Direction direction) {
+    public void setDirection(Integer direction) {
         this.direction = direction;
     }
 
-    public FormOfEducation getForm() {
+    public Integer getForm() {
         return form;
     }
 
-    public void setForm(FormOfEducation form) {
+    public void setForm(Integer form) {
         this.form = form;
     }
 

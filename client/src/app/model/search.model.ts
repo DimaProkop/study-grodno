@@ -6,8 +6,8 @@ import {FormOfEducation} from "./form-of-education.model";
  */
 export class SearchModel {
 
-  constructor(public level: LevelOfEducation,
-              public direction: Direction,
-              public form: FormOfEducation,
+  constructor(public level: number,
+              public direction: number,
+              public form: number,
               public duration: number) { }
 }

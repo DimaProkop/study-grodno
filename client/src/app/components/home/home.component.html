@@ -4,14 +4,14 @@
   <div class="col-md-4">
     <select formControlName="level" class="form-control">
       <option disabled selected value>
-      <option *ngFor="let l of levels" [attr.value]="l">{{l.name}}</option>
+      <option *ngFor="let l of levels" [attr.value]="l.id">{{l.name}}</option>
     </select>
   </div>
   <div class="col-md-4">
     <label>Направление: </label><br/>
     <select formControlName="vector" class="form-control">
       <option disabled selected value>
-      <option *ngFor="let v of vectors" [attr.value]="v">{{v.name}}</option>
+      <option *ngFor="let v of vectors" [attr.value]="v.id">{{v.name}}</option>
     </select>
   </div>
   <div class="col-md-4">
