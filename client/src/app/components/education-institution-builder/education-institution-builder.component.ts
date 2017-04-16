@@ -10,7 +10,10 @@ import { EducationInstitutionModel } from "../../model/education-institution.mod
   templateUrl: 'education-institution-builder.component.html',
 })
 
-export class EducationInstitutionBuilderComponent implements OnInit {
+export class EducationInstitutionBuilderComponent {
+
+  isEdit: boolean = false;
+
   @Input()
   formType: number;
 
@@ -19,26 +22,27 @@ export class EducationInstitutionBuilderComponent implements OnInit {
   @Output() onChanged = new EventEmitter<EducationInstitutionModel>();
   save() {
     this.onChanged.emit(this.entity);
+    this.isEdit = false;
   }
   typesEducationInstitution: TypeEducationInstitution[];
 
   constructor() {
-
-    this.typesEducationInstitution = [];
-    this.entity = new EducationInstitutionModel();
   }
 
   ngOnChanges(){
-    console.log(this.entity);
-    this.initTypeEducationInstitution();
-  }
-
-  ngOnInit() {
-
+    if (this.formType == 1) {
+      this.isEdit = false;
+      this.initTypeEducationInstitution();
+    }
   }
 
   initTypeEducationInstitution() {
+    this.typesEducationInstitution = [];
     this.typesEducationInstitution.push(new TypeEducationInstitution("Университет"));
     this.typesEducationInstitution.push(new TypeEducationInstitution("Колледж"));
+  }
+
+  onEdit() {
+    this.isEdit = true;
   }
 }
