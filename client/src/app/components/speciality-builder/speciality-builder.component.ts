@@ -20,7 +20,7 @@ import {LevelOfEducation} from "../../model/level-of-education.model";
   templateUrl: 'speciality-builder.component.html',
   styleUrls: ['speciality-builder.component.css']
 })
-export class SpecialityBuilderComponent implements OnInit {
+export class SpecialityBuilderComponent {
 
   settings: IMultiSelectSettings = {
     pullRight: true,
@@ -46,14 +46,18 @@ export class SpecialityBuilderComponent implements OnInit {
     allSelected: 'All selected',
   };
 
+  isEdit: boolean = false;
+
   @Input()
   formType: number;
 
   @Input()
-  entity: SpecialityModel;
+  entity: SpecialityModel = new SpecialityModel();
   @Output() onChanged = new EventEmitter<SpecialityModel>();
 
   save() {
+    this.setModel();
+    this.isEdit = false;
     this.onChanged.emit(this.entity);
   }
 
@@ -62,10 +66,15 @@ export class SpecialityBuilderComponent implements OnInit {
   levelOfEducationOptions: IMultiSelectOption[] = [];
   directionOptions: IMultiSelectOption[] = [];
 
-  formsOfEducation: FormOfEducation[];
-  languagesLearning: LanguageLearning[];
-  directions: Direction[];
-  levelsOfEducation: LevelOfEducation[];
+  formsOfEducation: FormOfEducation[] = [];
+  languagesLearning: LanguageLearning[] = [];
+  directions: Direction[] = [];
+  levelsOfEducation: LevelOfEducation[] = [];
+
+  formsOfEducationModel: number[] = [];
+  languagesLearningModel: number[] = [];
+  directionsModel: number[] = [];
+  levelsOfEducationModel: number[] = [];
 
   errorMessage: string;
 
@@ -74,21 +83,30 @@ export class SpecialityBuilderComponent implements OnInit {
   }
 
   ngOnChanges(){
-    console.log(this.entity);
-    this.initDirection();
-    this.initLevelOfEducation();
-    this.initFormOfEducation();
-    this.initLanguageLearning();
+    if (this.formType == 3) {
+      this.isEdit = false;
+      this.initDirection();
+      this.initLevelOfEducation();
+      this.initFormOfEducation();
+      this.initLanguageLearning();
+
+      this.languagesLearningModel = this.setModelOption(this.entity.languagesLearning);
+      this.formsOfEducationModel = this.setModelOption(this.entity.formsOfEducation);
+      this.directionsModel = this.setModelOption(this.entity.directions);
+      this.levelsOfEducationModel = this.setModelOption(this.entity.levelsOfEducation);
+    }
   }
 
-  ngOnInit() {
+  onEdit() {
+    this.isEdit = true;
   }
 
-  onChange() {
-
+  onChange(event) {
   }
 
   initLanguageLearning() {
+
+    this.languagesLearningOptions = [];
 
     this.languagesLearningService.getAll()
       .subscribe(
@@ -108,6 +126,8 @@ export class SpecialityBuilderComponent implements OnInit {
 
   initFormOfEducation() {
 
+    this.formOfEducationOptions = [];
+
     this.formOfEducationService.getAll()
       .subscribe(
         items => {
@@ -125,6 +145,8 @@ export class SpecialityBuilderComponent implements OnInit {
   }
 
   initDirection() {
+
+    this.directionOptions = [];
 
     this.directionService.getAll()
       .subscribe(
@@ -144,6 +166,8 @@ export class SpecialityBuilderComponent implements OnInit {
 
   initLevelOfEducation() {
 
+    this.levelOfEducationOptions = [];
+
     this.levelOfEducationService.getAll()
       .subscribe(
         items => {
@@ -160,7 +184,69 @@ export class SpecialityBuilderComponent implements OnInit {
       );
   }
 
-  ngOnDestroy() {
-    console.log("destr");
+  setModelOption(items: any[]) {
+
+    let options = [];
+
+    if(isNullOrUndefined(items)) {
+      items = [];
+    }
+
+    for(let i = 0; i < items.length; i++) {
+      options.push(items[i].id);
+    }
+
+    return options;
+  }
+
+  setModel() {
+
+    let temp = [];
+
+    for(let i = 0; i < this.formsOfEducationModel.length; i++) {
+      for(let j = 0; j < this.formsOfEducation.length; j++) {
+          if(this.formsOfEducationModel[i] == this.formsOfEducation[j].id) {
+            temp.push(this.formsOfEducation[j]);
+            break;
+          }
+      }
+    }
+
+    this.entity.formsOfEducation = temp;
+    temp = [];
+
+    for(let i = 0; i < this.levelsOfEducationModel.length; i++) {
+      for(let j = 0; j < this.levelsOfEducation.length; j++) {
+        if(this.levelsOfEducationModel[i] == this.levelsOfEducation[j].id) {
+          temp.push(this.levelsOfEducation[j]);
+          break;
+        }
+      }
+    }
+
+    this.entity.levelsOfEducation = temp;
+    temp = [];
+
+    for(let i = 0; i < this.languagesLearningModel.length; i++) {
+      for(let j = 0; j < this.languagesLearning.length; j++) {
+        if(this.languagesLearningModel[i] == this.languagesLearning[j].id) {
+          temp.push(this.languagesLearning[j]);
+          break;
+        }
+      }
+    }
+
+    this.entity.languagesLearning = temp;
+    temp = [];
+
+    for(let i = 0; i < this.directionsModel.length; i++) {
+      for(let j = 0; j < this.directions.length; j++) {
+        if(this.directionsModel[i] == this.directions[j].id) {
+          temp.push(this.directions[j]);
+          break;
+        }
+      }
+    }
+    this.entity.directions = temp;
   }
 }

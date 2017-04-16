@@ -26,7 +26,6 @@ export class TreeViewComponent implements OnInit {
   formType: number = 0;
   entity: any;
   temp: any[] = [];
-  focusedNode: any;
   nodes: any[] = [];
 
   constructor(private educationInstitutionService: EducationInstitutionService) {
@@ -43,7 +42,8 @@ export class TreeViewComponent implements OnInit {
         name: this.getDefaultName(1),
         actionName: this.getDefaultName(2),
         children: [],
-        item: new Object()
+        item: new Object(),
+        isFocus: false
       });
     } else {
 
@@ -51,10 +51,10 @@ export class TreeViewComponent implements OnInit {
         name: this.getDefaultName(node.level + 1),
         actionName: this.getDefaultName(node.level + 2),
         children: [],
-        item: new Object()
+        item: new Object(),
+        isFocus: false
       });
     }
-
     tree.treeModel.update();
   }
 
@@ -78,19 +78,22 @@ export class TreeViewComponent implements OnInit {
 
   onEvent(event) {
 
-    this.formType = 0;
-
-    if (event.eventName == "onFocus") {
-
+    if (!isNullOrUndefined(event.node) && event.eventName === "onFocus") {
+      event.node.data.isFocus = true;
       this.formType = event.node.level;
-      this.focusedNode = event.node;
       this.entity = event.node.data.item;
+    } else {
+      if (!isNullOrUndefined(event.node)
+        && event.eventName != "onToggleExpanded"
+        && event.eventName != "onDeactivate"
+        && event.eventName != "onUpdateData") {
+        event.node.data.isFocus = false;
+      }
     }
   }
 
   onChanged(entity) {
     this.entity = entity;
-    console.log(entity);
   }
 
   onAdded($event, tree, node) {
@@ -98,7 +101,7 @@ export class TreeViewComponent implements OnInit {
     this.addNode(tree, node);
   }
 
-  createEntity(node){
+  createEntity(node) {
 
     let entity = node.data.item;
     entity.faculties = [];
@@ -116,10 +119,13 @@ export class TreeViewComponent implements OnInit {
       }
     }
 
-    return  entity;
+    return entity;
   }
 
-  saveTree(entity) {
+  saveTree(node) {
+
+    let entity = this.createEntity(node);
+
     if (isNullOrUndefined(entity.id)) {
       this.educationInstitutionService.create(entity)
         .subscribe(
