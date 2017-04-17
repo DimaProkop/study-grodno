@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PersonInfoModel} from "../../model/person-info.model";
 
 @Component({
   selector: 'app-request',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit {
+
+  personInfo: PersonInfoModel;
 
   constructor() { }
 

@@ -14,6 +14,7 @@ import { SpecialityBuilderComponent } from "./components/speciality-builder/spec
 import { FacultyBuilderComponent } from "./components/faculty-builder/faculty-builder.component";
 import { TreeViewComponent } from "./components/tree-view/tree-view.component";
 import {SearchComponent} from "./components/search/search.component";
+import {RequestComponent} from "./components/request/request.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,6 +29,9 @@ const routes: Routes = [
       { path: 'education-institution', component: TreeViewComponent }
     ]
   },
+  {
+    path: 'summary', component: RequestComponent
+  }
 ];
 
 export const appRoutingProviders: any[] = [
