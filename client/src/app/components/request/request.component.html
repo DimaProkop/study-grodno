@@ -1,3 +1,76 @@
-<p>
-  request works!
-</p>
+<div class="container">
+  <div class="panel-group">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <legend style="text-align: center;">Персональные данные</legend>
+          <div class="col-sm-1"></div>
+          <div class="form-group col-sm-3">
+            <div class="d-flex flex-column">
+              <label for="firstName" class="control-label">Имя: </label>
+              <input required type="text" class="form-control" id="firstName" placeholder="Введите имя..."
+                     [(ngModel)]="personInfo.firstName" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="form-group col-sm-3">
+            <div class="d-flex flex-column">
+              <label for="lastName" class="control-label">Фамилия: </label>
+              <input required type="text" class="form-control" id="lastName" placeholder="Введите фамилию..."
+                     [(ngModel)]="personInfo.lastName" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="form-group col-sm-3">
+            <div class="d-flex flex-column">
+              <label for="middleName" class="control-label">Отчество(Если есть): </label>
+              <input required type="text" class="form-control" id="middleName" placeholder="Введите фамилию..."
+                     [(ngModel)]="personInfo.middleName" [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="form-group col-sm-3">
+            <div class="d-flex flex-column">
+              <label for="gender" class="control-label">Пол: </label>
+              <select class="form-control" id="gender" [(ngModel)]="personInfo.gender"
+                      [ngModelOptions]="{standalone: true}">
+                <option>Мужской</option>
+                <option>Женский</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="form-group col-sm-3">
+            <div class="d-flex flex-column">
+              <label for="citizenship" class="control-label">Гражданство: </label>
+              <select class="form-control" id="citizenship" [(ngModel)]="personInfo.citizenship"
+                      [ngModelOptions]="{standalone: true}">
+                <option>Китай</option>
+                <option>Россия</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="form-group col-sm-3">
+            <div class="d-flex flex-column">
+              <label for="dateOfBirth" class="control-label">Дата рождения: </label>
+              <input type="text" class="form-control" id="dateOfBirth" placeholder="Введите дату..."
+                     [(ngModel)]="personInfo.dateOfBirth"
+                     [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <legend style="text-align: center;">Образовательные навыки</legend>
+          <legend style="text-align: center;">Где хочу учиться</legend>
+          <legend style="text-align: center;">Дополнительная информация</legend>
+          <div class="col-sm-1"></div>
+          <div class="form-group col-sm-10">
+              <textarea style="resize: none;" rows="10" type="text" class="form-control" id="motivationLetter"
+                        [(ngModel)]="personInfo.motivationLetter"
+                        [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <div class="col-sm-1"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
