@@ -4,7 +4,6 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {SpecialityModel} from "../../model/speciality.model";
 import {isNullOrUndefined} from "util";
-import {SpecialityService} from "../../service/speciality/speciality.service";
 import {LanguageLearning} from "../../model/language-learning.model";
 import {FormOfEducation} from "../../model/form-of-education.model";
 import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angular-2-dropdown-multiselect';
