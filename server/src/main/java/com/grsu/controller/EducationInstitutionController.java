@@ -19,6 +19,18 @@ public class EducationInstitutionController {
     @Autowired
     EducationInstitutionService educationInstitutionService;
 
+    private EducationInstitutionRepository educationInstitutionRepository;
+
+    @Autowired
+    public EducationInstitutionController(EducationInstitutionRepository educationInstitutionRepository) {
+        this.educationInstitutionRepository = educationInstitutionRepository;
+    }
+
+    @RequestMapping
+    public ResponseEntity getById(final @RequestParam(name = "id") Long id) {
+        return ResponseEntity.ok(educationInstitutionRepository.getOne(id));
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity add(@RequestBody EducationInstitution requestBody){
 

@@ -8,6 +8,8 @@ import {Validators, FormControl, FormGroup} from "@angular/forms";
 import {SearchModel} from "../../model/search.model";
 import {SpecialityModel} from "../../model/speciality.model";
 import {Observable} from "rxjs";
+import {FacultyModel} from "../../model/faculty.model";
+import {EducationInstitutionModel} from "../../model/education-institution.model";
 
 @Component({
   selector: 'app-search',
@@ -16,16 +18,17 @@ import {Observable} from "rxjs";
 })
 export class SearchComponent implements OnInit {
 
-  public myForm: FormGroup;
+  public search: SearchModel;
 
-  level: number;
-  vector: number;
+  level: LevelOfEducation;
+  vector: Direction;
 
   //списки
   public levels: LevelOfEducation[];
-  public vectors: Direction[];
+  public directions: Direction[];
   public forms: FormOfEducation[];
   public specialities: SpecialityModel[];
+  public educations: EducationInstitutionModel[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -34,19 +37,21 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
 
-    this.myForm = new FormGroup({
-      level: new FormControl('', [<any>Validators.required]),
-      vector: new FormControl('', [<any>Validators.required]),
-      form: new FormControl('', [<any>Validators.required]),
-      duration: new FormControl('', [<any>Validators.required])
-    });
+    this.educations = [];
     this.route
       .params
       .subscribe(params => {
-        this.level = params['level'];
-        this.vector = params['vector'];
-        console.log(this.level, this.vector);
+        this.level = JSON.parse(params['level']);
+        this.vector = JSON.parse(params['vector']);
       });
+
+    this.search = {
+      level: this.level,
+      direction: this.vector,
+      form: null,
+      duration: null
+    };
+    this.findSpecialities(this.search);
     this.loadData();
   }
 
@@ -55,16 +60,6 @@ export class SearchComponent implements OnInit {
    */
   loadData() {
 
-    let request = new SearchModel(
-      this.level,
-      this.vector,
-      null,
-      null
-    );
-    console.log(request);
-
-    this.findSpecialities(request);
-
     this.searchService.getLevels()
       .subscribe(result => {
         this.levels = result;
@@ -72,7 +67,7 @@ export class SearchComponent implements OnInit {
 
     this.searchService.getDirections()
       .subscribe(result => {
-        this.vectors = result;
+        this.directions = result;
       });
 
     this.searchService.getForms()
@@ -81,22 +76,35 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  searchForParams({values}: {values: SearchModel}) {
-    let request = new SearchModel(
-      values.level,
-      values.direction,
-      values.form,
-      values.duration);
-    console.log(request);
+  send(param: SearchModel) {
+    this.search = {
+      level: param.level,
+      direction: param.direction,
+      form: param.form,
+      duration: param.duration
+    };
+    this.findSpecialities(this.search);
+  }
 
-    this.findSpecialities(request);
+  getEducBySpec(id: number): EducationInstitutionModel {
+    let education: EducationInstitutionModel;
+    this.searchService.getEducBySpec(id).subscribe(e => {
+      education = e;
+    });
+    return education;
   }
 
   findSpecialities(req: SearchModel) {
     this.searchService.findByParams(req)
       .subscribe(result => {
         this.specialities = result;
+
+        this.specialities.forEach(s => {
+          this.searchService.getEducBySpec(s.id)
+            .subscribe(educ => {
+              s.education = educ;
+            });
+        });
       });
   }
-
 }

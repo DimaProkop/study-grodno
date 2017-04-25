@@ -15,15 +15,17 @@ import {FacultyBuilderComponent} from "./components/faculty-builder/faculty-buil
 import {TreeViewComponent} from "./components/tree-view/tree-view.component";
 import {SearchComponent} from "./components/search/search.component";
 import {RequestComponent} from "./components/request/request.component";
+import {EducationInstitutionComponent} from "./components/education-institution/education-institution.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'search', component: SearchComponent},
-  {path: 'app', component: AppComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent},
-  {path: 'header', component: HeaderComponent},
-  {path: 'tags', component: SpecialityComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'search', component: SearchComponent },
+  { path: 'app', component: AppComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'header', component: HeaderComponent },
+  { path: 'tags', component: SpecialityComponent },
+  { path: 'education/:id', component: EducationInstitutionComponent },
   {
     path: 'admin', component: AdminPanelComponent, children: [
     {path: '', redirectTo: 'education-institution', pathMatch: 'full'},

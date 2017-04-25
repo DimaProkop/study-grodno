@@ -45,7 +45,7 @@ export class EducationInstitutionService {
       .catch(this.handleError);
   }
 
-  getUniversityById(id: number): Observable<any> {
+  getUniversityById(id: number): Observable<EducationInstitutionModel> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
     return this.http.get(this.educationInstitutionURL, { search: params, headers: this.prepareHeaders() })

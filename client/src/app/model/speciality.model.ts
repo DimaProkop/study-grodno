@@ -3,6 +3,7 @@ import { FormOfEducation } from "./form-of-education.model";
 import { LanguageLearning } from "./language-learning.model";
 import { LevelOfEducation } from "./level-of-education.model";
 import { Direction } from "./direction.model";
+import {EducationInstitutionModel} from "./education-institution.model";
 /**
  * Created by dionp on 26.03.2017.
  */
@@ -39,9 +40,9 @@ export class SpecialityModel {
   duration: number;
 
   /**
-   * Факультет
+   * Учреждение
    */
-  faculty: FacultyModel;
+  education: EducationInstitutionModel;
 
   /**
    * Формы обучения
@@ -68,6 +69,7 @@ export class SpecialityModel {
     this.languagesLearning = [];
     this.levelsOfEducation = [];
     this.directions = [];
+    this.education = new EducationInstitutionModel;
   }
 
   setProperties(item: SpecialityModel): void {
@@ -76,6 +78,7 @@ export class SpecialityModel {
       this.code = item.code;
       this.duration = item.duration;
       this.directions = item.directions;
+      this.education = item.education;
       this.languagesLearning = item.languagesLearning;
       this.levelsOfEducation = item.levelsOfEducation;
       this.price = item.price;

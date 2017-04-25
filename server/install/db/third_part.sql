@@ -49,6 +49,9 @@ INSERT INTO form_of_education(name) VALUES
   ('Заочная'),
   ('Очная'),
   ('Вечерняя');
+INSERT INTO language_learning(name) VALUES
+  ('английский'),
+  ('русский');
 INSERT INTO speciality_direction(speciality_id, direction_id) VALUES
   (1, 13),
   (2, 13),
