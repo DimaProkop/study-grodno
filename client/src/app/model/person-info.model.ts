@@ -1,5 +1,6 @@
 import {EducationInstitutionModel} from "./education-institution.model";
 import {Direction} from "./direction.model";
+import {LevelOfEducation} from "./level-of-education.model";
 /**
  * Created by DENIS on 17.04.2017.
  */
@@ -94,7 +95,7 @@ export class PersonInfoModel {
   /**
    * Уровень образования, которое хочу получить
    */
-  levelOfEducationDesired: string;
+  levelOfEducationDesired: LevelOfEducation;
 
   /**
    * Планируемый год поступления
@@ -110,4 +111,10 @@ export class PersonInfoModel {
    * Выбранные университеты
    */
   selectedEducationInstitution: EducationInstitutionModel[];
+
+
+  /**
+   * Страна, где закончено учебное заведение
+   */
+  countryEducation: string;
 }
