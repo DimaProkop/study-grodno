@@ -5,9 +5,6 @@ import { EducationInstitutionModel } from "./education-institution.model";
  */
 export class FacultyModel {
 
-  constructor() {
-  }
-
   /**
    * ИД
    */

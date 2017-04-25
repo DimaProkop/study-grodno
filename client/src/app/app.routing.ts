@@ -15,6 +15,7 @@ import { FacultyBuilderComponent } from "./components/faculty-builder/faculty-bu
 import { TreeViewComponent } from "./components/tree-view/tree-view.component";
 import {SearchComponent} from "./components/search/search.component";
 import {RequestComponent} from "./components/request/request.component";
+import {EducationInstitutionComponent} from "./components/education-institution/education-institution.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'header', component: HeaderComponent },
   { path: 'tags', component: SpecialityComponent },
+  { path: 'education/:id', component: EducationInstitutionComponent },
   {
     path: 'admin', component: AdminPanelComponent, children: [
       { path: 'education-institution', component: TreeViewComponent }

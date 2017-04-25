@@ -36,8 +36,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  searchForParams({ value, valid }: { value: TestModel, valid: boolean }) {
-    this.router.navigate(['/search', {level: value.level, vector: value.vector}]);
+  searchForParams({ value }: { value: TestModel }) {
+    this.router.navigate(['/search', {
+      level: JSON.stringify(value.level),
+      vector: JSON.stringify(value.vector)
+    }]);
   }
 
   /**

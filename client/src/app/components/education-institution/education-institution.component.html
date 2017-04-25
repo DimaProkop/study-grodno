@@ -1,3 +1,22 @@
-<p>
-  education-institution works!
-</p>
+<div class="container" *ngIf="education">
+  <div *ngFor="let e of education" class="text-center">
+    <div style="height: 250px">
+      <h1>{{e.name}}</h1>
+      <h2>Факультеты</h2>
+      <div class="container" *ngFor="let f of e.faculties">
+        <div class=".text-success">
+          {{f.name}}
+        </div>
+      </div>
+    </div>
+    <div class="panel-group">
+      <div class="panel panel-info">
+        <div class="panel-heading">Email: {{e.primaryMail}} Site: {{e.mailFeedback}}</div>
+        <div class="panel-body">
+          Город: <strong>{{e.city}} </strong>
+          <h2><i>{{e.address}}</i></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@
 export class LevelOfEducation {
 
   id: number;
-  name: string = "";
+  name: string;
 
   constructor(id, name) {
     this.id = id;

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
-import {Headers, Response, Http} from "@angular/http";
+import {Headers, Response, Http, URLSearchParams} from "@angular/http";
 import {LevelOfEducation} from "../../model/level-of-education.model";
 import {Direction} from "../../model/direction.model";
 import {SearchModel} from "../../model/search.model";
 import {SpecialityModel} from "../../model/speciality.model";
+import {EducationInstitutionModel} from "../../model/education-institution.model";
 
 @Injectable()
 export class SearchService {
@@ -43,6 +44,14 @@ export class SearchService {
   findByParams(params: SearchModel): Observable<SpecialityModel[]> {
     return this.http
       .post(this.url + "/findByParams", JSON.stringify(params), { headers: this.prepareHeaders() })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getEducBySpec(id: number): Observable<EducationInstitutionModel> {
+    let params = new URLSearchParams();
+    params.set('id', "" + id);
+    return this.http.get(this.url +"/getEducationBySpeciality", { search: params, headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
