@@ -4,28 +4,28 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 
-import { AppComponent } from './components/app/app.component';
+import {AppComponent} from './components/app/app.component';
 import {AppRouting, appRoutingProviders} from "./app.routing";
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { RequestComponent } from './components/request/request.component';
-import { EducationInstitutionComponent } from './components/education-institution/education-institution.component';
-import { InstitutionComponent } from './components/institution/institution.component';
-import { InstituionDetailComponent } from './components/instituion-detail/instituion-detail.component';
-import { HomeService } from "./service/home/home.service";
-import { SpecialityComponent } from './components/speciality/speciality.component';
-import { FacultyService } from "./service/faculty/faculty.service";
-import { EducationInstitutionService } from "./service/education-institution/education-institution.service";
-import { SpecialityBuilderComponent } from "./components/speciality-builder/speciality-builder.component";
-import { SpecialityService } from "./service/speciality/speciality.service";
-import { AdminPanelComponent } from "./components/admin-panel/admin-panel.component";
-import { FacultyBuilderComponent } from "./components/faculty-builder/faculty-builder.component";
-import { EducationInstitutionBuilderComponent } from "./components/education-institution-builder/education-institution-builder.component";
-import { TreeViewComponent } from "./components/tree-view/tree-view.component";
-import { TreeModule } from "angular-tree-component";
-import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import {LoginComponent} from './components/login/login.component';
+import {HomeComponent} from './components/home/home.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {HeaderComponent} from './components/header/header.component';
+import {RequestComponent} from './components/request/request.component';
+import {EducationInstitutionComponent} from './components/education-institution/education-institution.component';
+import {InstitutionComponent} from './components/institution/institution.component';
+import {InstituionDetailComponent} from './components/instituion-detail/instituion-detail.component';
+import {HomeService} from "./service/home/home.service";
+import {SpecialityComponent} from './components/speciality/speciality.component';
+import {FacultyService} from "./service/faculty/faculty.service";
+import {EducationInstitutionService} from "./service/education-institution/education-institution.service";
+import {SpecialityBuilderComponent} from "./components/speciality-builder/speciality-builder.component";
+import {SpecialityService} from "./service/speciality/speciality.service";
+import {AdminPanelComponent} from "./components/admin-panel/admin-panel.component";
+import {FacultyBuilderComponent} from "./components/faculty-builder/faculty-builder.component";
+import {EducationInstitutionBuilderComponent} from "./components/education-institution-builder/education-institution-builder.component";
+import {TreeViewComponent} from "./components/tree-view/tree-view.component";
+import {TreeModule} from "angular-tree-component";
+import {MultiselectDropdownModule} from 'angular-2-dropdown-multiselect';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SearchComponent} from './components/search/search.component';
 import {FormOfEducationService} from "./service/form-of-education/form-of-education";
@@ -33,6 +33,7 @@ import {LevelOfEducationService} from "./service/level-of-education/level-of-edu
 import {DirectionService} from "./service/direction/direction.service";
 import {LanguageLearningService} from "./service/language-learning/language-learning.service";
 import {SearchService} from "./service/search/search.service";
+import {RequestService} from "./service/request/request.service";
 
 @NgModule({
   imports: [
@@ -74,7 +75,8 @@ import {SearchService} from "./service/search/search.service";
     DirectionService,
     LanguageLearningService,
     appRoutingProviders,
-    SearchService],
+    SearchService,
+    RequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

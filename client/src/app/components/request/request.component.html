@@ -2,80 +2,273 @@
   <div class="panel-group">
     <div class="panel panel-primary">
       <div class="panel-body">
-        <form class="form-horizontal">
+        <form class="form-horizontal" *ngIf="personInfo">
           <legend style="text-align: center;">Персональные данные</legend>
-          <div class="col-sm-1"></div>
-          <div class="form-group col-sm-3">
-            <div class="d-flex flex-column">
-              <label for="firstName" class="control-label">Имя: </label>
-              <input required type="text" class="form-control" id="firstName" placeholder="Введите имя..."
-                     [(ngModel)]="personInfo.firstName" [ngModelOptions]="{standalone: true}">
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="firstName" class="control-label">Имя: </label>
+                <input required type="text" class="form-control required" id="firstName" placeholder="Введите имя..."
+                       [(ngModel)]="personInfo.firstName" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="lastName" class="control-label">Фамилия: </label>
+                <input required type="text" class="form-control required" id="lastName" placeholder="Введите фамилию..."
+                       [(ngModel)]="personInfo.lastName" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="middleName" class="control-label">Отчество(Если есть): </label>
+                <input required type="text" class="form-control" id="middleName" placeholder="Введите отчество..."
+                       [(ngModel)]="personInfo.middleName" [ngModelOptions]="{standalone: true}">
+              </div>
             </div>
           </div>
-          <div class="col-sm-1"></div>
-          <div class="form-group col-sm-3">
-            <div class="d-flex flex-column">
-              <label for="lastName" class="control-label">Фамилия: </label>
-              <input required type="text" class="form-control" id="lastName" placeholder="Введите фамилию..."
-                     [(ngModel)]="personInfo.lastName" [ngModelOptions]="{standalone: true}">
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="gender" class="control-label">Пол: </label>
+                <select class="form-control required" id="gender" [(ngModel)]="personInfo.gender"
+                        [ngModelOptions]="{standalone: true}">
+                  <option>Мужской</option>
+                  <option>Женский</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-1"></div>
-          <div class="form-group col-sm-3">
-            <div class="d-flex flex-column">
-              <label for="middleName" class="control-label">Отчество(Если есть): </label>
-              <input required type="text" class="form-control" id="middleName" placeholder="Введите фамилию..."
-                     [(ngModel)]="personInfo.middleName" [ngModelOptions]="{standalone: true}">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="citizenship" class="control-label">Гражданство: </label>
+                <select class="form-control required" id="citizenship" [(ngModel)]="personInfo.citizenship"
+                        [ngModelOptions]="{standalone: true}">
+                  <option *ngFor="let citizenship of countries.getCountries()">{{citizenship.title}}</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="col-sm-1"></div>
-          <div class="form-group col-sm-3">
-            <div class="d-flex flex-column">
-              <label for="gender" class="control-label">Пол: </label>
-              <select class="form-control" id="gender" [(ngModel)]="personInfo.gender"
-                      [ngModelOptions]="{standalone: true}">
-                <option>Мужской</option>
-                <option>Женский</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-1"></div>
-          <div class="form-group col-sm-3">
-            <div class="d-flex flex-column">
-              <label for="citizenship" class="control-label">Гражданство: </label>
-              <select class="form-control" id="citizenship" [(ngModel)]="personInfo.citizenship"
-                      [ngModelOptions]="{standalone: true}">
-                <option>Китай</option>
-                <option>Россия</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-sm-1"></div>
-          <div class="form-group col-sm-3">
-            <div class="d-flex flex-column">
-              <label for="dateOfBirth" class="control-label">Дата рождения: </label>
-              <input type="text" class="form-control" id="dateOfBirth" placeholder="Введите дату..."
-                     [(ngModel)]="personInfo.dateOfBirth"
-                     [ngModelOptions]="{standalone: true}">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="dateOfBirth" class="control-label">Дата рождения: </label>
+                <input type="date" class="form-control required" id="dateOfBirth" placeholder="Введите дату..."
+                       [(ngModel)]="personInfo.dateOfBirth"
+                       [ngModelOptions]="{standalone: true}">
+              </div>
             </div>
           </div>
           <legend style="text-align: center;">Образовательные навыки</legend>
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-5">
+              <div class="d-flex flex-column">
+                <label for="currentLevelOfEducation" class="control-label">Уровень имеющегося образования: </label>
+                <select type="text" class="form-control required" id="currentLevelOfEducation"
+                        placeholder="Уровень имеющегося образования..."
+                        [(ngModel)]="personInfo.currentLevelOfEducation"
+                        [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let currentLevelOfEducation of currentLevelsOfEducation'>
+                    {{currentLevelOfEducation}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-left: 50px;" class="form-group col-sm-5">
+              <div class="d-flex flex-column">
+                <label for="countryEducation" class="control-label">Страна, где законечено учебное заведение: </label>
+                <select required class="form-control required" id="countryEducation"
+                        placeholder="Страна, где законечено учебное заведение..."
+                        [(ngModel)]="personInfo.countryEducation"
+                        [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let countryEducation of countries.getCountries()'>
+                    {{countryEducation.title}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-7">
+              <div class="d-flex flex-column">
+                <label for="nameCompletedInstitution" class="control-label">Наименование учебного учреждения, которое
+                  вы
+                  закончили: </label>
+                <input type="text" class="form-control required" id="nameCompletedInstitution"
+                       placeholder="Наименование учебного учреждения, которое вы закончили..."
+                       [(ngModel)]="personInfo.nameCompletedInstitution"
+                       [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div style="margin-left: 50px;" class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="yearOfEnding" class="control-label">Год окончания: </label>
+                <input type="text" class="form-control required" id="yearOfEnding"
+                       placeholder="Год окончания..."
+                       [(ngModel)]="personInfo.yearOfEnding"
+                       [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="nativeLanguage" class="control-label">Родной язык: </label>
+                <input required type="text" class="form-control required" id="nativeLanguage"
+                       placeholder="Родной язык..."
+                       [(ngModel)]="personInfo.nativeLanguage" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="russianLanguageLevel" class="control-label">Уровень русского языка: </label>
+                <select required type="text" class="form-control required" id="russianLanguageLevel"
+                        placeholder="Уровень русского языка..."
+                        [(ngModel)]="personInfo.russianLanguageLevel" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let russianLanguageLevel of russianLanguageLevels'>
+                    {{russianLanguageLevel}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="сertificateInRussian" class="control-label">Сертификат по русскому языку: </label>
+                <select required type="text" class="form-control required" id="сertificateInRussian"
+                        placeholder="Сертификат по русскому языку..."
+                        [(ngModel)]="personInfo.certificateInRussian" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let certificateInRussian of certificatesInRussian'>
+                    {{certificateInRussian}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="englishLanguageLevel" class="control-label">Уровень английского языка: </label>
+                <select required type="text" class="form-control required" id="englishLanguageLevel"
+                        placeholder="Уровень английского языка..."
+                        [(ngModel)]="personInfo.englishLanguageLevel" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let englishLanguageLevel of englishLanguageLevels'>
+                    {{englishLanguageLevel}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="сertificateInEnglish" class="control-label">Сертификат по английскому языку: </label>
+                <select required type="text" class="form-control required" id="сertificateInEnglish"
+                        placeholder="Сертификат по английскому языку..."
+                        [(ngModel)]="personInfo.certificateInEnglish" [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let certificateInEnglish of certificatesInEnglish'>
+                    {{certificateInEnglish}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-3">
+              <div class="d-flex flex-column">
+                <label for="otherLanguages" class="control-label">Владение другими языками: </label>
+                <input required type="text" class="form-control required" id="otherLanguages"
+                       placeholder="Владение другими языками..."
+                       [(ngModel)]="personInfo.otherLanguages" [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
           <legend style="text-align: center;">Где хочу учиться</legend>
+
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-6">
+              <div class="d-flex flex-column">
+                <label for="levelOfEducationDesired" class="control-label">Уровень образования, которое хочу
+                  получить</label>
+                <select type="text" class="form-control required" id="levelOfEducationDesired"
+                        placeholder="Уровень образования, которое хочу получить..."
+                        [ngModel]="personInfo.levelOfEducationDesired"
+                        (ngModelChange)="onChangeLevel($event)"
+                        [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let itemLevelDesired of levelsOfEducationDesired'
+                          [selected]="itemLevelDesired.id == personInfo.levelOfEducationDesired.id"
+                          [ngValue]="itemLevelDesired">
+                    {{itemLevelDesired.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-left: 50px;" class="form-group col-sm-4">
+              <div class="d-flex flex-column">
+                <label for="yearOfReceipt" class="control-label">Планируемый год поступления </label>
+                <input type="text" class="form-control required" id="yearOfReceipt"
+                       placeholder="Планируемый год поступления..."
+                       [(ngModel)]="personInfo.yearOfReceipt"
+                       [ngModelOptions]="{standalone: true}">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-4">
+              <div class="d-flex flex-column">
+                <label for="directionPicker" class="control-label">Выберите направление: </label>
+                <select class="form-control required" id="directionPicker" (ngModelChange)="onChangeDirection($event)"
+                        [ngModel]="personInfo.selectedDirection"
+                        [ngModelOptions]="{standalone: true}">
+                  <option *ngFor='let direction of directions' [ngValue]="direction">
+                    {{direction.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-left: 50px;" class="form-group col-sm-6">
+              <div class="d-flex flex-column">
+                <label for="selectedEducationInstitution1" class="control-label">Выберите учреждение
+                  образования: </label>
+                <ss-multiselect-dropdown id="selectedEducationInstitution1" [settings]="settings" [texts]="texts"
+                                         [options]="educationInstitutionOptions"
+                                         [(ngModel)]="educationInstitutionModel"
+                                         (ngModelChange)="onChange($event)"
+                                         [ngModelOptions]="{standalone: true}"></ss-multiselect-dropdown>
+              </div>
+            </div>
+          </div>
+
           <legend style="text-align: center;">Дополнительная информация</legend>
-          <div class="col-sm-1"></div>
-          <div class="form-group col-sm-10">
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="form-group col-sm-11">
               <textarea style="resize: none;" rows="10" type="text" class="form-control" id="motivationLetter"
                         [(ngModel)]="personInfo.motivationLetter"
                         [ngModelOptions]="{standalone: true}"></textarea>
-          </div>
-          <div class="col-sm-1"></div>
-          <div class="form-group row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-              <button type="submit" class="btn btn-primary-lg">Сохранить</button>
-              <button type="submit" class="btn btn-primary-lg">Отправить в вуз</button>
             </div>
-            <div class="col-md-4"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div style="margin-left: 50px;" class="form-group col-sm-6">
+              <button class="btn btn-primary btn-lg" (click)="send(false)">
+                <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Сохранить
+              </button>
+              <button class="btn btn-primary btn-lg" (click)="send(true)">
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Отправить в ВУЗ
+              </button>
+            </div>
           </div>
         </form>
       </div>

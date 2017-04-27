@@ -7,7 +7,9 @@ import com.grsu.repository.SpecialityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by DENIS on 09.04.2017.
@@ -51,5 +53,33 @@ public class EducationInstitutionServiceImpl implements EducationInstitutionServ
     @Override
     public List<EducationInstitution> getAll() {
         return educationInstitutionRepository.findAll();
+    }
+
+    @Override
+    public List<EducationInstitution> getInstitutionByDirectionId(Long id) {
+
+        List<EducationInstitution> result = new ArrayList<>();
+
+        educationInstitutionRepository.findAll().stream().forEach(institution -> {
+
+                    if (institution.getFaculties() != null) {
+
+                        institution.getFaculties().stream().forEach(faculty -> {
+                            if (faculty.getSpecialities() != null)
+                                faculty.getSpecialities().stream().forEach(speciality -> {
+                                    if (speciality.getDirections() != null) {
+                                        speciality.getDirections().stream().forEach(direction -> {
+                                            if (direction.getId() == id) {
+                                                result.add(institution);
+                                            }
+                                        });
+                                    }
+                                });
+                        });
+                    }
+                }
+        );
+
+        return result.stream().distinct().collect(Collectors.toList());
     }
 }

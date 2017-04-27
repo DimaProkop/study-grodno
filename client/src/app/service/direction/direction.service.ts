@@ -7,6 +7,7 @@ import { Injectable } from "@angular/core";
 import { Response } from "@angular/http";
 import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
+import {Direction} from "../../model/direction.model";
 
 
 @Injectable()
@@ -25,7 +26,7 @@ export class DirectionService {
     return headers;
   }
 
-  getAll(): Observable<any[]> {
+  getAll(): Observable<Direction[]> {
     return this.http.get(this.directionURL, { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
