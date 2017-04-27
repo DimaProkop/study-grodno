@@ -6,6 +6,9 @@ import {Direction} from "../../model/direction.model";
 import {LevelOfEducationService} from "../../service/level-of-education/level-of-education.service";
 import {LevelOfEducation} from "../../model/level-of-education.model";
 import {RequestService} from "../../service/request/request.service";
+import {CountriesMock} from "../../model/countries-mock.model";
+import {EducationInstitutionService} from "../../service/education-institution/education-institution.service";
+import {EducationInstitutionModel} from "../../model/education-institution.model";
 
 @Component({
   selector: 'app-request',
@@ -38,36 +41,64 @@ export class RequestComponent implements OnInit {
     allSelected: 'All selected',
   };
 
-  educationInstitutionOptions: IMultiSelectOption[] = [];
-  educationInstitutionModel: number[] = [];
+  educationInstitutionOptions: IMultiSelectOption[];
+  educationInstitutionModel: number[];
   personInfo: PersonInfoModel = new PersonInfoModel();
-  directions: Direction[] = [];
-  currentLevelOfEducation: string[];
+  directions: Direction[];
+  currentLevelsOfEducation: string[];
   levelsOfEducationDesired: LevelOfEducation[];
   russianLanguageLevels: string[];
   englishLanguageLevels: string[];
   certificatesInRussian: string[];
   certificatesInEnglish: string[];
-
+  countries: CountriesMock;
+  institutions: EducationInstitutionModel[] = [];
 
   constructor(private directionService: DirectionService, private levelOfEducationService: LevelOfEducationService,
-              private requestService: RequestService) {
+              private requestService: RequestService, private institutionService: EducationInstitutionService) {
+    this.personInfo = new PersonInfoModel();
   }
 
   ngOnInit() {
     this.educationInstitutionOptions = [];
     this.educationInstitutionModel = [];
-    this.personInfo = new PersonInfoModel();
-    this.initRussianLanguageLevel();
-    this.initEnglishLanguageLevel();
-    this.initCertificatesInRussian();
-    this.initCertificatesInEnglish();
-    this.initDirection();
-    this.initCurrentLevelOfEducation();
-    this.initLevelsOfEducation();
+
+    this.loadData();
   }
 
-  onChange(event) {
+  onChangeDirection(item) {
+      this.personInfo.selectedDirection = item;
+
+    this.institutionService.getUniversitiesByDirectionId(item.id)
+      .subscribe(
+        items => {
+          this.institutions = items;
+          for (let i = 0; i < items.length; i++) {
+            this.educationInstitutionOptions.push({
+              id: items[i].id,
+              name: items[i].name
+            })
+          }
+        }
+      );
+  }
+
+  onChangeLevel(item) {
+    this.personInfo.levelOfEducationDesired = item;
+  }
+
+  onChange(item) {
+  }
+
+  loadData() {
+    this.initCertificatesInRussian();
+    this.initDirection();
+    this.initLevelsOfEducation();
+    this.initCurrentLevelOfEducation();
+    this.initRussianLanguageLevel();
+    this.initEnglishLanguageLevel();
+    this.initCertificatesInEnglish();
+    this.countries = new CountriesMock();
   }
 
   initDirection(): void {
@@ -77,7 +108,9 @@ export class RequestComponent implements OnInit {
     this.directionService.getAll()
       .subscribe(
         items => {
+          console.log(items);
           this.directions = items;
+          console.log(this.directions);
         }
       );
   }
@@ -96,17 +129,17 @@ export class RequestComponent implements OnInit {
 
   initCurrentLevelOfEducation(): void {
 
-    this.currentLevelOfEducation = [];
+    this.currentLevelsOfEducation = [];
 
     this.levelOfEducationService.getAll()
       .subscribe(
         items => {
           for (let i = 0; i < items.length; i++) {
-            this.currentLevelOfEducation.push(items[i].name);
+            this.currentLevelsOfEducation.push(items[i].name);
           }
 
-          this.currentLevelOfEducation.push("Средняя школа");
-          this.currentLevelOfEducation.push("Колледж");
+          this.currentLevelsOfEducation.push("Средняя школа");
+          this.currentLevelsOfEducation.push("Колледж");
         }
       );
   }
@@ -158,13 +191,28 @@ export class RequestComponent implements OnInit {
     this.certificatesInEnglish.push("CPE");
   }
 
-  save() {
-    this.requestService.create(this.personInfo)
+  send(flag) {
+
+    this.setInstitution();
+
+    this.requestService.send(this.personInfo, flag)
       .subscribe(
         item => {
-          console.log(this.personInfo);
-          this.personInfo = item;
+          this.personInfo.id = item.id;
         }
       );
+  }
+
+  setInstitution() {
+
+    this.personInfo.selectedEducationInstitution = [];
+
+    for(let i = 0; i < this.institutions.length; i++) {
+      for(let j = 0; j < this.educationInstitutionModel.length; j++) {
+        if(this.institutions[i].id == this.educationInstitutionModel[j]) {
+          this.personInfo.selectedEducationInstitution.push(this.institutions[i]);
+        }
+      }
+    }
   }
 }

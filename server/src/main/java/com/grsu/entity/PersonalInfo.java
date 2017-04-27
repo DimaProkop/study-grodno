@@ -2,7 +2,7 @@ package com.grsu.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -12,12 +12,11 @@ import java.util.List;
 @Table(name = "personal_info")
 public class PersonalInfo implements Serializable {
 
-
     /**
      * ИД
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
@@ -43,7 +42,7 @@ public class PersonalInfo implements Serializable {
      *  Дата рождения
      */
     @Column
-    private LocalDate dateOfBirth;
+    private Date dateOfBirth;
 
     /**
      *  Мотавационное письмо
@@ -100,6 +99,12 @@ public class PersonalInfo implements Serializable {
     private String otherLanguages;
 
     /**
+     * Пол
+     */
+    @Column
+    private String gender;
+
+    /**
      * Год окончания
      */
     @Column(name = "year_of_ending")
@@ -123,6 +128,12 @@ public class PersonalInfo implements Serializable {
      */
     @Column(name = "year_of_receipt")
     private Integer yearOfReceipt;
+
+    /**
+     * Страна, где закончено учебное заведение
+     */
+    @Column(name = "country_education")
+    private String countryEducation;
 
     /**
      * Выбранное направление
@@ -175,11 +186,11 @@ public class PersonalInfo implements Serializable {
         this.middleName = middleName;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -191,11 +202,11 @@ public class PersonalInfo implements Serializable {
         this.motivationLetter = motivationLetter;
     }
 
-    public String getLevelOfEducation() {
+    public String getCurrentLevelOfEducation() {
         return currentLevelOfEducation;
     }
 
-    public void setLevelOfEducation(String currentLevelOfEducation) {
+    public void setCurrentLevelOfEducation(String currentLevelOfEducation) {
         this.currentLevelOfEducation = currentLevelOfEducation;
     }
 
@@ -301,5 +312,21 @@ public class PersonalInfo implements Serializable {
 
     public void setSelectedEducationInstitution(List<EducationInstitution> selectedEducationInstitution) {
         this.selectedEducationInstitution = selectedEducationInstitution;
+    }
+
+    public String getCountryEducation() {
+        return countryEducation;
+    }
+
+    public void setCountryEducation(String countryEducation) {
+        this.countryEducation = countryEducation;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

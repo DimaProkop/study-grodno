@@ -8,6 +8,7 @@ import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
 import { SpecialityModel } from "../../model/speciality.model";
 import {PersonInfoModel} from "../../model/person-info.model";
+import {isNullOrUndefined} from "util";
 
 
 @Injectable()
@@ -26,15 +27,15 @@ export class RequestService {
     this.requestURL = "http://localhost:8080/request";
   }
 
-  create(personInfo: PersonInfoModel): Observable<PersonInfoModel> {
+  send(personInfo: PersonInfoModel, flag: boolean): Observable<PersonInfoModel> {
     return this.http
-      .post(this.requestURL, JSON.stringify(personInfo), { headers: this.prepareHeaders() })
+      .put(this.requestURL + "/send=" + flag, JSON.stringify(personInfo), { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
-    return res.json();
+  private extractData(response: Response) {
+    return response.json();
   }
 
   private handleError(error: any): Promise<any> {

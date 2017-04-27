@@ -5,7 +5,7 @@
     <form #param="ngForm" novalidate>
       <label>Уровень образования: </label><br/>
       <div>
-        <select name="level" class="form-control" [(ngModel)]="search.levels">
+        <select name="level" class="form-control" [(ngModel)]="search.level">
           <option disabled selected value>
           <option *ngFor="let level of levels" [ngValue]="level">{{level.name}}</option>
         </select>
@@ -13,7 +13,7 @@
 
       <div>
         <label>Направление обучения: </label><br/>
-        <select name="direction" class="form-control" [(ngModel)]="search.directions">
+        <select name="direction" class="form-control" [(ngModel)]="search.direction">
           <option disabled selected value>
           <option *ngFor="let direction of directions" [ngValue]="direction">{{direction.name}}</option>
         </select>
@@ -21,7 +21,7 @@
 
       <div>
         <label>Форма обучения: </label><br/>
-        <select name="form" class="form-control" [(ngModel)]="search.forms">
+        <select name="form" class="form-control" [(ngModel)]="search.form">
           <option disabled selected value>
           <option *ngFor="let form of forms" [ngValue]="form">{{form.name}}</option>
         </select>

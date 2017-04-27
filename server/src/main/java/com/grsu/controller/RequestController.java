@@ -2,11 +2,10 @@ package com.grsu.controller;
 
 import com.grsu.entity.EducationInstitution;
 import com.grsu.entity.PersonalInfo;
+import com.grsu.repository.PersonalInfoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by dionp on 25.03.2017.
@@ -15,11 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/request")
 public class RequestController {
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity add(@RequestBody PersonalInfo requestBody){
+    private PersonalInfoRepository personalInfoRepository;
 
-        PersonalInfo personalInfo = requestBody;
+    @Autowired
+    public RequestController(PersonalInfoRepository personalInfoRepository) {
+        this.personalInfoRepository = personalInfoRepository;
+    }
 
-        return ResponseEntity.ok(personalInfo);
+    @RequestMapping(value = "/send={flag}", method = RequestMethod.PUT)
+    public ResponseEntity send(@PathVariable boolean flag, @RequestBody PersonalInfo requestBody) {
+
+        PersonalInfo answer = personalInfoRepository.save(requestBody);
+
+        if(flag) {
+            //Делаем отправку
+        }
+
+        return ResponseEntity.ok(answer);
     }
 }

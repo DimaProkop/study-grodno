@@ -43,6 +43,7 @@ CREATE TABLE personal_info(
   year_of_ending INT NOT NULL, -- год окончания учебного заведения
   name_completed_institution VARCHAR(150) NOT NULL, -- название оконченного учебного заведения
   year_of_receipt INT NOT NULL, -- планируемый год поступления
+  country_education VARCHAR (50), -- Страна, где закончено учебное заведение
   current_level_of_education VARCHAR(50) NOT NULL, -- текущий уровень образования
   level_education_desired_id INT REFERENCES level_of_education(id),  -- Уровень образования, которое хочу получить
   selected_direction_id INT REFERENCES direction(id) -- Выбранное направление

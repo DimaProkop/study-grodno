@@ -58,4 +58,9 @@ public class EducationInstitutionController {
 
         return ResponseEntity.ok(response);
     }
+
+    @RequestMapping(value = "/direction={id}", method = RequestMethod.GET)
+    public ResponseEntity getInstitutionByDirectionId(@PathVariable Long id) {
+        return ResponseEntity.ok(educationInstitutionService.getInstitutionByDirectionId(id));
+    }
 }

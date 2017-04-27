@@ -11,5 +11,7 @@ public interface EducationInstitutionService {
 
     void adjustSave(EducationInstitution educationInstitution);
 
+    List<EducationInstitution> getInstitutionByDirectionId(Long id);
+
     List<EducationInstitution> getAll();
 }

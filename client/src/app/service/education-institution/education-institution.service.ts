@@ -53,6 +53,12 @@ export class EducationInstitutionService {
       .catch(this.handleError);
   }
 
+  getUniversitiesByDirectionId(id: number) {
+    return this.http.get(this.educationInstitutionURL + "/direction=" + id, {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     return res.json();
   }

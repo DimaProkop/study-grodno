@@ -1,6 +1,7 @@
 import {EducationInstitutionModel} from "./education-institution.model";
 import {Direction} from "./direction.model";
 import {LevelOfEducation} from "./level-of-education.model";
+import {LocalDate} from "localdate";
 /**
  * Created by DENIS on 17.04.2017.
  */
@@ -10,111 +11,115 @@ export class PersonInfoModel {
   /**
    * ИД
    */
-  id: number;
+  public id: number;
 
   /**
    * Имя
    */
-  firstName: string;
+  public firstName: string;
 
   /**
    * Фамилия
    */
-  lastName: string;
+  public lastName: string;
 
   /**
    * Отчество
    */
-  middleName: string;
+  public middleName: string;
 
   /**
    * Пол
    */
-  gender: string;
+  public gender: string;
 
   /**
    * Дата рождения
    */
-  dateOfBirth: string;
+  public dateOfBirth: LocalDate;
 
   /**
    * Мотивационное письмо
    */
-  motivationLetter: string;
+  public motivationLetter: string;
 
   /**
    * Гражданство
    */
-  citizenship: string;
+  public citizenship: string;
 
   /**
    * Уровень имеющегося образования
    */
-  currentLevelOfEducation: string;
+  public currentLevelOfEducation: string;
 
   /**
    * Родной язык
    */
-  nativeLanguage: string;
+  public nativeLanguage: string;
 
   /**
    * Уровень русского языка
    */
-  russianLanguageLevel: string;
+  public russianLanguageLevel: string;
 
   /**
    * Сертификат по русскому языку
    */
-  certificateInRussian: string;
+  public certificateInRussian: string;
 
   /**
    * Уровень английского языка
    */
-  englishLanguageLevel: string;
+  public englishLanguageLevel: string;
 
   /**
    * Сертификат по английскому языку
    */
-  certificateInEnglish: string;
+  public certificateInEnglish: string;
 
   /**
    * Владение другими языками
    */
-  otherLanguages: string;
+  public otherLanguages: string;
 
   /**
    * Год окончания
    */
-  yearOfEnding: number;
+  public yearOfEnding: number;
 
   /**
    * Название закончего учебного заведения
    */
-  nameCompletedInstitution: string;
+  public nameCompletedInstitution: string;
 
   /**
    * Уровень образования, которое хочу получить
    */
-  levelOfEducationDesired: LevelOfEducation;
+  public levelOfEducationDesired: LevelOfEducation;
 
   /**
    * Планируемый год поступления
    */
-  yearOfReceipt: string;
+  public yearOfReceipt: string;
 
   /**
    * Выбранное направление
    */
-  selectedDirection: Direction;
+  public selectedDirection: Direction;
 
   /**
    * Выбранные университеты
    */
-  selectedEducationInstitution: EducationInstitutionModel[];
-
+  public selectedEducationInstitution: EducationInstitutionModel[];
 
   /**
    * Страна, где закончено учебное заведение
    */
   countryEducation: string;
+
+  constructor() {
+    this.selectedDirection = new Direction();
+    this.levelOfEducationDesired = new LevelOfEducation();
+  }
 }
