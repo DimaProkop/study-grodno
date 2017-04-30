@@ -1,34 +1,32 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LevelOfEducation} from "../../model/level-of-education.model";
 import {Direction} from "../../model/direction.model";
 import {FormOfEducation} from "../../model/form-of-education.model";
 import {SearchService} from "../../service/search/search.service";
-import {Validators, FormControl, FormGroup} from "@angular/forms";
 import {SearchModel} from "../../model/search.model";
 import {SpecialityModel} from "../../model/speciality.model";
-import {Observable} from "rxjs";
-import {FacultyModel} from "../../model/faculty.model";
 import {EducationInstitutionModel} from "../../model/education-institution.model";
+import {isNull} from "util";
+import {isNullOrUndefined} from "util";
 
 @Component({
+  moduleId: module.id,
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
 
-  public search: SearchModel;
+  @Output()
+  onChanged = new EventEmitter<SpecialityModel[]>();
 
-  level: LevelOfEducation;
-  vector: Direction;
+  public specialities: SpecialityModel[];
 
-  //списки
+  public searchParams: SearchModel;
   public levels: LevelOfEducation[];
   public directions: Direction[];
   public forms: FormOfEducation[];
-  public specialities: SpecialityModel[];
-  public educations: EducationInstitutionModel[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -36,23 +34,21 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchParams = new SearchModel();
+    this.loadData();
+    this.initParams();
+    this.findByParams();
+  }
 
-    this.educations = [];
+  initParams() {
     this.route
       .params
       .subscribe(params => {
-        this.level = JSON.parse(params['level']);
-        this.vector = JSON.parse(params['vector']);
+        this.searchParams.level = !isNullOrUndefined(params['level']) ? params['level'] : "";
+        this.searchParams.direction = !isNullOrUndefined(params['direction']) ? params['direction'] : "";
+        this.searchParams.form = !isNullOrUndefined(params['form']) ? params['form'] : "";
+        this.searchParams.duration = !isNullOrUndefined(params['duration']) ? params['duration'] : "";
       });
-
-    this.search = {
-      level: this.level,
-      direction: this.vector,
-      form: null,
-      duration: null
-    };
-    this.findSpecialities(this.search);
-    this.loadData();
   }
 
   /**
@@ -60,15 +56,21 @@ export class SearchComponent implements OnInit {
    */
   loadData() {
 
+    this.levels = [];
+
     this.searchService.getLevels()
       .subscribe(result => {
         this.levels = result;
       });
 
+    this.directions = [];
+
     this.searchService.getDirections()
       .subscribe(result => {
         this.directions = result;
       });
+
+    this.forms = [];
 
     this.searchService.getForms()
       .subscribe(result => {
@@ -76,35 +78,23 @@ export class SearchComponent implements OnInit {
       });
   }
 
-  send(param: SearchModel) {
-    this.search = {
-      level: param.level,
-      direction: param.direction,
-      form: param.form,
-      duration: param.duration
-    };
-    this.findSpecialities(this.search);
-  }
-
-  getEducBySpec(id: number): EducationInstitutionModel {
-    let education: EducationInstitutionModel;
-    this.searchService.getEducBySpec(id).subscribe(e => {
-      education = e;
-    });
-    return education;
-  }
-
-  findSpecialities(req: SearchModel) {
-    this.searchService.findByParams(req)
-      .subscribe(result => {
-        this.specialities = result;
-
-        this.specialities.forEach(s => {
-          this.searchService.getEducBySpec(s.id)
-            .subscribe(educ => {
-              s.education = educ;
-            });
-        });
+  findByParams() {
+    this.searchService.findSpecialityByParams(this.searchParams)
+      .subscribe(specialities => {
+        this.specialities = specialities;
+        this.onChanged.emit(this.specialities);
       });
+  }
+
+
+  goSearch() {
+   this.findByParams();
+
+    this.router.navigate(['speciality', {
+      level: this.searchParams.level, direction: this.searchParams.direction,
+      form: this.searchParams.form, duration: this.searchParams.duration
+    }]);
+
+    this.initParams();
   }
 }

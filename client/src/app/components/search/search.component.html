@@ -1,72 +1,46 @@
-<h1 class="text-center">Специальности</h1>
-<div class="container">
-<div class="row">
-  <div class="col-md-4">
-    <form #param="ngForm" novalidate>
-      <label>Уровень образования: </label><br/>
-      <div>
-        <select name="level" class="form-control" [(ngModel)]="search.level">
-          <option disabled selected value>
-          <option *ngFor="let level of levels" [ngValue]="level">{{level.name}}</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Направление обучения: </label><br/>
-        <select name="direction" class="form-control" [(ngModel)]="search.direction">
-          <option disabled selected value>
-          <option *ngFor="let direction of directions" [ngValue]="direction">{{direction.name}}</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Форма обучения: </label><br/>
-        <select name="form" class="form-control" [(ngModel)]="search.form">
-          <option disabled selected value>
-          <option *ngFor="let form of forms" [ngValue]="form">{{form.name}}</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Продолжительность обучения: </label><br/>
-        <input type="text" name="duration" class="form-control" [(ngModel)]="search.duration"/>
-      </div>
-
-      <button type="submit" (click)="send(param.value)" class="btn btn-primary">Search</button>
-    </form>
-
-  </div>
-  <div class="col-md-6">
-
-    <div *ngIf="specialities">
-      <ng-container *ngFor="let s of specialities">
-        <label><h3>{{s.name}}</h3></label>
-        <div *ngIf="s.education">
-          <label><h3><a [routerLink]="['/education', s.education.id]">{{s.education.name}}</a>/<a>{{s.education.city}}</a></h3></label>
-        </div>
-        <label>Направления: </label>
-        <ul *ngFor="let d of s.directions">
-          <li>{{d.name}}</li>
-        </ul>
-        <label>Уровни: </label>
-        <ul *ngFor="let l of s.levels">
-          <li>{{l.name}}</li>
-        </ul>
-
-        <label>Формы обучения: </label>
-        <ul *ngFor="let f of s.forms">
-          <li>{{f.name}}</li>
-        </ul>
-
-      </ng-container>
+<form>
+  <div class="form-group col-sm-12">
+    <div class="d-flex flex-column">
+      <label for="level" class="control-label">Уровень образования: </label>
+      <select id="level" class="form-control" [(ngModel)]="searchParams.level" [ngModelOptions]="{standalone: true}">
+        <option value="" selected>Все</option>
+        <option *ngFor="let level of levels" [selected]="level.name === searchParams.level">{{level.name}}</option>
+      </select>
     </div>
-
   </div>
 
-  <div class="col-md-2"></div>
-  <!--<ng-container *ngFor="let e of educations">-->
-  <!--<h2>{{}}/{{e.city}}</h2>-->
-  <!--</ng-container>-->
-</div>
+  <div class="form-group col-sm-12">
+    <div class="d-flex flex-column">
+      <label for="direction" class="control-label">Направление обучения: </label>
+      <select id="direction" class="form-control" [(ngModel)]="searchParams.direction"
+              [ngModelOptions]="{standalone: true}">
+        <option value="" selected>Все</option>
+        <option *ngFor="let direction of directions" [selected]="direction.name === searchParams.direction">
+          {{direction.name}}
+        </option>
+      </select>
+    </div>
+  </div>
 
-</div>
+
+  <div class="form-group col-sm-12">
+    <div class="d-flex flex-column">
+      <label for="form" class="control-label">Форма обучения: </label>
+      <select id="form" class="form-control" [(ngModel)]="searchParams.form" [ngModelOptions]="{standalone: true}">
+        <option value="" selected>Все</option>
+        <option *ngFor="let form of forms" [selected]="form.name === searchParams.form">{{form.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group col-sm-12">
+    <div class="d-flex flex-column">
+      <label>Продолжительность обучения: </label>
+      <input [(ngModel)]="searchParams.duration" type="number" name="duration" class="form-control"
+             [ngModelOptions]="{standalone: true}">
+    </div>
+  </div>
+  <div class="form-group col-sm-12">
+    <button (click)="goSearch()" class="btn btn-primary center-block"><span class="glyphicon glyphicon-search"></span> Найти специальности</button>
+  </div>
+</form>

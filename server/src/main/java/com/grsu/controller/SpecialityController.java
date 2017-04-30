@@ -15,4 +15,16 @@ import java.util.List;
 @RestController
 @RequestMapping("speciality")
 public class SpecialityController {
+
+    private SpecialityRepository specialityRepository;
+
+    @Autowired
+    public SpecialityController(SpecialityRepository specialityRepository) {
+        this.specialityRepository = specialityRepository;
+    }
+
+    @RequestMapping(value = "/{id}")
+    public ResponseEntity getById(@PathVariable Long id) {
+        return ResponseEntity.ok(specialityRepository.findOne(id));
+    }
 }

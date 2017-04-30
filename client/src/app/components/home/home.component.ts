@@ -14,48 +14,9 @@ import {SearchService} from "../../service/search/search.service";
 })
 export class HomeComponent implements OnInit {
 
-  public myForm: FormGroup;
-
-  //списки
-  public levels: LevelOfEducation[];
-  public vectors: Direction[];
-
-  constructor(private _fb: FormBuilder,
-              private router: Router,
-              private searchService: SearchService) {
-
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.levels = [];
-    this.vectors = [];
-    this.loadData();
-    this.myForm = new FormGroup({
-      level: new FormControl(''),
-      vector: new FormControl('')
-    });
   }
-
-  searchForParams({ value }: { value: TestModel }) {
-    this.router.navigate(['/search', {
-      level: JSON.stringify(value.level),
-      vector: JSON.stringify(value.vector)
-    }]);
-  }
-
-  /**
-   * подргружает все нужны списки для формы
-   */
-  loadData() {
-    this.searchService.getLevels()
-      .subscribe(result => {
-        this.levels = result;
-      });
-
-    this.searchService.getDirections()
-      .subscribe(result => {
-        this.vectors = result;
-      })
-  }
-
 }

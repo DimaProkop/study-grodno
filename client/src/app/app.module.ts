@@ -34,6 +34,8 @@ import {DirectionService} from "./service/direction/direction.service";
 import {LanguageLearningService} from "./service/language-learning/language-learning.service";
 import {SearchService} from "./service/search/search.service";
 import {RequestService} from "./service/request/request.service";
+import {SimpleSearchComponent} from "./components/simple-search/simple-search.component";
+import {SpecialityDetailComponent} from "./components/speciality-detail/speciality-detail.component";
 
 @NgModule({
   imports: [
@@ -62,7 +64,9 @@ import {RequestService} from "./service/request/request.service";
     FacultyBuilderComponent,
     EducationInstitutionBuilderComponent,
     TreeViewComponent,
-    SearchComponent
+    SearchComponent,
+    SimpleSearchComponent,
+    SpecialityDetailComponent,
 
   ],
   providers: [

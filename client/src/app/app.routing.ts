@@ -16,6 +16,7 @@ import {TreeViewComponent} from "./components/tree-view/tree-view.component";
 import {SearchComponent} from "./components/search/search.component";
 import {RequestComponent} from "./components/request/request.component";
 import {EducationInstitutionComponent} from "./components/education-institution/education-institution.component";
+import {SpecialityDetailComponent} from "./components/speciality-detail/speciality-detail.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,6 +27,8 @@ const routes: Routes = [
   { path: 'header', component: HeaderComponent },
   { path: 'tags', component: SpecialityComponent },
   { path: 'education/:id', component: EducationInstitutionComponent },
+  { path: 'speciality', component: SpecialityComponent },
+  { path: 'speciality/:id', component: SpecialityDetailComponent },
   {
     path: 'admin', component: AdminPanelComponent, children: [
     {path: '', redirectTo: 'education-institution', pathMatch: 'full'},
