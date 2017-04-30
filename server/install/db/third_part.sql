@@ -1,3 +1,5 @@
+INSERT INTO "user"(login, password,role) VALUES
+  ('dionp95@mail.ru', 'tuborg95', 'admin');
 INSERT INTO education_institution (name, type_education_institution, email, feedback, site, address, city, local_rating) VALUES
   ('ГрГУ', 'Университет', 'grsu@tut.by', 'feedback@email.com', 'grsu.by', 'Беларусь, Гродно, ул.Ожешко 22', 'Гродно', 100);
 INSERT INTO faculty (name, address, education_institution_id) VALUES
@@ -90,3 +92,7 @@ INSERT INTO speciality_language_learning(speciality_id, language_learning_id) VA
   (6, 2),
   (7, 1),
   (7, 2);
+INSERT INTO choice(name) VALUES
+  ('speciality'),
+  ('university'),
+  ('news');

@@ -16,6 +16,7 @@ import {TreeViewComponent} from "./components/tree-view/tree-view.component";
 import {SearchComponent} from "./components/search/search.component";
 import {RequestComponent} from "./components/request/request.component";
 import {EducationInstitutionComponent} from "./components/education-institution/education-institution.component";
+import {BookmarksComponent} from "./components/favourites/bookmarks.component";
 import {SpecialityDetailComponent} from "./components/speciality-detail/speciality-detail.component";
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'header', component: HeaderComponent },
   { path: 'tags', component: SpecialityComponent },
+  { path: 'bookmarks', component: BookmarksComponent },
   { path: 'education/:id', component: EducationInstitutionComponent },
   { path: 'speciality', component: SpecialityComponent },
   { path: 'speciality/:id', component: SpecialityDetailComponent },

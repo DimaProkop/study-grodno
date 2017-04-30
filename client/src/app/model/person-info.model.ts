@@ -36,7 +36,7 @@ export class PersonInfoModel {
   /**
    * Дата рождения
    */
-  public dateOfBirth: LocalDate;
+  public dateOfBirth: Date;
 
   /**
    * Мотивационное письмо

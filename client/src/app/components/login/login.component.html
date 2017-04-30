@@ -1,14 +1,40 @@
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-  <input class="mdl-textfield__input" type="text" id="login" [(ngModel)]="login">
-  <label class="mdl-textfield__label" for="login">Login</label>
-</div>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-  <input class="mdl-textfield__input" type="text" id="password" [(ngModel)]="password">
-  <label class="mdl-textfield__label" for="password">Password</label>
-</div>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<div class="container">
 
-<button (click)="authenticate()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-  Login
-</button>
+  <div class="form-group">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="login" class="sr-only">Email address</label>
+    <div>
+      <input [(ngModel)]="login" type="email" id="login" class="form-control" placeholder="Email address" required>
+    </div>
+    <label for="password" class="sr-only">Password</label>
+    <div>
+      <input [(ngModel)]="password" type="password" id="password" class="form-control" placeholder="Password" required>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button (click)="authenticate()" class="btn btn-lg btn-primary btn-block">
+      Sign in
+    </button>
+  </div>
+</div> <!-- /container -->
 
+
+</html>

@@ -36,6 +36,15 @@ import {SearchService} from "./service/search/search.service";
 import {RequestService} from "./service/request/request.service";
 import {SimpleSearchComponent} from "./components/simple-search/simple-search.component";
 import {SpecialityDetailComponent} from "./components/speciality-detail/speciality-detail.component";
+import {LoginService} from "./service/login/login.service";
+import {userReducer} from "./reducers/user.reducer";
+import {routerReducer, RouterStoreModule} from "@ngrx/router-store";
+import {StoreModule} from "@ngrx/store";
+import {AuthGuard} from "./guards/auth.guard";
+import {AuthService} from "./service/auth/auth.service";
+import {SignUpService} from "./service/signup/sign-up.service";
+import {TranslateModule} from "@ngx-translate/core";
+import {BookmarksComponent} from "./components/favourites/bookmarks.component";
 
 @NgModule({
   imports: [
@@ -46,9 +55,13 @@ import {SpecialityDetailComponent} from "./components/speciality-detail/speciali
     TreeModule,
     MultiselectDropdownModule,
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.provideStore({routerReducer, userReducer}),
+    RouterStoreModule.connectRouter(),
+    TranslateModule.forRoot()
   ],
   declarations: [
+    BookmarksComponent,
     AppComponent,
     LoginComponent,
     HomeComponent,
@@ -66,8 +79,7 @@ import {SpecialityDetailComponent} from "./components/speciality-detail/speciali
     TreeViewComponent,
     SearchComponent,
     SimpleSearchComponent,
-    SpecialityDetailComponent,
-
+    SpecialityDetailComponent
   ],
   providers: [
     HomeService,
@@ -80,7 +92,11 @@ import {SpecialityDetailComponent} from "./components/speciality-detail/speciali
     LanguageLearningService,
     appRoutingProviders,
     SearchService,
-    RequestService],
+    RequestService,
+    LoginService,
+    AuthGuard,
+    AuthService,
+    SignUpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -57,8 +57,20 @@ CREATE TABLE personal_info_education_institution(
 
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY NOT NULL,
-  username VARCHAR(40) UNIQUE NOT NULL,
+  login VARCHAR(40) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
   role VARCHAR(10) DEFAULT ('user'),
   personal_info_id INT REFERENCES personal_info(id)
+);
+
+CREATE TABLE choice (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(40) UNIQUE NOT NULL
+);
+
+CREATE TABLE bookmark (
+  id SERIAL PRIMARY KEY NOT NULL,
+  content_id INT NOT NULL,
+  choice_id INT REFERENCES choice(id),
+  user_id INT REFERENCES "user"(id)
 );
