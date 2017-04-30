@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Response, URLSearchParams, Http, Headers} from "@angular/http";
 import {Observable} from "rxjs";
 import {FacultyModel} from "../../model/faculty.model";
@@ -7,11 +7,10 @@ import {FacultyModel} from "../../model/faculty.model";
 @Injectable()
 export class FacultyService {
 
-  private facultyUrl : string;
-  private getDep : string;
+  private facultyUrl: string;
 
   constructor(private http: Http) {
-    this.facultyUrl = "http://localhost:8080/api/faculty";
+    this.facultyUrl = "http://localhost:8080/faculty";
   }
 
   prepareHeaders() {
@@ -21,7 +20,7 @@ export class FacultyService {
     return headers;
   }
 
-  getFacultyById(id: number): Observable<any> {
+  getFacultyById(id: number): Observable<FacultyModel> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
     return this.http.get(this.facultyUrl + "/findById", {search: params, headers: this.prepareHeaders()})
@@ -29,10 +28,8 @@ export class FacultyService {
       .catch(this.handleError);
   }
 
-  getSpecByDepartment(id: number): Observable<any> {
-    let params = new URLSearchParams();
-    params.set('id', "" + id);
-    return this.http.get(this.facultyUrl + "/getByDep", {search: params, headers: this.prepareHeaders()})
+  getFacultyBySpeciality(id: number): Observable<FacultyModel> {
+    return this.http.get(this.facultyUrl + "/faculty-by-speciality/" + id, {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }

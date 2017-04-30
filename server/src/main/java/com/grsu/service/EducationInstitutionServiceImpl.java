@@ -1,12 +1,20 @@
 package com.grsu.service;
 
 import com.grsu.entity.EducationInstitution;
+import com.grsu.entity.Faculty;
+import com.grsu.entity.Speciality;
 import com.grsu.repository.EducationInstitutionRepository;
 import com.grsu.repository.FacultyRepository;
 import com.grsu.repository.SpecialityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +32,8 @@ public class EducationInstitutionServiceImpl implements EducationInstitutionServ
     @Autowired
     public EducationInstitutionServiceImpl(EducationInstitutionRepository educationInstitutionRepository,
                                            FacultyRepository facultyRepository,
-                                           SpecialityRepository specialityRepository) {
+                                           SpecialityRepository specialityRepository,
+                                           EntityManager entityManager) {
 
         this.educationInstitutionRepository = educationInstitutionRepository;
         this.facultyRepository = facultyRepository;

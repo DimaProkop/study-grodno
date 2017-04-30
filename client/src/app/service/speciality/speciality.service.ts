@@ -11,12 +11,6 @@ export class SpecialityService {
 
   private specialityURL: string;
 
-  store: any[] = [{
-
-
-
-}];
-
   prepareHeaders() {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -25,12 +19,18 @@ export class SpecialityService {
   }
 
   constructor(private http: Http) {
-    this.specialityURL = "http://localhost:8080/api/speciality";
+    this.specialityURL = "http://localhost:8080/speciality";
   }
 
   create(speciality: SpecialityModel): Observable<SpecialityModel> {
     return this.http
       .post(this.specialityURL, JSON.stringify(speciality), { headers: this.prepareHeaders() })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getById(id: number): Observable<SpecialityModel> {
+    return this.http.get(this.specialityURL + "/" + id, { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }

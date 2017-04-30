@@ -1,4 +1,58 @@
-<!--<div *ngFor="let spec of specialityes">-->
-  <!--<h1>{{spec.name}} / {{spec.code}}</h1>-->
-  <!--<br/>-->
-<!--</div>-->
+<div class="container">
+  <div class="col-lg-4 col-md-4 col-sm-4" style="width: 330px;">
+    <div class="panel panel-primary">
+      <div class="panel-body">
+        <legend class="text-center">Поиск специальностей</legend>
+        <app-search (onChanged)="onChanged($event)"></app-search>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-7">
+    <div class="row" *ngFor="let speciality of specialities">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+
+          <legend>
+            <div class="row">
+              <div class="col-md-11">{{speciality.name}}</div>
+              <div class="col-md-1">
+                <a style="text-align: right;" (click)="addAndRemoveClassToFavorites(speciality.id)">
+                  <span id="{{speciality.id}}" class="glyphicon glyphicon-star-empty"></span>
+                </a>
+              </div>
+            </div>
+            <br>
+            <span style="font-size: 16px;" *ngIf="getInstitution(speciality.id)"><a>{{getInstitution(speciality.id).name}}</a> / {{getInstitution(speciality.id).city}}</span>
+          </legend>
+          <div class="row">
+            <div class="col-md-6">
+              <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">Направления:
+                <span
+                  *ngFor="let direction of speciality.directions"><b>{{direction.name}}</b> </span></div>
+              <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.levelsOfEducation.length > 0">
+                Уровень: <span
+                *ngFor="let level of speciality.levelsOfEducation"><b>{{level.name}}.</b> </span></div>
+              <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.languagesLearning.length > 0">Язык
+                обучения: <span
+                  *ngFor="let language of speciality.languagesLearning"><b>{{language.name}}.</b> </span></div>
+              <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.duration">Продолжительность:
+                <span><b>{{speciality.duration}} лет.</b> </span></div>
+            </div>
+            <div class="col-md-6">
+              <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.formsOfEducation.length > 0">Форма:
+                <span
+                  *ngFor="let form of speciality.formsOfEducation"><b>{{form.name}}.</b> </span></div>
+              <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.freeEducation">Возможность
+                бесплатного обучения:
+                <span><b>{{speciality.freeEducation ? "Есть" : "Нету"}}.</b> </span></div>
+              <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.price">Стоимость обучения: <span><b>{{speciality.price}} долларов в год.</b> </span>
+              </div>
+            </div>
+          </div>
+          <button (click)="goDetail(speciality.id)" class="btn btn-primary">Подробнее о специальности</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,8 @@ package com.grsu.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +12,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "speciality")
-public class Speciality {
+public class Speciality implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,7 +64,7 @@ public class Speciality {
     @JoinTable(name = "speciality_form_of_education",
             joinColumns = @JoinColumn(name = "speciality_id"),
             inverseJoinColumns = @JoinColumn(name = "form_of_education_id"))
-    private List<FormOfEducation> formsOfEducation;
+    private List<FormOfEducation> formsOfEducation = new ArrayList<>();
 
     /**
      * Языки обучения
@@ -71,7 +73,7 @@ public class Speciality {
     @JoinTable(name = "speciality_language_learning",
             joinColumns = @JoinColumn(name = "speciality_id"),
             inverseJoinColumns = @JoinColumn(name = "language_learning_id"))
-    private List<LanguageLearning> languagesLearning;
+    private List<LanguageLearning> languagesLearning = new ArrayList<>();
 
     /**
      * Уровень образования
@@ -80,7 +82,7 @@ public class Speciality {
     @JoinTable(name = "speciality_level_of_education",
             joinColumns = @JoinColumn(name = "speciality_id"),
             inverseJoinColumns = @JoinColumn(name = "level_of_education_id"))
-    private List<LevelOfEducation> levelsOfEducation;
+    private List<LevelOfEducation> levelsOfEducation = new ArrayList<>();
 
     /**
      * Направления
@@ -89,7 +91,8 @@ public class Speciality {
     @JoinTable(name = "speciality_direction",
             joinColumns = @JoinColumn(name = "speciality_id"),
             inverseJoinColumns = @JoinColumn(name = "direction_id"))
-    private List<Direction> directions;
+    private List<Direction> directions = new ArrayList<>();
+    ;
 
     public Speciality() {
     }
