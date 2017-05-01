@@ -46,6 +46,7 @@ import {SignUpService} from "./service/signup/sign-up.service";
 import {TranslateModule} from "@ngx-translate/core";
 import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
 import {roleUserReducer} from "./reducers/role.reducer";
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 @NgModule({
   imports: [
@@ -80,7 +81,8 @@ import {roleUserReducer} from "./reducers/role.reducer";
     TreeViewComponent,
     SearchComponent,
     SimpleSearchComponent,
-    SpecialityDetailComponent
+    SpecialityDetailComponent,
+    SignUpComponent
   ],
   providers: [
     HomeService,

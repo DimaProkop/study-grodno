@@ -18,11 +18,13 @@ import {RequestComponent} from "./components/request/request.component";
 import {EducationInstitutionComponent} from "./components/education-institution/education-institution.component";
 import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
 import {SpecialityDetailComponent} from "./components/speciality-detail/speciality-detail.component";
+import {SignUpComponent} from "./components/sign-up/sign-up.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'search', component: SearchComponent },
   { path: 'app', component: AppComponent },
+  { path: 'sign-up', component: SignUpComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'header', component: HeaderComponent },
