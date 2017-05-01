@@ -5,15 +5,18 @@ import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
 import { SpecialityModel } from "../../model/speciality.model";
 import {HeadersService} from "../headers.service";
+import {Comment} from "../../model/comment.model";
 
 
 @Injectable()
 export class SpecialityService {
 
   private specialityURL: string;
+  private commentsUrl: string;
 
   constructor(private http: Http) {
     this.specialityURL = "http://localhost:8080/speciality";
+    this.commentsUrl = "http://localhost:8080/speciality/getComments";
   }
 
   create(speciality: SpecialityModel): Observable<SpecialityModel> {
@@ -35,7 +38,22 @@ export class SpecialityService {
       .catch(this.handleError);
   }
 
+  getComments(id: number): Observable<Comment[]> {
+    return this.http
+      .post(this.commentsUrl, JSON.stringify(id), { headers: HeadersService.prepareHeaders() })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  addComment(comment: Comment): Observable<any> {
+    return this.http
+      .post(this.specialityURL + "/addComment", JSON.stringify(comment), { headers: HeadersService.prepareHeaders() })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
+    console.log(res.json());
     return res.json();
   }
 

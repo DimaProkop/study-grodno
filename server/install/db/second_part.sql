@@ -48,3 +48,11 @@ CREATE TABLE speciality_level_of_education(
   speciality_id INT REFERENCES speciality(id),
   level_of_education_id INT REFERENCES level_of_education(id)
 );
+
+CREATE TABLE comment (
+  id SERIAL PRIMARY KEY NOT NULL,
+  speciality_id INT NOT NULL,
+  date VARCHAR(30) NOT NULL,
+  text VARCHAR(255) NOT NULL,
+  username VARCHAR(100) NOT NULL
+);

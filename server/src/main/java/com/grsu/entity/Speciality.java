@@ -92,7 +92,6 @@ public class Speciality implements Serializable {
             joinColumns = @JoinColumn(name = "speciality_id"),
             inverseJoinColumns = @JoinColumn(name = "direction_id"))
     private List<Direction> directions = new ArrayList<>();
-    ;
 
     public Speciality() {
     }

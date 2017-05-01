@@ -20,6 +20,7 @@ export class SpecialityComponent implements OnInit {
   public specialities: SpecialityModel[];
   public searchParams: SearchModel;
   public institution: any[];
+  public counter: number;
 
   constructor(private searchService: SearchService, private route: ActivatedRoute,
               private router: Router, private element: ElementRef,
@@ -27,6 +28,7 @@ export class SpecialityComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.counter = 0;
     this.searchParams = new SearchModel();
     this.initParams();
     this.findByParams();
@@ -99,6 +101,14 @@ export class SpecialityComponent implements OnInit {
       jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
     } else {
       jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star").addClass("glyphicon glyphicon-star-empty");
+    }
+  }
+
+  like() {
+    if(this.counter == 0) {
+      ++this.counter;
+    }else {
+      --this.counter;
     }
   }
 }

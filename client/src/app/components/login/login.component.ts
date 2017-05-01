@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         user => {
           if (user != null) {
-            this.router.navigate(['/summary']);
+            this.router.navigate(['/home']);
           } else {
             console.log("invalid user!");
             this.router.navigate(['/login'])

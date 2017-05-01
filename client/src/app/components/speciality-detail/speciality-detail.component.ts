@@ -10,6 +10,7 @@ import {SearchService} from "../../service/search/search.service";
 import {EducationInstitutionModel} from "../../model/education-institution.model";
 import {FacultyModel} from "../../model/faculty.model";
 import {FacultyService} from "../../service/faculty/faculty.service";
+import {Comment} from "../../model/comment.model";
 
 @Component({
   selector: 'app-speciality-detail',
@@ -22,6 +23,8 @@ export class SpecialityDetailComponent implements OnInit {
   speciality: SpecialityModel;
   institution: EducationInstitutionModel;
   faculty: FacultyModel;
+  public comments: Comment[];
+  public text: string;
 
   constructor(private route: ActivatedRoute, private specialityService: SpecialityService,
               private searchService: SearchService, private facultyService: FacultyService) {
@@ -33,7 +36,7 @@ export class SpecialityDetailComponent implements OnInit {
   }
 
   initEntity() {
-
+    this.comments = [];
     this.speciality = new SpecialityModel();
     this.institution = new EducationInstitutionModel();
     this.faculty = new FacultyModel();
@@ -41,6 +44,9 @@ export class SpecialityDetailComponent implements OnInit {
     this.route
       .params
       .subscribe(param => {
+        this.specialityService.getComments(+param["id"]).subscribe(res => {
+          this.comments = res;
+        });
         this.specialityService.getById(+param["id"]).subscribe(item => {
           this.speciality = item;
           this.searchService.getInsitutionBySpeciality(+param["id"]).subscribe(institution => {
@@ -51,5 +57,19 @@ export class SpecialityDetailComponent implements OnInit {
           });
         });
       });
+  }
+
+  addComment(id: number) {
+    let comment: Comment;
+    comment = new Comment();
+    let date = new Date();
+    comment.specialityId = id;
+    comment.date = date.getDay().toLocaleString() + "-" + date.getMonth().toLocaleString() + "-" + date.getFullYear().toLocaleString();
+    if(this.text == "") {
+      this.text = "checking...";
+    }
+    comment.text = this.text;
+    comment.username = "null";
+    this.specialityService.addComment(comment).subscribe(res => {});
   }
 }

@@ -50,7 +50,21 @@
               </div>
             </div>
           </div>
-          <button (click)="goDetail(speciality.id)" class="btn btn-primary">Подробнее о специальности</button>
+          <div class="row">
+            <legend>
+            <div class="col-md-10">
+              <button (click)="goDetail(speciality.id)" class="btn btn-primary">Подробнее о специальности</button>
+            </div>
+            <div class="col-md-1">
+              <a style="text-align: right;" (click)="like()">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+              </a>
+            </div>
+            <div class="col-md-1">
+              {{counter}}
+            </div>
+            </legend>
+          </div>
         </div>
       </div>
     </div>
