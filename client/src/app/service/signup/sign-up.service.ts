@@ -3,15 +3,12 @@ import {Http, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
 import {SignUpModel} from "../../model/sign-up.model";
 import {UserModel} from "../../model/user.model";
+import {HeadersService} from "../headers.service";
 
 @Injectable()
 export class SignUpService {
 
   private signUpURL: string;
-
-  private headers = new Headers({
-    'Content-Type': 'application/json'
-  });
 
   constructor(private http: Http) {
     this.signUpURL = "http://localhost:8080/api/signUp";
@@ -19,7 +16,7 @@ export class SignUpService {
 
   signUp(signUpModel: SignUpModel): Observable<UserModel> {
     return this.http
-      .post(this.signUpURL, JSON.stringify(signUpModel), {headers: this.headers})
+      .post(this.signUpURL, JSON.stringify(signUpModel), {headers: HeadersService.prepareHeaders()})
       .map(SignUpService.extractData)
       .catch(SignUpService.handleError);
   }

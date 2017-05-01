@@ -5,11 +5,14 @@ import {SearchService} from "../../service/search/search.service";
 import {isNullOrUndefined} from "util";
 import {ActivatedRoute, Router} from "@angular/router";
 import * as jQuery from 'jquery';
+import {BookmarksService} from "../../service/bookmarks/bookmarks.service";
+import {Bookmark} from "../../model/bookmark.model";
 
 @Component({
   selector: 'app-speciality',
   templateUrl: './speciality.component.html',
-  styleUrls: ['./speciality.component.css']
+  styleUrls: ['./speciality.component.css'],
+  providers: [BookmarksService]
 })
 
 export class SpecialityComponent implements OnInit {
@@ -19,7 +22,8 @@ export class SpecialityComponent implements OnInit {
   public institution: any[];
 
   constructor(private searchService: SearchService, private route: ActivatedRoute,
-              private router: Router, private element: ElementRef) {
+              private router: Router, private element: ElementRef,
+              private bookmarksService: BookmarksService) {
   }
 
   ngOnInit() {
@@ -85,7 +89,12 @@ export class SpecialityComponent implements OnInit {
   }
 
   addAndRemoveClassToFavorites(id) {
+    //add bookmark to favourites
+    this.bookmarksService.addBookmark(new Bookmark(1, id)).subscribe(
+      res => {
 
+      }
+    );
     if (jQuery(this.element.nativeElement).find('#' + id).hasClass('glyphicon glyphicon-star-empty')) {
       jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
     } else {

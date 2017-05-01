@@ -8,6 +8,7 @@ import {SpecialityModel} from "../../model/speciality.model";
 import {EducationInstitutionModel} from "../../model/education-institution.model";
 import {isNullOrUndefined} from "util";
 import {isNumber} from "util";
+import {HeadersService} from "../headers.service";
 
 @Injectable()
 export class SearchService {
@@ -18,27 +19,20 @@ export class SearchService {
     this.url = "http://localhost:8080/search";
   }
 
-  prepareHeaders() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('x-auth-token', localStorage.getItem('x-auth-token'));
-    return headers;
-  }
-
   getLevels(): Observable<LevelOfEducation[]> {
-    return this.http.get(this.url + "/levels", {headers: this.prepareHeaders()})
+    return this.http.get(this.url + "/levels", {headers: HeadersService.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getDirections(): Observable<Direction[]> {
-    return this.http.get(this.url + "/directions", {headers: this.prepareHeaders()})
+    return this.http.get(this.url + "/directions", {headers: HeadersService.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   getForms(): Observable<Direction[]> {
-    return this.http.get(this.url + "/forms", {headers: this.prepareHeaders()})
+    return this.http.get(this.url + "/forms", {headers: HeadersService.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -50,7 +44,7 @@ export class SearchService {
     console.log(duration);
 
     return this.http
-      .get(this.url + "/params=" + params.direction + "&" + params.level + "&" + params.form + "&" + duration, {headers: this.prepareHeaders()})
+      .get(this.url + "/params=" + params.direction + "&" + params.level + "&" + params.form + "&" + duration, {headers: HeadersService.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -58,7 +52,7 @@ export class SearchService {
   getInsitutionBySpeciality(id: number): Observable<EducationInstitutionModel> {
     let params = new URLSearchParams();
     params.set('id', "" + id);
-    return this.http.get(this.url + "/institution-by-speciality/" + id, {headers: this.prepareHeaders()})
+    return this.http.get(this.url + "/institution-by-speciality/" + id, {headers: HeadersService.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);
   }

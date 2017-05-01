@@ -7,6 +7,7 @@ import { LoginModel } from "../../model/login.model";
 import {UserAction} from "../../actions/user.action";
 import {Store} from "@ngrx/store";
 import {UserState} from "../../reducers/user.reducer";
+import {HeadersService} from "../headers.service";
 
 
 @Injectable()
@@ -15,10 +16,6 @@ export class LoginService {
   private loginURL: string;
   private logoutURL: string;
   private tokenName: string;
-
-  private headers = new Headers({
-    'Content-Type': 'application/json'
-  });
 
   constructor(private http: Http,
               private store: Store<UserState>) {
@@ -29,7 +26,7 @@ export class LoginService {
 
   login(loginModel: LoginModel): Observable<any> {
     return this.http
-      .post(this.loginURL, JSON.stringify(loginModel), { headers: this.headers })
+      .post(this.loginURL, JSON.stringify(loginModel), { headers: HeadersService.prepareHeaders() })
       .do(resp => {
         console.log(resp.headers.get(this.tokenName));
         let date = new Date().getTime();
@@ -42,7 +39,7 @@ export class LoginService {
 
   logout(): Observable<any>{
     console.log(this.logoutURL);
-    return this.http.get(this.logoutURL, {headers: this.headers})
+    return this.http.get(this.logoutURL, {headers: HeadersService.prepareHeaders()})
       .do(res => {
         let token = localStorage.getItem(this.tokenName);
         localStorage.removeItem(this.tokenName);

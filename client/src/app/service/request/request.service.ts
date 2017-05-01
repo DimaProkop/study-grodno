@@ -9,6 +9,7 @@ import "rxjs/Rx";
 import { SpecialityModel } from "../../model/speciality.model";
 import {PersonInfoModel} from "../../model/person-info.model";
 import {isNullOrUndefined} from "util";
+import {HeadersService} from "../headers.service";
 
 
 @Injectable()
@@ -16,20 +17,13 @@ export class RequestService {
 
   private requestURL: string;
 
-  prepareHeaders() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('x-auth-token', localStorage.getItem('x-auth-token'));
-    return headers;
-  }
-
   constructor(private http: Http) {
     this.requestURL = "http://localhost:8080/request";
   }
 
   send(personInfo: PersonInfoModel, flag: boolean): Observable<PersonInfoModel> {
     return this.http
-      .put(this.requestURL + "/send=" + flag, JSON.stringify(personInfo), { headers: this.prepareHeaders() })
+      .put(this.requestURL + "/send=" + flag, JSON.stringify(personInfo), { headers: HeadersService.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }

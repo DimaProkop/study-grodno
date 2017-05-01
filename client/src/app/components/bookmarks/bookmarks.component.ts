@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-favourites',
@@ -10,6 +11,10 @@ export class BookmarksComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  showTab() {
+    jQuery(".nav-tabs a").tab('show');
   }
 
 }

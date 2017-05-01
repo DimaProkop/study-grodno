@@ -44,7 +44,7 @@ import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./service/auth/auth.service";
 import {SignUpService} from "./service/signup/sign-up.service";
 import {TranslateModule} from "@ngx-translate/core";
-import {BookmarksComponent} from "./components/favourites/bookmarks.component";
+import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
 
 @NgModule({
   imports: [

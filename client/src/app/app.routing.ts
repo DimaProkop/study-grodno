@@ -16,7 +16,7 @@ import {TreeViewComponent} from "./components/tree-view/tree-view.component";
 import {SearchComponent} from "./components/search/search.component";
 import {RequestComponent} from "./components/request/request.component";
 import {EducationInstitutionComponent} from "./components/education-institution/education-institution.component";
-import {BookmarksComponent} from "./components/favourites/bookmarks.component";
+import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
 import {SpecialityDetailComponent} from "./components/speciality-detail/speciality-detail.component";
 
 const routes: Routes = [
