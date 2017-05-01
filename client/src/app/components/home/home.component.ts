@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {LevelOfEducation} from "../../model/level-of-education.model";
 import {Direction} from "../../model/direction.model";
 import {SearchService} from "../../service/search/search.service";
+import {Store} from "@ngrx/store";
+import {UserModel} from "../../model/user.model";
 
 @Component({
   moduleId: module.id,
@@ -14,9 +16,15 @@ import {SearchService} from "../../service/search/search.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  public user: UserModel;
+
+  constructor(private store: Store<any>) {
   }
 
   ngOnInit(): void {
+    this.store.select(x => x.roleUserReducer)
+      .subscribe((x) => {
+        console.log(x);
+      });
   }
 }

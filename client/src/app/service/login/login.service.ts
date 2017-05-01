@@ -8,6 +8,7 @@ import {UserAction} from "../../actions/user.action";
 import {Store} from "@ngrx/store";
 import {UserState} from "../../reducers/user.reducer";
 import {HeadersService} from "../headers.service";
+import {UserModel} from "../../model/user.model";
 
 
 @Injectable()
@@ -15,10 +16,12 @@ export class LoginService {
 
   private loginURL: string;
   private logoutURL: string;
+  private getUserUrl: string;
   private tokenName: string;
 
   constructor(private http: Http,
               private store: Store<UserState>) {
+    this.getUserUrl = "http://localhost:8080/api/getCurrentUser";
     this.loginURL = "http://localhost:8080/api/login";
     this.logoutURL = "http://localhost:8080/api/logout";
     this.tokenName = 'x-auth-token';
@@ -47,6 +50,12 @@ export class LoginService {
         console.log(res);
         this.store.dispatch({ type: UserAction.LOGOUT });
       });
+  }
+
+  getCurrentUser(): Observable<UserModel> {
+    return this.http.get(this.getUserUrl, { headers: HeadersService.prepareHeaders() })
+      .map(LoginService.extractData)
+      .catch(LoginService.handleError);
   }
 
   private static extractData(res: Response) {

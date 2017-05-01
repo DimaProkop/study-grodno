@@ -45,6 +45,7 @@ import {AuthService} from "./service/auth/auth.service";
 import {SignUpService} from "./service/signup/sign-up.service";
 import {TranslateModule} from "@ngx-translate/core";
 import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
+import {roleUserReducer} from "./reducers/role.reducer";
 
 @NgModule({
   imports: [
@@ -56,7 +57,7 @@ import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
     MultiselectDropdownModule,
     BrowserModule,
     ReactiveFormsModule,
-    StoreModule.provideStore({routerReducer, userReducer}),
+    StoreModule.provideStore({routerReducer, userReducer, roleUserReducer}),
     RouterStoreModule.connectRouter(),
     TranslateModule.forRoot()
   ],
