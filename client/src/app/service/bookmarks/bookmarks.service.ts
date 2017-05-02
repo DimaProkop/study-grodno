@@ -30,6 +30,7 @@ export class BookmarksService {
   }
 
   private static extractData(res: Response) {
+    console.log(res.json());
     return res.json();
   }
 

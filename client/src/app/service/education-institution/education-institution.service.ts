@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { Response, URLSearchParams } from "@angular/http";
 import { Headers, Http } from '@angular/http';
 import "rxjs/Rx";
-import { TagModel } from "../../model/tag.model";
 import { EducationInstitutionModel } from "../../model/education-institution.model";
 
 

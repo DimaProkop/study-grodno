@@ -13,29 +13,6 @@ CREATE TABLE role(
   name VARCHAR(40) NOT NULL
 );
 
-CREATE TABLE education_institution(
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(30) NOT NULL,
-  feedback VARCHAR(30) NOT NULL,
-  site VARCHAR(100) NOT NULL,
-  address VARCHAR(100) NOT NULL,
-  city VARCHAR(100) NOT NULL,
-  local_rating INT NOT NULL,
-  image_url VARCHAR (255),
-  logo_url VARCHAR (255),
-  type_education_institution VARCHAR(100) NOT NULL,
-  user_id INT REFERENCES "user"(id)
-);
-
-CREATE TABLE news(
-  id SERIAL PRIMARY KEY NOT NULL,
-  title VARCHAR(100) NOT NULL,
-  description VARCHAR(500) NOT NULL,
-  create_date Date NOT NULL,
-  education_institution_id INT REFERENCES education_institution(id) -- Выбранное направлени
-);
-
 CREATE TABLE personal_info(
   id SERIAL PRIMARY KEY NOT NULL, -- ИД
   first_name VARCHAR(40) NOT NULL, -- Имя
@@ -60,12 +37,6 @@ CREATE TABLE personal_info(
   selected_direction_id INT REFERENCES direction(id) -- Выбранное направление
 );
 
-CREATE TABLE personal_info_education_institution(
-  personal_info_id INT REFERENCES personal_info(id),
-  education_institution_id INT REFERENCES education_institution(id),
-  PRIMARY KEY (personal_info_id, education_institution_id)
-);
-
 CREATE TABLE "user"(
   id SERIAL PRIMARY KEY NOT NULL,
   login VARCHAR(40) UNIQUE NOT NULL,
@@ -73,6 +44,37 @@ CREATE TABLE "user"(
   role VARCHAR(10) DEFAULT ('user'),
   personal_info_id INT REFERENCES personal_info(id)
 );
+
+CREATE TABLE education_institution(
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(30) NOT NULL,
+  feedback VARCHAR(30) NOT NULL,
+  site VARCHAR(100) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  city VARCHAR(100) NOT NULL,
+  local_rating INT NOT NULL,
+  image_url VARCHAR (255),
+  logo_url VARCHAR (255),
+  type_education_institution VARCHAR(100) NOT NULL,
+  user_id INT REFERENCES "user"(id)
+);
+
+CREATE TABLE news(
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  create_date Date NOT NULL,
+  education_institution_id INT REFERENCES education_institution(id) -- Выбранное направлени
+);
+
+
+CREATE TABLE personal_info_education_institution(
+  personal_info_id INT REFERENCES personal_info(id),
+  education_institution_id INT REFERENCES education_institution(id),
+  PRIMARY KEY (personal_info_id, education_institution_id)
+);
+
 
 CREATE TABLE choice (
   id SERIAL PRIMARY KEY NOT NULL,

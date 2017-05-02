@@ -33,8 +33,8 @@ export class BookmarksComponent implements OnInit {
     if(tab_id == "1") {
       this.bookmarkService.getByChoice(1).subscribe(
         res => {
+          console.log(res);
           this.specialities = res;
-          console.log(this.specialities);
         }
       )
     }else if(tab_id == "2") {

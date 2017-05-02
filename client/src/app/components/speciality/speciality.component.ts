@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import * as jQuery from 'jquery';
 import {BookmarksService} from "../../service/bookmarks/bookmarks.service";
 import {Bookmark} from "../../model/bookmark.model";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-speciality',
@@ -24,7 +25,8 @@ export class SpecialityComponent implements OnInit {
 
   constructor(private searchService: SearchService, private route: ActivatedRoute,
               private router: Router, private element: ElementRef,
-              private bookmarksService: BookmarksService) {
+              private bookmarksService: BookmarksService,
+              private store: Store<any>) {
   }
 
   ngOnInit() {
@@ -32,6 +34,11 @@ export class SpecialityComponent implements OnInit {
     this.searchParams = new SearchModel();
     this.initParams();
     this.findByParams();
+
+    this.store.select(x => x.roleUserReducer)
+      .subscribe((x) => {
+        console.log(x);
+      });
   }
 
   onChanged(entity) {
