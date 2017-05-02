@@ -1,0 +1,63 @@
+<div class="panel panel-primary col-sm-6" *ngIf="currentNews">
+  <div class="panel-body" style="padding: 20px 20px;">
+    <legend>Добавление/Редактирование новости</legend>
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="title" class="col-sm-3 control-label">Заголовок: </label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" id="title" placeholder="Введите заголовок..."
+                 [(ngModel)]="currentNews.title" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="institution" class="col-sm-3 control-label">Университет: </label>
+        <div class="col-sm-9">
+          <select required class="form-control" id="institution" (ngModelChange)="onChange($event)"
+                  [ngModel]="currentNews.educationInstitution"
+                  [ngModelOptions]="{standalone: true}">
+            <option value="" selected>Все</option>
+            <option *ngFor='let item of institutions' [selected]="currentNews.educationInstitution.id && item === currentNews.educationInstitution.id" [ngValue]="item">
+              {{item.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description" class="col-sm-3 control-label">Статья: </label>
+        <div class="col-sm-9">
+           <textarea style="resize: none;" rows="10" type="text" class="form-control" id="description"
+                     [(ngModel)]="currentNews.description"
+                     [ngModelOptions]="{standalone: true}"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-5"></div>
+
+        <button class="btn btn-success btn-lg" (click)="save()">
+          <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> Сохранить
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="col-sm-1"></div>
+<div class="panel panel-primary col-sm-5" *ngIf="news && news.length > 0">
+  <div class="panel-body" style="padding: 20px 20px;">
+    <legend>Добавление/Редактирование новости</legend>
+    <table class="table">
+      <tr>
+        <th>ИД</th>
+        <th>Заголовок</th>
+        <th>Дата добавления</th>
+        <th>Операции</th>
+      </tr>
+      <tr *ngFor="let item of news">
+        <td>{{item.id}}</td>
+        <td>{{item.title}}</td>
+        <td>{{item.createDate}}</td>
+        <td><a (click)="edit(item.id)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+      </tr>
+    </table>
+  </div>
+</div>
+

@@ -1,10 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {TestModel} from "../../model/home.module";
-import {Router} from "@angular/router";
-import {LevelOfEducation} from "../../model/level-of-education.model";
-import {Direction} from "../../model/direction.model";
-import {SearchService} from "../../service/search/search.service";
+import {Component, OnInit} from "@angular/core";
+import * as jQuery from 'jquery';
 import {Store} from "@ngrx/store";
 import {UserModel} from "../../model/user.model";
 
@@ -26,5 +21,13 @@ export class HomeComponent implements OnInit {
       .subscribe((x) => {
         console.log(x);
       });
+  }
+
+  showPanel() {
+    jQuery("div#panel").slideUp("slow");
+  }
+
+  hidePanel() {
+    jQuery("div#panel").slideDown("slow");
   }
 }

@@ -1,0 +1,28 @@
+<div style="margin-top: -20px;" class="bs-docs-header">
+  <div style="background: Indigo; color:white;" class="container col-lg-12">
+    <div style="margin-top: 50px; margin-bottom: 50px;" class="col-md-2">
+      <img class="center-block" src="https://upload.wikimedia.org/wikipedia/ru/c/cd/LogoGrGU.png"/>
+    </div>
+    <div style="margin-top: 50px;" class="col-md-10" *ngIf="institution">
+      <h2>{{institution.name}}</h2>
+    </div>
+  </div>
+  <div class="container col-lg-12">
+    <div class="col-lg-12" style="margin-top: 40px;">
+      <div style="margin-left: 17%; margin-right: 10%;">
+        <ul class="nav nav-pills">
+          <li><a routerLink="description" routerLinkActive="active">Общая информация</a></li>
+          <li><a routerLink="speciality" routerLinkActive="active">Специальности</a></li>
+          <li><a routerLink="faculty" routerLinkActive="active">Факультеты</a></li>
+          <li><a routerLink="news" routerLinkActive="active">Новости</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container col-lg-12">
+    <div class="col-lg-12" style="margin-top: 40px;">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

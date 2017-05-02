@@ -12,8 +12,6 @@ import {FooterComponent} from './components/footer/footer.component';
 import {HeaderComponent} from './components/header/header.component';
 import {RequestComponent} from './components/request/request.component';
 import {EducationInstitutionComponent} from './components/education-institution/education-institution.component';
-import {InstitutionComponent} from './components/institution/institution.component';
-import {InstituionDetailComponent} from './components/instituion-detail/instituion-detail.component';
 import {HomeService} from "./service/home/home.service";
 import {SpecialityComponent} from './components/speciality/speciality.component';
 import {FacultyService} from "./service/faculty/faculty.service";
@@ -44,9 +42,14 @@ import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./service/auth/auth.service";
 import {SignUpService} from "./service/signup/sign-up.service";
 import {TranslateModule} from "@ngx-translate/core";
+import {EducationInstitutionDetailComponent} from "./components/education-institution-detail/education-institution-detail.component";
+import {FacultyComponent} from "./components/faculty/faculty.component";
+import {NewsBuilderComponent} from "./components/news-builder/news-builder.component";
+import {NewsService} from "./service/news/news.service";
+import {NewsComponent} from "./components/news/news.component";
 import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
 import {roleUserReducer} from "./reducers/role.reducer";
-import { SignUpComponent } from './components/sign-up/sign-up.component';
+import {SignUpComponent} from './components/sign-up/sign-up.component';
 
 @NgModule({
   imports: [
@@ -71,8 +74,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     HeaderComponent,
     RequestComponent,
     EducationInstitutionComponent,
-    InstitutionComponent,
-    InstituionDetailComponent,
+    EducationInstitutionDetailComponent,
     SpecialityComponent,
     AdminPanelComponent,
     SpecialityBuilderComponent,
@@ -82,6 +84,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     SearchComponent,
     SimpleSearchComponent,
     SpecialityDetailComponent,
+    FacultyComponent,
+    NewsBuilderComponent,
+    NewsComponent,
     SignUpComponent
   ],
   providers: [
@@ -99,7 +104,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     LoginService,
     AuthGuard,
     AuthService,
-    SignUpService],
+    SignUpService,
+    NewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

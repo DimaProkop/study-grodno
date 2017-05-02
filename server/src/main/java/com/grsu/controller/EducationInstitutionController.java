@@ -26,9 +26,9 @@ public class EducationInstitutionController {
         this.educationInstitutionRepository = educationInstitutionRepository;
     }
 
-    @RequestMapping
-    public ResponseEntity getById(final @RequestParam(name = "id") Long id) {
-        return ResponseEntity.ok(educationInstitutionRepository.getOne(id));
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity getById(@PathVariable Long id) {
+        return ResponseEntity.ok(educationInstitutionRepository.findOne(id));
     }
 
     @RequestMapping(method = RequestMethod.POST)

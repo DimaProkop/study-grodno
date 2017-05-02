@@ -1,0 +1,20 @@
+<div class="container" *ngIf="faculties">
+
+  <div class="col-lg-12">
+    <div class="panel panel-success">
+      <div class="panel-body" *ngFor="let faculty of faculties">
+        <legend><h3>{{faculty.name}}</h3></legend>
+        <div style="padding-left: 15px;" class="row">
+          <div class="col-lg-6">
+            <div class="row">Адрес: <b>{{faculty.address}}.</b></div>
+            <div class="row">Специальности:
+              <ul>
+                <li *ngFor="let speciality of faculty.specialities"><a routerLink="/speciality/{{speciality.id}}">{{speciality.name}}</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
