@@ -21,6 +21,7 @@ import {FacultyComponent} from "./components/faculty/faculty.component";
 import {NewsBuilderComponent} from "./components/news-builder/news-builder.component";
 import {NewsComponent} from "./components/news/news.component";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
+import {NewsDetailComponent} from "./components/news-detail/news-detail.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'tags', component: SpecialityComponent},
   {path: 'bookmarks', component: BookmarksComponent},
   {path: 'institution', component: EducationInstitutionComponent},
+  {path: 'news/:id', component: NewsDetailComponent},
 
   {
     path: 'institution/:id', component: EducationInstitutionDetailComponent, children: [
@@ -47,7 +49,7 @@ const routes: Routes = [
   {path: 'speciality/:id', component: SpecialityDetailComponent},
   {
     path: 'admin', component: AdminPanelComponent, children: [
-    {path: '', redirectTo: 'education-institution', pathMatch: 'full'},
+    {path: '', redirectTo: 'institution', pathMatch: 'full'},
     {path: 'institution', component: TreeViewComponent},
     {path: 'news', component: NewsBuilderComponent}
   ]

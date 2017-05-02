@@ -1,9 +1,8 @@
 package com.grsu.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +45,12 @@ public class EducationInstitution implements Serializable {
     @Column
     private String site;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "logo_url")
+    private String logoUrl;
+
     /**
      * Адрес
      */
@@ -64,11 +69,15 @@ public class EducationInstitution implements Serializable {
     @Column(name = "local_rating")
     private Integer localRating;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     /**
      * Факультеты
      */
     @OneToMany(mappedBy = "educationInstitution")
-    private List<Faculty> faculties;
+    private List<Faculty> faculties = new ArrayList<>();
 
     public EducationInstitution() {
     }
@@ -151,5 +160,29 @@ public class EducationInstitution implements Serializable {
 
     public void setFaculties(List<Faculty> faculties) {
         this.faculties = faculties;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getLogoUrl() {
+        return logoUrl;
+    }
+
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

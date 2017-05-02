@@ -1,5 +1,6 @@
 import { FacultyModel } from "./faculty.model";
 import { TypeEducationInstitution } from "./type-education-institution.model";
+import {UserModel} from "./user.model";
 
 /**
  * Created by dionp on 27.03.2017.
@@ -58,6 +59,11 @@ export class EducationInstitutionModel {
    */
   faculties: FacultyModel[];
 
+  /**
+   * Представитель университета
+   */
+  user: UserModel;
+
   setProperties(item: EducationInstitutionModel): void {
       this.id = item.id;
       this.address = item.address;
@@ -68,5 +74,6 @@ export class EducationInstitutionModel {
       this.primaryMail = item.primaryMail;
       this.mailFeedback = item.mailFeedback;
       this.typeEducationInstitution = item.typeEducationInstitution;
+      this.user = item.user;
   }
 }
