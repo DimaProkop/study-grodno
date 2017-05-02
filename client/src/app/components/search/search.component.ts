@@ -90,7 +90,7 @@ export class SearchComponent implements OnInit {
   goSearch() {
    this.findByParams();
 
-    this.router.navigate(['speciality', {
+    this.router.navigate(['**/speciality', {
       level: this.searchParams.level, direction: this.searchParams.direction,
       form: this.searchParams.form, duration: this.searchParams.duration
     }]);

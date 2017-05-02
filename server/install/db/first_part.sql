@@ -22,7 +22,17 @@ CREATE TABLE education_institution(
   address VARCHAR(100) NOT NULL,
   city VARCHAR(100) NOT NULL,
   local_rating INT NOT NULL,
+  image_url VARCHAR (255),
+  logo_url VARCHAR (255),
   type_education_institution VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE news(
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  create_date Date NOT NULL,
+  education_institution_id INT REFERENCES education_institution(id) -- Выбранное направлени
 );
 
 CREATE TABLE personal_info(

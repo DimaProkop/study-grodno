@@ -81,7 +81,7 @@ export class SpecialityComponent implements OnInit {
   }
 
   goDetail(id) {
-    this.router.navigate(['speciality/', id]);
+    this.router.navigate(['speciality', id]);
   }
 
   addAndRemoveClassToFavorites(id) {

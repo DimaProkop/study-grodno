@@ -34,8 +34,8 @@ export class FacultyService {
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
-    return res.json();
+  private extractData(response: Response) {
+    return response.json();
   }
 
   private handleError(error: any): Promise<any> {
@@ -50,7 +50,13 @@ export class FacultyService {
       .catch(this.handleError);
   }
 
-  getAll(): Observable<any[]> {
+  getFacultiesByInstitution(id :number): Observable<FacultyModel[]> {
+    return this.http.get(this.facultyUrl + "/institution=" + id, {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  getAll(): Observable<FacultyModel[]> {
     return this.http.get(this.facultyUrl, {headers: this.prepareHeaders()})
       .map(this.extractData)
       .catch(this.handleError);

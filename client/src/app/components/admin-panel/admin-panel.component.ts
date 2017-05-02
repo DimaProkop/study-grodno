@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { TreeViewComponent } from "../tree-view/tree-view.component";
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-admin-panel',

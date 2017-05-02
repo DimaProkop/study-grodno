@@ -34,20 +34,17 @@ CREATE TABLE form_of_education(
 CREATE TABLE speciality_form_of_education(
   id SERIAL PRIMARY KEY NOT NULL,
   speciality_id INT REFERENCES speciality(id),
-  form_of_education_id INT REFERENCES form_of_education(id),
-  PRIMARY KEY (id)
+  form_of_education_id INT REFERENCES form_of_education(id)
 );
 
 CREATE TABLE speciality_direction(
   id SERIAL PRIMARY KEY NOT NULL,
   speciality_id INT REFERENCES speciality(id),
-  direction_id INT REFERENCES direction(id),
-  PRIMARY KEY (id)
+  direction_id INT REFERENCES direction(id)
 );
 
 CREATE TABLE speciality_level_of_education(
   id SERIAL PRIMARY KEY NOT NULL,
   speciality_id INT REFERENCES speciality(id),
-  level_of_education_id INT REFERENCES level_of_education(id),
-  PRIMARY KEY (id)
+  level_of_education_id INT REFERENCES level_of_education(id)
 );

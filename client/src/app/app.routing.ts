@@ -18,6 +18,10 @@ import {RequestComponent} from "./components/request/request.component";
 import {EducationInstitutionComponent} from "./components/education-institution/education-institution.component";
 import {BookmarksComponent} from "./components/favourites/bookmarks.component";
 import {SpecialityDetailComponent} from "./components/speciality-detail/speciality-detail.component";
+import {EducationInstitutionDetailComponent} from "./components/education-institution-detail/education-institution-detail.component";
+import {FacultyComponent} from "./components/faculty/faculty.component";
+import {NewsBuilderComponent} from "./components/news-builder/news-builder.component";
+import {NewsComponent} from "./components/news/news.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -28,13 +32,22 @@ const routes: Routes = [
   { path: 'header', component: HeaderComponent },
   { path: 'tags', component: SpecialityComponent },
   { path: 'bookmarks', component: BookmarksComponent },
-  { path: 'education/:id', component: EducationInstitutionComponent },
+  { path: 'institution', component: EducationInstitutionComponent },
+
+  { path: 'institution/:id', component: EducationInstitutionDetailComponent, children: [
+    {path: '', redirectTo: 'description', pathMatch: 'full'},
+    { path: 'speciality', component: SpecialityComponent },
+    { path: 'faculty', component: FacultyComponent },
+    { path: 'news', component: NewsComponent },
+    { path: 'description', component: SpecialityComponent },
+  ] },
   { path: 'speciality', component: SpecialityComponent },
   { path: 'speciality/:id', component: SpecialityDetailComponent },
   {
     path: 'admin', component: AdminPanelComponent, children: [
     {path: '', redirectTo: 'education-institution', pathMatch: 'full'},
-    {path: 'education-institution', component: TreeViewComponent}
+    {path: 'institution', component: TreeViewComponent},
+    {path: 'news', component: NewsBuilderComponent}
   ]
   },
   {

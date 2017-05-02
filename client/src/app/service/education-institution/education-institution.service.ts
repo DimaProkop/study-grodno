@@ -24,7 +24,7 @@ export class EducationInstitutionService {
   }
 
   create(university: EducationInstitutionModel): Observable<EducationInstitutionModel> {
-    console.log(university);
+      console.log(university);
     return this.http
       .post(this.educationInstitutionURL, JSON.stringify(university), { headers: this.prepareHeaders() })
       .map(this.extractData)
@@ -39,16 +39,14 @@ export class EducationInstitutionService {
       .catch(this.handleError);
   }
 
-  getAll(): Observable<any[]> {
+  getAll(): Observable<EducationInstitutionModel[]> {
     return this.http.get(this.educationInstitutionURL, { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  getUniversityById(id: number): Observable<EducationInstitutionModel> {
-    let params = new URLSearchParams();
-    params.set('id', "" + id);
-    return this.http.get(this.educationInstitutionURL, { search: params, headers: this.prepareHeaders() })
+  getById(id: number): Observable<EducationInstitutionModel> {
+    return this.http.get(this.educationInstitutionURL + "/" + id, { headers: this.prepareHeaders() })
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -59,8 +57,8 @@ export class EducationInstitutionService {
       .catch(this.handleError);
   }
 
-  private extractData(res: Response) {
-    return res.json();
+  private extractData(response: Response) {
+    return response.json();
   }
 
   private handleError(error: any): Promise<any> {

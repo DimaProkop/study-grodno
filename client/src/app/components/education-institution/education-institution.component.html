@@ -1,22 +1,32 @@
-<div class="container" *ngIf="education">
-  <div *ngFor="let e of education" class="text-center">
-    <div style="height: 250px">
-      <h1>{{e.name}}</h1>
-      <h2>Факультеты</h2>
-      <div class="container" *ngFor="let f of e.faculties">
-        <div class=".text-success">
-          {{f.name}}
+<div class="container" *ngIf="institutions">
+
+  <div class="col-lg-12" >
+    <div class="panel panel-success">
+      <div class="panel-body" *ngFor="let institution of institutions">
+        <legend><h3>{{institution.name}}</h3></legend>
+        <div style="padding-left: 15px;" class="row">
+          <div class="col-lg-3  thumbnail">
+            <img width="260px" height="110px" src="http://grodno24.com/assets/images/2014/01/grsu.jpg"/>
+          </div>
+          <div class="col-lg-1"></div>
+          <div class="col-lg-6">
+            <div class="row">Город: <b>{{institution.city}}.</b></div>
+            <div class="row" style="padding-top: 3px;">Адрес: <b>{{institution.address}}.</b></div>
+            <div class="row" style="padding-top: 3px;">Сайт: <b><a href="{{institution.site}}">{{institution.site}}</a>.</b></div>
+            <div class="row" style="padding-top: 3px;">Почта: <b>{{institution.primaryMail}}.</b></div>
+            <div class="row" style="padding-top: 3px;">Обратная связь: <b>{{institution.mailFeedback}}.</b></div>
+            <div class="row" style="padding-top: 3px;">Количество факультетов: <b>{{institution.faculties.length}}.</b></div>
+            <div class="row" style="padding-top: 3px;">Количество специальностей: <b>{{getCountSpeciality(institution.id)}}.</b></div>
+          </div>
+          <div class="col-lg-2">
+            <img class="center-block" src="https://upload.wikimedia.org/wikipedia/ru/c/cd/LogoGrGU.png"/>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="panel-group">
-      <div class="panel panel-info">
-        <div class="panel-heading">Email: {{e.primaryMail}} Site: {{e.mailFeedback}}</div>
-        <div class="panel-body">
-          Город: <strong>{{e.city}} </strong>
-          <h2><i>{{e.address}}</i></h2>
+        <div class="row" style="padding-left: 15px;">
+          <button (click)="goDetail(institution.id)" class="btn btn-primary">Подровнее об учреждении образования <span class="glyphicon glyphicon-chevron-right"></span></button>
         </div>
       </div>
     </div>
   </div>
+
 </div>
