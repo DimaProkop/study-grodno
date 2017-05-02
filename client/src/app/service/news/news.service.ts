@@ -31,6 +31,12 @@ export class NewsService {
       .catch(this.handleError);
   }
 
+  getById(id: number): Observable<NewsModel> {
+    return this.http.get(this.newsURL + "/" + id, {headers: this.prepareHeaders()})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   getAll(): Observable<NewsModel[]> {
     return this.http.get(this.newsURL, {headers: this.prepareHeaders()})
       .map(this.extractData)

@@ -50,9 +50,11 @@ import {NewsComponent} from "./components/news/news.component";
 import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
 import {roleUserReducer} from "./reducers/role.reducer";
 import {SignUpComponent} from './components/sign-up/sign-up.component';
+import {NewsDetailComponent} from "./components/news-detail/news-detail.component";
 
 @NgModule({
   imports: [
+
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -87,6 +89,7 @@ import {SignUpComponent} from './components/sign-up/sign-up.component';
     FacultyComponent,
     NewsBuilderComponent,
     NewsComponent,
+    NewsDetailComponent,
     SignUpComponent
   ],
   providers: [

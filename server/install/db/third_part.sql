@@ -2,8 +2,8 @@ INSERT INTO "user"(login, password, role) VALUES
   ('dionp95@mail.ru', 'tuborg95', 'owner'),
   ('123', '123', 'admin'),
   ('333', '333', 'user');
-INSERT INTO education_institution (name, type_education_institution, email, feedback, site, address, city, local_rating) VALUES
-  ('ГрГУ', 'Университет', 'grsu@tut.by', 'feedback@email.com', 'grsu.by', 'Беларусь, Гродно, ул.Ожешко 22', 'Гродно', 100);
+INSERT INTO education_institution (name, type_education_institution, email, feedback, site, address, city, local_rating, user_id) VALUES
+  ('ГрГУ', 'Университет', 'grsu@tut.by', 'feedback@email.com', 'grsu.by', 'Беларусь, Гродно, ул.Ожешко 22', 'Гродно', 100, 2);
 INSERT INTO faculty (name, address, education_institution_id) VALUES
   ('Факультет математики и информатики', 'Ожешко 22', '1'),
   ('Филологический факультет', 'Ожешко 28', '1'),

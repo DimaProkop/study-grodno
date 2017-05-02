@@ -31,6 +31,11 @@ public class NewsController {
         return ResponseEntity.ok(newsRepository.save(news));
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity getById(@PathVariable Long id) {
+        return ResponseEntity.ok(newsRepository.findOne(id));
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity getAll() {
         return ResponseEntity.ok(newsRepository.findAll());

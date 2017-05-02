@@ -1,9 +1,7 @@
 /**
  * Created by DENIS on 27.04.2017.
  */
-import {Component, OnInit, Input} from '@angular/core';
-import {FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
-import {TestModel} from "../../model/home.module";
+import {Component, OnInit} from "@angular/core";
 import {Router, ActivatedRoute} from "@angular/router";
 import {LevelOfEducation} from "../../model/level-of-education.model";
 import {Direction} from "../../model/direction.model";

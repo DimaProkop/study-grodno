@@ -24,7 +24,8 @@ CREATE TABLE education_institution(
   local_rating INT NOT NULL,
   image_url VARCHAR (255),
   logo_url VARCHAR (255),
-  type_education_institution VARCHAR(100) NOT NULL
+  type_education_institution VARCHAR(100) NOT NULL,
+  user_id INT REFERENCES "user"(id)
 );
 
 CREATE TABLE news(

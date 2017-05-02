@@ -5,6 +5,7 @@ import {FacultyModel} from "../../model/faculty.model";
 import {SpecialityModel} from "../../model/speciality.model";
 import {EducationInstitutionModel} from "../../model/education-institution.model";
 import {isNullOrUndefined} from "util";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'tree-view',
@@ -28,12 +29,18 @@ export class TreeViewComponent implements OnInit {
   temp: any[] = [];
   nodes: any[] = [];
 
-  constructor(private educationInstitutionService: EducationInstitutionService) {
+  constructor(private educationInstitutionService: EducationInstitutionService, private store: Store<any>) {
   }
 
   ngOnInit() {
+
+    this.store.select(x => x.roleUserReducer)
+      .subscribe((x) => {
+        console.log(x);
+      });
+
     this.loadTree();
-  };
+  }
 
   addNode(tree, node) {
 
