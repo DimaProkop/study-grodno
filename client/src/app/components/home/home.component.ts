@@ -1,5 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import * as jQuery from 'jquery';
+import {Store} from "@ngrx/store";
+import {UserModel} from "../../model/user.model";
 
 @Component({
   moduleId: module.id,
@@ -9,10 +11,16 @@ import * as jQuery from 'jquery';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  public user: UserModel;
+
+  constructor(private store: Store<any>) {
   }
 
   ngOnInit(): void {
+    this.store.select(x => x.roleUserReducer)
+      .subscribe((x) => {
+        console.log(x);
+      });
   }
 
   showPanel() {

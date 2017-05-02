@@ -2,6 +2,7 @@ package com.grsu.controller;
 
 import com.grsu.config.TokenProperties;
 import com.grsu.dto.LoginDTO;
+import com.grsu.dto.UserDTO;
 import com.grsu.entity.User;
 import com.grsu.util.SecurityUtils;
 import com.grsu.util.TokenUsernamePasswordAuthToken;
@@ -66,5 +67,15 @@ public class AuthenticateController {
         request.getSession().invalidate();
 
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @RequestMapping(path = "/getCurrentUser", method = RequestMethod.GET)
+    public ResponseEntity getCurrentUser() {
+        UserDTO userDTO = new UserDTO();
+        User user = SecurityUtils.getCurrentUser();
+        userDTO.setId(user.getId());
+        userDTO.setLogin(user.getLogin());
+        userDTO.setRole(user.getRole());
+        return ResponseEntity.ok(userDTO);
     }
 }

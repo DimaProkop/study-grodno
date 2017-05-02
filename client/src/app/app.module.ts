@@ -42,12 +42,14 @@ import {AuthGuard} from "./guards/auth.guard";
 import {AuthService} from "./service/auth/auth.service";
 import {SignUpService} from "./service/signup/sign-up.service";
 import {TranslateModule} from "@ngx-translate/core";
-import {BookmarksComponent} from "./components/favourites/bookmarks.component";
 import {EducationInstitutionDetailComponent} from "./components/education-institution-detail/education-institution-detail.component";
 import {FacultyComponent} from "./components/faculty/faculty.component";
 import {NewsBuilderComponent} from "./components/news-builder/news-builder.component";
 import {NewsService} from "./service/news/news.service";
 import {NewsComponent} from "./components/news/news.component";
+import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
+import {roleUserReducer} from "./reducers/role.reducer";
+import {SignUpComponent} from './components/sign-up/sign-up.component';
 
 @NgModule({
   imports: [
@@ -59,7 +61,7 @@ import {NewsComponent} from "./components/news/news.component";
     MultiselectDropdownModule,
     BrowserModule,
     ReactiveFormsModule,
-    StoreModule.provideStore({routerReducer, userReducer}),
+    StoreModule.provideStore({routerReducer, userReducer, roleUserReducer}),
     RouterStoreModule.connectRouter(),
     TranslateModule.forRoot()
   ],
@@ -84,7 +86,8 @@ import {NewsComponent} from "./components/news/news.component";
     SpecialityDetailComponent,
     FacultyComponent,
     NewsBuilderComponent,
-    NewsComponent
+    NewsComponent,
+    SignUpComponent
   ],
   providers: [
     HomeService,

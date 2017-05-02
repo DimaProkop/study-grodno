@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class Bookmark implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 

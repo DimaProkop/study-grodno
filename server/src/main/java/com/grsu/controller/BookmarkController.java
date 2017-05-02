@@ -1,11 +1,24 @@
 package com.grsu.controller;
 
+import com.grsu.dto.BookmarkDTO;
+import com.grsu.entity.Bookmark;
+import com.grsu.entity.Choice;
+import com.grsu.entity.EducationInstitution;
+import com.grsu.entity.Speciality;
 import com.grsu.repository.BookmarkRepository;
 import com.grsu.repository.ChoiceRepository;
-import com.grsu.repository.UniversityRepository;
+import com.grsu.repository.EducationInstitutionRepository;
+import com.grsu.repository.SpecialityRepository;
+import com.grsu.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Dima Prokopovich 30.04.2017.
@@ -16,16 +29,55 @@ public class BookmarkController {
 
     private ChoiceRepository choiceRepository;
     private BookmarkRepository bookmarkRepository;
-    private SpecialityController specialityController;
-    private UniversityRepository universityRepository;
+    private SpecialityRepository specialityRepository;
+    private EducationInstitutionRepository universityRepository;
 
     @Autowired
-    public BookmarkController(ChoiceRepository choiceRepository, BookmarkRepository bookmarkRepository, SpecialityController specialityController, UniversityRepository universityRepository) {
+    public BookmarkController(ChoiceRepository choiceRepository, BookmarkRepository bookmarkRepository, SpecialityRepository specialityRepository, EducationInstitutionRepository universityRepository) {
         this.choiceRepository = choiceRepository;
         this.bookmarkRepository = bookmarkRepository;
-        this.specialityController = specialityController;
+        this.specialityRepository = specialityRepository;
         this.universityRepository = universityRepository;
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/add")
+    public ResponseEntity add(@RequestBody BookmarkDTO dto) {
+        Choice choice = choiceRepository.findOne(dto.getChoiceId().longValue());
+        Bookmark bookmark = new Bookmark();
+        bookmark.setChoice(choice);
+        bookmark.setContentId(dto.getContentId().longValue());
+        bookmark.setUser(SecurityUtils.getCurrentUser());
+        bookmarkRepository.save(bookmark);
+        return ResponseEntity.ok(bookmark);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/getByChoice")
+    public ResponseEntity getByChoice(@RequestBody Long id) {
+        Choice choice = choiceRepository.findOne(id);
+        List<Bookmark> bookmarks = bookmarkRepository.findAllByChoice(choice);
+        ResponseEntity entity = null;
+        if(id == 1) {
+            List<Speciality> specialities = new ArrayList<>();
+            for (int i = 0; i < bookmarks.size(); i++) {
+                for (int j = 0; j < specialityRepository.findAll().size(); j++) {
+                    if (bookmarks.get(i).getContentId().equals(specialityRepository.findAll().get(j).getId())) {
+                        specialities.add(specialityRepository.findAll().get(j));
+                    }
+                }
+            }
+            entity = ResponseEntity.ok(specialities.isEmpty() ? null : specialities);
+        }else if(id == 2) {
+            List<EducationInstitution> institutions = new ArrayList<>();
+            for (int i = 0; i < bookmarks.size(); i++) {
+                for (int j = 0; j < universityRepository.findAll().size(); j++) {
+                    if (bookmarks.get(i).getContentId().equals(universityRepository.findAll().get(j).getId())) {
+                        institutions.add(universityRepository.findAll().get(j));
+                    }
+                }
+            }
+            entity = ResponseEntity.ok(institutions.isEmpty() ? null : institutions);
+        }
+        return entity;
+    }
 
 }

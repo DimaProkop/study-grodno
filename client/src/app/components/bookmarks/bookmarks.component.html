@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <ul class="tabs">
+    <li class="tab-link current" (click)="showTab('1')" id="tabs-tab-1">Specialities</li>
+    <li class="tab-link" (click)="showTab('2')" id="tabs-tab-2">Tab Two</li>
+  </ul>
+
+  <div id="tab-1" class="tab-content current">
+    <div class="col-md-1"></div>
+    <div class="col-md-7" *ngIf="specialities.length !== 0">
+      <div class="row" *ngFor="let speciality of specialities">
+        <div class="panel panel-primary">
+          <div class="panel-body">
+
+            <legend>
+              <div class="row">
+                <div class="col-md-11">{{speciality.name}}</div>
+              </div>
+              <br>
+              <span style="font-size: 16px;" *ngIf="getInstitution(speciality.id)"><a>{{getInstitution(speciality.id).name}}</a> / {{getInstitution(speciality.id).city}}</span>
+            </legend>
+            <div class="row">
+              <div class="col-md-6">
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">Направления:
+                  <span
+                    *ngFor="let direction of speciality.directions"><b>{{direction.name}}</b> </span></div>
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.levelsOfEducation.length > 0">
+                  Уровень: <span
+                  *ngFor="let level of speciality.levelsOfEducation"><b>{{level.name}}.</b> </span></div>
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.languagesLearning.length > 0">Язык
+                  обучения: <span
+                    *ngFor="let language of speciality.languagesLearning"><b>{{language.name}}.</b> </span></div>
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.duration">Продолжительность:
+                  <span><b>{{speciality.duration}} лет.</b> </span></div>
+              </div>
+              <div class="col-md-6">
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.formsOfEducation.length > 0">Форма:
+                  <span
+                    *ngFor="let form of speciality.formsOfEducation"><b>{{form.name}}.</b> </span></div>
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.freeEducation">Возможность
+                  бесплатного обучения:
+                  <span><b>{{speciality.freeEducation ? "Есть" : "Нету"}}.</b> </span></div>
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.price">Стоимость обучения: <span><b>{{speciality.price}} долларов в год.</b> </span>
+                </div>
+              </div>
+            </div>
+            <button (click)="goDetail(speciality.id)" class="btn btn-primary">Подробнее о специальности</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tab-2" class="tab-content">
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+</div>
+
+
+</body>
+</html>

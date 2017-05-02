@@ -7,6 +7,8 @@ import { LoginModel } from "../../model/login.model";
 import {UserAction} from "../../actions/user.action";
 import {Store} from "@ngrx/store";
 import {UserState} from "../../reducers/user.reducer";
+import {HeadersService} from "../headers.service";
+import {UserModel} from "../../model/user.model";
 
 
 @Injectable()
@@ -14,14 +16,12 @@ export class LoginService {
 
   private loginURL: string;
   private logoutURL: string;
+  private getUserUrl: string;
   private tokenName: string;
-
-  private headers = new Headers({
-    'Content-Type': 'application/json'
-  });
 
   constructor(private http: Http,
               private store: Store<UserState>) {
+    this.getUserUrl = "http://localhost:8080/api/getCurrentUser";
     this.loginURL = "http://localhost:8080/api/login";
     this.logoutURL = "http://localhost:8080/api/logout";
     this.tokenName = 'x-auth-token';
@@ -29,7 +29,7 @@ export class LoginService {
 
   login(loginModel: LoginModel): Observable<any> {
     return this.http
-      .post(this.loginURL, JSON.stringify(loginModel), { headers: this.headers })
+      .post(this.loginURL, JSON.stringify(loginModel), { headers: HeadersService.prepareHeaders() })
       .do(resp => {
         console.log(resp.headers.get(this.tokenName));
         let date = new Date().getTime();
@@ -42,7 +42,7 @@ export class LoginService {
 
   logout(): Observable<any>{
     console.log(this.logoutURL);
-    return this.http.get(this.logoutURL, {headers: this.headers})
+    return this.http.get(this.logoutURL, {headers: HeadersService.prepareHeaders()})
       .do(res => {
         let token = localStorage.getItem(this.tokenName);
         localStorage.removeItem(this.tokenName);
@@ -50,6 +50,12 @@ export class LoginService {
         console.log(res);
         this.store.dispatch({ type: UserAction.LOGOUT });
       });
+  }
+
+  getCurrentUser(): Observable<UserModel> {
+    return this.http.get(this.getUserUrl, { headers: HeadersService.prepareHeaders() })
+      .map(LoginService.extractData)
+      .catch(LoginService.handleError);
   }
 
   private static extractData(res: Response) {

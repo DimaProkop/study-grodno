@@ -3,6 +3,8 @@ import {LoginService} from "../../service/login/login.service";
 import {LoginModel} from "../../model/login.model";
 import {UserModel} from "../../model/user.model";
 import {Router} from "@angular/router";
+import {Store} from "@ngrx/store";
+import {GET_USER} from "../../reducers/role.reducer";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,8 @@ export class LoginComponent implements OnInit {
   private user: UserModel;
 
   constructor(private loginService: LoginService,
-              private router: Router) {
+              private router: Router,
+              private store: Store<any>) {
   }
 
   ngOnInit() {
@@ -33,7 +36,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         user => {
           if (user != null) {
-            this.router.navigate(['/summary']);
+            this.loginService.getCurrentUser().subscribe(x => {
+              this.store.dispatch({ type: GET_USER, payload: x});
+            });
+            this.router.navigate(['/home']);
           } else {
             console.log("invalid user!");
             this.router.navigate(['/login'])

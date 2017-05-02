@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 
@@ -23,6 +23,10 @@ public class User implements Serializable {
 
     @Column
     private String role;
+
+    @OneToOne
+    @JoinColumn(name = "personal_info_id")
+    private PersonalInfo info;
 
     public User() {
     }
@@ -62,5 +66,13 @@ public class User implements Serializable {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public PersonalInfo getInfo() {
+        return info;
+    }
+
+    public void setInfo(PersonalInfo info) {
+        this.info = info;
     }
 }

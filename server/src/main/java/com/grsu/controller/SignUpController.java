@@ -31,8 +31,9 @@ public class SignUpController {
 
         DeferredResult deferredResult = new DeferredResult();
         User user = new User();
-        user.setLogin(signUpDTO.getEmail());
+        user.setLogin(signUpDTO.getLogin());
         user.setPassword(signUpDTO.getPassword());
+        user.setRole("user");
         userRepository.save(user);
 
         deferredResult.setResult(new ResponseEntity(user, HttpStatus.OK));
