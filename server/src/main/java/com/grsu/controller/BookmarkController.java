@@ -1,10 +1,7 @@
 package com.grsu.controller;
 
 import com.grsu.dto.BookmarkDTO;
-import com.grsu.entity.Bookmark;
-import com.grsu.entity.Choice;
-import com.grsu.entity.EducationInstitution;
-import com.grsu.entity.Speciality;
+import com.grsu.entity.*;
 import com.grsu.repository.BookmarkRepository;
 import com.grsu.repository.ChoiceRepository;
 import com.grsu.repository.EducationInstitutionRepository;
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Dima Prokopovich 30.04.2017.
@@ -40,6 +38,16 @@ public class BookmarkController {
         this.universityRepository = universityRepository;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/getBookmarks")
+    public ResponseEntity getBookmarks() {
+        User user = SecurityUtils.getCurrentUser();
+        List<Bookmark> bookmarks = bookmarkRepository.findAll();
+        bookmarks = bookmarks.stream()
+                .filter(b -> b.getUser().getId().equals(user.getId()))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(bookmarks);
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/add")
     public ResponseEntity add(@RequestBody BookmarkDTO dto) {
         Choice choice = choiceRepository.findOne(dto.getChoiceId().longValue());
@@ -48,6 +56,13 @@ public class BookmarkController {
         bookmark.setContentId(dto.getContentId().longValue());
         bookmark.setUser(SecurityUtils.getCurrentUser());
         bookmarkRepository.save(bookmark);
+        return ResponseEntity.ok(bookmark);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/delete")
+    public ResponseEntity delete(@RequestBody BookmarkDTO dto) {
+        Bookmark bookmark = bookmarkRepository.findOneByContentIdAndUser(dto.getContentId().longValue(), SecurityUtils.getCurrentUser());
+        bookmarkRepository.delete(bookmark);
         return ResponseEntity.ok(bookmark);
     }
 

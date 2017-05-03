@@ -10,10 +10,10 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class MessageDTO implements Serializable {
 
-
     private Long id;
     private String date;
-    private String username;
+    private String fromId;
+    private String toId;
     private String header;
     private String text;
     private String status;
@@ -21,12 +21,20 @@ public class MessageDTO implements Serializable {
     public MessageDTO() {
     }
 
-    public String getUsername() {
-        return username;
+    public String getFromId() {
+        return fromId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFromId(String fromId) {
+        this.fromId = fromId;
+    }
+
+    public String getToId() {
+        return toId;
+    }
+
+    public void setToId(String toId) {
+        this.toId = toId;
     }
 
     public String getHeader() {

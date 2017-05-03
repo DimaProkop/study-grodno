@@ -47,7 +47,6 @@ export class LoginService {
         let token = localStorage.getItem(this.tokenName);
         localStorage.removeItem(this.tokenName);
         localStorage.removeItem(token);
-        console.log(res);
         this.store.dispatch({ type: UserAction.LOGOUT });
       });
   }

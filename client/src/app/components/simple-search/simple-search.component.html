@@ -1,36 +1,49 @@
-<div class="panel panel-success">
+<div class="container">
 
-  <div class="panel-body">
-    <form>
-      <legend>{{'SIMPLE_SEARCH' | translate}}</legend>
 
-      <div class="row">
-        <div class="form-group col-md-5">
-          <div class="d-flex flex-column">
-            <label for="level" class="control-label">{{'LEVEL_OF_EDUCATION' | translate}}: </label>
-            <select id="level" class="form-control" [(ngModel)]="searchParams.level"
-                    [ngModelOptions]="{standalone: true}">
-              <option value="" selected>{{'ALL' | translate}}</option>
-              <option *ngFor="let level of levels" value="{{level.name}}">{{level.name | translate}}</option>
-            </select>
-          </div>
-
-        </div>
-        <div class="form-group col-md-5">
-          <div class="d-flex flex-column">
-            <label for="direction" class="control-label">{{'DIRECTION' | translate}}: </label>
-            <select id="direction" class="form-control" [(ngModel)]="searchParams.direction"
-                    [ngModelOptions]="{standalone: true}">
-              <option value="" selected>{{'ALL' | translate}}</option>
-              <option *ngFor="let direction of directions">{{direction.name | translate}}</option>
-            </select>
-          </div>
-        </div>
-        <div style="margin-top: 25px;" class="form-group col-md-2">
-          <button (click)="search()" class="btn btn-primary col-md-8"><span class="glyphicon glyphicon-search"></span> {{'SEARCH' | translate}} </button>
+  <form>
+    <div class="row">
+      <div class="col-md-10">
+        <div class="header-text">
+          <legend style="text-transform: uppercase; color: white">{{'SIMPLE_SEARCH' | translate}}</legend>
         </div>
       </div>
-    </form>
-  </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-4">
+        <div>
+          <div class="header-text">
+            <label for="level" style="text-transform: uppercase; color: white">{{'LEVEL_OF_EDUCATION' |
+              translate}}: </label>
+          </div>
+          <select id="level" class="form-group form-control" [(ngModel)]="searchParams.level"
+                  [ngModelOptions]="{standalone: true}">
+            <option value="" selected>{{'ALL' | translate}}</option>
+            <option *ngFor="let level of levels" value="{{level.name}}">{{level.name | translate}}</option>
+          </select>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div>
+          <label for="direction" style="text-transform: uppercase; color: white">{{'DIRECTION' | translate}}: </label>
+          <select id="direction" class="form-group form-control" [(ngModel)]="searchParams.direction"
+                  [ngModelOptions]="{standalone: true}">
+            <option value="" selected>{{'ALL' | translate}}</option>
+            <option *ngFor="let direction of directions">{{direction.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <a class="button button-style button-style-icon fa fa-long-arrow-right smoth-scroll" (click)="search()">{{'SEARCH'
+          | translate}}</a>
+      </div>
+    </div>
+  </form>
 </div>
+
+<script type="text/javascript"
+        src="http://maps.google.com/maps/api/js?key=AIzaSyC0HAKwKinpoFKNGUwRBgkrKhF-sIqFUNA"></script>
+
+

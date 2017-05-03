@@ -1,7 +1,8 @@
 export class MessageModel {
 
   id: number;
-  username: string;
+  fromId: string;
+  toId: string;
   date: string;
   header: string;
   text: string;

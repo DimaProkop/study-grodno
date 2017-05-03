@@ -18,8 +18,11 @@ public class Message implements Serializable{
     @Column
     private String date;
 
-    @Column
-    private String username;
+    @Column(name = "from_id")
+    private String fromId;
+
+    @Column(name = "to_id")
+    private String toId;
 
     @Column
     private String header;
@@ -49,12 +52,20 @@ public class Message implements Serializable{
         this.date = date;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFromId() {
+        return fromId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setFromId(String fromId) {
+        this.fromId = fromId;
+    }
+
+    public String getToId() {
+        return toId;
+    }
+
+    public void setToId(String toId) {
+        this.toId = toId;
     }
 
     public String getHeader() {
