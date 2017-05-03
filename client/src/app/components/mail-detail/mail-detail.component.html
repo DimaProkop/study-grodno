@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row" *ngIf="message">
+    <div >
+      <div class="col-md-{{size}}">
+        <div class="panel panel-footer text-center" role="alert">
+          <h3>From: <strong>{{message.username}}</strong>
+            <button (click)="ok()" class="btn btn-primary">Answer him.</button>
+          </h3>
+        </div>
+
+        <div class="panel panel-footer">
+          <div class="input-group col-md-12 input-offset">
+            <b>Header:</b> {{message.header}}
+            <div class="right-pill"><b>Date:</b> {{message.date}}</div>
+          </div>
+
+          <div class="input-group col-md-12 input-offset">
+            <b>Text message:</b> {{message.text}}
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="an">
+      <div class="col-md-6" >
+
+        <label>Header: </label>
+        <div class="input-group col-md-12 input-offset">
+          <input class="form-control" [(ngModel)]="header" type="text"
+                 id="newHeader" placeholder="Header">
+        </div>
+
+        <label>Message: </label>
+        <div class="input-group col-md-12 input-offset">
+          <textarea class="form-control" type="text" id="newText"
+                 placeholder="Text message" [(ngModel)]="text" ></textarea>
+        </div>
+
+        <div class="right-pill">
+          <button (click)="answer()"
+                  class="btn btn-primary">
+            Send
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!message">
+    <legend><b>Enter your message..</b></legend>
+    <div class="panel col-md-10">
+      <label>Who: </label>
+      <select required class="form-control" id="institution" [(ngModel)]="education">
+        <option *ngFor="let item of institutions" [ngValue]="item">
+          {{item.name}}
+        </option>
+      </select>
+      <label>Header: </label>
+      <div class="input-group col-md-12 input-offset">
+        <input class="form-control" [(ngModel)]="header" type="text"
+               id="header" placeholder="Header">
+      </div>
+
+      <label>Message: </label>
+      <div class="input-group col-md-12 input-offset">
+          <textarea class="form-control" type="text" id="textarea"
+                    placeholder="Text message" [(ngModel)]="text" ></textarea>
+      </div>
+
+
+
+      <div class="form-group">
+        <button style="float: right" (click)="answer()"
+                class="btn btn-primary">
+          Send
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!--<div class="pull-right">-->
+<!--<button class="btn glyphicon glyphicon-pencil"></button>-->
+<!--<button-->
+<!--class="btn glyphicon glyphicon-ok">-->
+<!--</button>-->
+<!--</div>-->

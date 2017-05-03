@@ -51,6 +51,8 @@ import {BookmarksComponent} from "./components/bookmarks/bookmarks.component";
 import {roleUserReducer} from "./reducers/role.reducer";
 import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {NewsDetailComponent} from "./components/news-detail/news-detail.component";
+import { MailComponent } from './components/mail/mail.component';
+import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
 
 @NgModule({
   imports: [
@@ -90,7 +92,9 @@ import {NewsDetailComponent} from "./components/news-detail/news-detail.componen
     NewsBuilderComponent,
     NewsComponent,
     NewsDetailComponent,
-    SignUpComponent
+    SignUpComponent,
+    MailComponent,
+    MailDetailComponent
   ],
   providers: [
     HomeService,

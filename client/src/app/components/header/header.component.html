@@ -22,6 +22,9 @@
       <ul class="nav navbar-nav navbar-default">
         <a routerLink="/bookmarks">Bookmarks</a>
       </ul>
+      <ul *ngIf="isAuthorize" class="nav navbar-nav center-block">
+        <button type="button" routerLink="/mail" class="btn btn-primary">Messages <span class="badge">{{count}}</span></button>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="!isAuthorize"><a routerLink="/login" routerLinkActive="active">Login</a></li>
         <li *ngIf="isAuthorize"><a href="" (click)="logout()">Logout</a></li>

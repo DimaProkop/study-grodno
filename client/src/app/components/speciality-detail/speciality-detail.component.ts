@@ -62,9 +62,7 @@ export class SpecialityDetailComponent implements OnInit {
   addComment(id: number) {
     let comment: Comment;
     comment = new Comment();
-    let date = new Date();
     comment.specialityId = id;
-    comment.date = date.getDay().toLocaleString() + "-" + date.getMonth().toLocaleString() + "-" + date.getFullYear().toLocaleString();
     if(this.text == "") {
       this.text = "checking...";
     }

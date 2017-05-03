@@ -24,6 +24,7 @@ export class BookmarksComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showTab('1');
     this.specialities = [];
     this.institutions = [];
   }

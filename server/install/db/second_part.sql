@@ -56,3 +56,12 @@ CREATE TABLE comment (
   text VARCHAR(255) NOT NULL,
   username VARCHAR(100) NOT NULL
 );
+
+CREATE TABLE message (
+  id SERIAL PRIMARY KEY NOT NULL,
+  date VARCHAR(20) NOT NULL,
+  username VARCHAR(50) NOT NULL,
+  header VARCHAR(50) NOT NULL,
+  text VARCHAR(255) NOT NULL,
+  status VARCHAR(20) NOT NULL
+);

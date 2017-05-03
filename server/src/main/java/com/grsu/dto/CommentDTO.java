@@ -12,7 +12,6 @@ public class CommentDTO implements Serializable {
 
     private Long id;
     private Long specialityId;
-    private String date;
     private String text;
     private String username;
 
@@ -33,14 +32,6 @@ public class CommentDTO implements Serializable {
 
     public void setSpecialityId(Long specialityId) {
         this.specialityId = specialityId;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getText() {
