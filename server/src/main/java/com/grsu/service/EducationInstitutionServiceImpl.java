@@ -91,4 +91,10 @@ public class EducationInstitutionServiceImpl implements EducationInstitutionServ
 
         return result.stream().distinct().collect(Collectors.toList());
     }
+
+    @Override
+    public List<EducationInstitution> getInstitutionByUser(Long userId) {
+
+        return educationInstitutionRepository.findAll().stream().filter(institution ->  institution.getUser() != null && institution.getUser().getId().equals(userId)).collect(Collectors.toList());
+    }
 }

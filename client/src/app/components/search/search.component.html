@@ -15,8 +15,8 @@
       <select id="direction" class="form-control" [(ngModel)]="searchParams.direction"
               [ngModelOptions]="{standalone: true}">
         <option value="" selected>{{'ALL' | translate}}</option>
-        <option *ngFor="let direction of directions" [selected]="direction.name === searchParams.direction">
-          {{direction.name}}
+        <option *ngFor="let direction of directions" [selected]="direction.name === searchParams.direction" value="{{direction.name}}">
+          {{direction.name | translate}}
         </option>
       </select>
     </div>
@@ -26,7 +26,7 @@
   <div class="form-group col-sm-12">
     <div class="d-flex flex-column">
       <label for="form" class="control-label">{{'FORM_OF_EDUCATION' | translate}}: </label>
-      <select id="form" class="form-control" [(ngModel)]="searchParams.form" [ngModelOptions]="{standalone: true}">
+      <select id="form" class="form-control selectpicker" [(ngModel)]="searchParams.form" [ngModelOptions]="{standalone: true}">
         <option value="" selected>{{'ALL' | translate}}</option>
         <option *ngFor="let form of forms" [selected]="form.name === searchParams.form" value="{{form.name}}">{{form.name | translate}}</option>
       </select>

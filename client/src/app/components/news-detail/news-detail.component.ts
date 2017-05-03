@@ -17,6 +17,7 @@ import {isNullOrUndefined} from "util";
 export class NewsDetailComponent implements OnInit {
 
   public news: NewsModel;
+  public id: number;
 
   constructor(private newsService: NewsService, private route: ActivatedRoute,
               private router: Router) {
@@ -27,12 +28,16 @@ export class NewsDetailComponent implements OnInit {
   }
 
   init() {
+    /*
     this.news = new NewsModel();
-
     this.route.params.subscribe(param => {
       this.newsService.getById(+param["id"]).subscribe(result => {
-        this.news = result;
+        this.id = +param["id"];
       });
+    });*/
+
+    this.route.params.subscribe(param => {
+        this.id = (+param["id"]);
     });
   }
 }

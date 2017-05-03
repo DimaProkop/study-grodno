@@ -22,7 +22,7 @@
             <select id="direction" class="form-control" [(ngModel)]="searchParams.direction"
                     [ngModelOptions]="{standalone: true}">
               <option value="" selected>{{'ALL' | translate}}</option>
-              <option *ngFor="let direction of directions">{{direction.name}}</option>
+              <option *ngFor="let direction of directions">{{direction.name | translate}}</option>
             </select>
           </div>
         </div>

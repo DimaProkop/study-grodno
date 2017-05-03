@@ -3,15 +3,18 @@
   <div class="col-lg-12">
     <div class="panel panel-success">
       <div class="panel-body" *ngFor="let faculty of faculties">
-        <legend><h3>{{faculty.name}}</h3></legend>
+        <legend><h3>{{faculty.name | translate}}</h3></legend>
         <div style="padding-left: 15px;" class="row">
+          <div class="col-lg-3  thumbnail">
+            <img width="260px" height="110px" src="http://grodno24.com/assets/images/2014/01/grsu.jpg"/>
+          </div>
           <div class="col-lg-6">
-            <div class="row">Адрес: <b>{{faculty.address}}.</b></div>
-            <div class="row">Специальности:
-              <ul>
-                <li *ngFor="let speciality of faculty.specialities"><a routerLink="/speciality/{{speciality.id}}">{{speciality.name}}</a></li>
-              </ul>
-            </div>
+            {{'ADDRESS' | translate}}: <b>{{faculty.address | translate}}.</b>
+            <ul class="list-inline">
+              {{'SPECIALITIES' | translate}}:
+              <li *ngFor="let speciality of faculty.specialities"><a class="btn btn-primary" routerLink="/speciality/{{speciality.id}}">{{speciality.name}}</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

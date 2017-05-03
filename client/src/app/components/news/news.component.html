@@ -1,13 +1,103 @@
-<div class="container" *ngIf="news && news.length > 0">
+<!--div class="container" *ngIf="news && news.length > 0">
   <div class="col-md-6" *ngFor="let item of news">
-    <div class="card">
-      <div class="card-header">
-        Featured
+    <div class="thumbnail">
+      <img src="http://placehold.it/500x300" alt="">
+      <div class="caption">
+        <legend>
+          <h4>{{item.title}}</h4>
+        </legend>
+        <div style="height: 100px;" class="row">
+          <div class="col-md-12">
+            {{item.description}}
+          </div>
+        </div>
+        <div class="row">
+          <legend></legend>
+          <div class="col-md-9">
+            <a (click)="goDetail(item.id)" class="btn btn-info btn-lg" role="button">{{'DETAILS' | translate}} <span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+          <div class="col-md-3">
+            <span style="font-size: 16px;" class="badge">{{item.createDate}}</span>
+          </div>
+        </div>
       </div>
-      <div class="card-block">
-        <h4 class="card-title">{{item.title}}</h4>
-        <p class="card-text">{{item.description}}</p>
-        <a (click)="goDetail(item.id)" class="btn btn-primary">Подробнее</a>
+    </div>
+  </div>
+</div-->
+
+<div class="container">
+  <div class="col-md-6">
+    <div class="thumbnail">
+      <img width="500" height="300" src="https://www.grsu.by/images/gallery/2017/5/03papamama/5070_96.JPG" alt="">
+      <div class="caption">
+        <legend>
+          <h4>Семьи сотрудников университета, учащихся колледжей и школ города соревновались в ГрГУ имени Янки
+            Купалы</h4>
+        </legend>
+        <div style="height: 100px;" class="row">
+          <div class="col-md-12">
+            Цикл спортивных мероприятий «Папа, мама, я – спортивная семья» гражданско-патриотического марафона «Вместе –
+            за сильную и процветающую Беларусь» завершился в Гродненском государственном университете имени Янки Купалы.
+          </div>
+        </div>
+        <div class="row">
+          <legend></legend>
+          <div class="col-md-9">
+            <a (click)="goDetail(1)" class="btn btn-info btn-lg" role="button">{{'DETAILS' | translate}} <span
+              class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+          <div class="col-md-3">
+            <!--span style="font-size: 16px;" class="badge">{{item.createDate}}</span-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="thumbnail">
+      <img width="500" height="300" src="https://www.grsu.by/images/Sambo.jpg" alt="">
+      <div class="caption">
+        <legend>
+          <h4>Женская сборная ГрГУ имени Янки Купалы стала лучшей на Республиканской универсиаде – 2017 по самбо</h4>
+        </legend>
+        <div style="height: 100px;" class="row">
+          <div class="col-md-12">
+            Девушки заняли общекомандное первое место, а также завоевали призовые места в личном зачете на соревнованиях. Достойные результаты показали и юноши.</div>
+        </div>
+        <div class="row">
+          <legend></legend>
+          <div class="col-md-9">
+            <a (click)="goDetail(2)" class="btn btn-info btn-lg" role="button">{{'DETAILS' | translate}} <span
+              class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+          <div class="col-md-3">
+            <!--span style="font-size: 16px;" class="badge">{{item.createDate}}</span-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="thumbnail">
+      <img width="500" height="300" src="https://www.grsu.by/images/gallery/2017/5/03olimpiada/5063_1.JPG" alt="">
+      <div class="caption">
+        <legend>
+          <h4>В ГрГУ имени Янки Купалы назвали лучших знатоков иностранных языков</h4>
+        </legend>
+        <div style="height: 100px;" class="row">
+          <div class="col-md-12">
+            V Университетская олимпиада по иностранным языкам завершилась в Гродненском государственном университете имени Янки Купалы. Состязание собрало более 170 студентов.</div>
+        </div>
+        <div class="row">
+          <legend></legend>
+          <div class="col-md-9">
+            <a (click)="goDetail(3)" class="btn btn-info btn-lg" role="button">{{'DETAILS' | translate}} <span
+              class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+          <div class="col-md-3">
+            <!--span style="font-size: 16px;" class="badge">{{item.createDate}}</span-->
+          </div>
+        </div>
       </div>
     </div>
   </div>

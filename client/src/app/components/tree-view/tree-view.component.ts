@@ -7,6 +7,7 @@ import {isNullOrUndefined} from "util";
 import {Store} from "@ngrx/store";
 import {UserModel} from "../../model/user.model";
 import {GET_USER} from "../../reducers/role.reducer";
+import {LoginService} from "../../service/login/login.service";
 
 @Component({
   moduleId: module.id,
@@ -33,17 +34,12 @@ export class TreeViewComponent implements OnInit {
   currentUser: UserModel;
 
   constructor(private educationInstitutionService: EducationInstitutionService,
-              private store: Store<any>) {
+              private store: Store<any>, private loginService: LoginService) {
   }
 
   ngOnInit() {
 
     this.currentUser = new UserModel();
-
-    this.store.select(x => x.roleUserReducer)
-      .subscribe((x) => {
-        console.log(x);
-      });
 
     this.loadTree();
   }
@@ -159,7 +155,7 @@ export class TreeViewComponent implements OnInit {
   }
 
   loadTree() {
-    this.educationInstitutionService.getAll()
+    this.educationInstitutionService.getInstitutionByCurrentUser()
       .subscribe(
         items => {
           this.initNodes(items);

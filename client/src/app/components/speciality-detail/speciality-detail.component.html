@@ -1,37 +1,41 @@
 <div *ngIf="speciality" class="container">
-  <legend><h3 class="text-center">{{speciality.name}}</h3></legend>
+  <legend><h3 class="text-center">{{speciality.name | translate}}</h3></legend>
   <div class="col-md-8">
     <div class="panel panel-success">
       <div class="panel-body">
-        <legend>Основная информация о специальности</legend>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">Направление: <span
-          *ngFor="let direction of speciality.directions"><b>{{direction.name}}</b> </span></div>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.levelsOfEducation.length > 0">Уровень:
+        <legend>{{ 'BASIC_INFORMATION_ABOUT_THE_SPECIALITY' | translate}}</legend>
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">{{ 'DIRECTION' |
+          translate}}: <span
+            *ngFor="let direction of speciality.directions"><b>{{direction.name | translate}}</b> </span></div>
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.levelsOfEducation.length > 0">{{
+          'LEVEL_OF_EDUCATION' | translate}}:
           <span
-            *ngFor="let level of speciality.levelsOfEducation"><b>{{level.name}}.</b> </span></div>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.languagesLearning.length > 0">Язык
-          обучения: <span
-            *ngFor="let language of speciality.languagesLearning"><b>{{language.name}}.</b> </span></div>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.duration">Продолжительность: <span><b>{{speciality.duration}} лет.</b> </span>
+            *ngFor="let level of speciality.levelsOfEducation"><b>{{level.name | translate}}.</b> </span></div>
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.languagesLearning.length > 0">{{
+          'LANGUAGE_OF_INSTRUCTION' | translate}}: <span
+            *ngFor="let language of speciality.languagesLearning"><b>{{language.name | translate}}.</b> </span></div>
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.duration">{{ 'DIRECTION' | translate}}:
+          <span><b>{{speciality.duration}} {{ 'YEARS' | translate}}.</b> </span>
         </div>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.formsOfEducation.length > 0">Форма: <span
-          *ngFor="let form of speciality.formsOfEducation"><b>{{form.name}}.</b> </span></div>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.freeEducation">Возможность бесплатного
-          обучения:
-          <span><b>{{speciality.freeEducation ? "Есть" : "Нету"}}.</b> </span></div>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.price">Стоимость обучения: <span><b>{{speciality.price}} долларов в год.</b> </span>
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.formsOfEducation.length > 0">{{
+          'FORM_OF_EDUCATION' | translate}}: <span
+            *ngFor="let form of speciality.formsOfEducation"><b>{{form.name | translate}}.</b> </span></div>
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.freeEducation">{{ 'FREE_EDUCATION' |
+          translate}}:
+          <span><b>{{speciality.freeEducation.toString() | translate}}.</b> </span></div>
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.price">{{ 'PRICE' | translate}}: <span><b>{{speciality.price}} {{ 'DOLLARS_IN_YEAR' | translate}}.</b> </span>
         </div>
-        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.code">Код:
+        <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.code">{{ 'CODE' | translate}}:
           <span><b>{{speciality.code}}.</b> </span>
         </div>
       </div>
     </div>
     <div class="panel panel-success">
       <div class="panel-body">
-        <legend>Контакты для связи</legend>
-        <div style="padding-top: 3px;padding-bottom: 3px;">Контактное лицо: <span><b>(Имя) (Фамилия) (Отчество). Тел. +(Номер телефона).</b> </span>
+        <legend>{{ 'CONTACTS_FOR_COMMUNICATION' | translate}}</legend>
+        <div style="padding-top: 3px;padding-bottom: 3px;">{{ 'THE_CONTACT_PERSON' | translate}}: <span><b>(Имя) (Фамилия) (Отчество). {{'TEL' | translate}}. +(Номер телефона).</b> </span>
         </div>
-        <div style="padding-top: 3px;padding-bottom: 3px;">E-mail: <span><b>email.com.</b> </span>
+        <div style="padding-top: 3px;padding-bottom: 3px;">{{ 'EMAIL' | translate}}: <span><b>email.com.</b> </span>
         </div>
       </div>
     </div>
@@ -59,26 +63,28 @@
           <img class="center-block" src="https://upload.wikimedia.org/wikipedia/ru/c/cd/LogoGrGU.png"/>
         </div>
         <div class="row">
-          <legend class="text-center"><h4>Контактная информация</h4></legend>
-          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">{{institution.address}}</div>
+          <legend class="text-center">{{ 'CONTACT_INFORMATION' | translate}}</legend>
+          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">{{institution.address |
+            translate}}
+          </div>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center"><b><a
             href="{{institution.site}}">{{institution.site}}</a></b>
           </div>
           <legend style="padding-top: 10px;"></legend>
-          <legend class="text-center">Факультет</legend>
-          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">{{faculty.name}}</div>
-          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">Корпус располагается по адресу:
-            {{faculty.address}}
+          <legend class="text-center">{{ 'FACULTY' | translate}}</legend>
+          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">{{faculty.name | translate}}</div>
+          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">{{ 'THE_BUILDING_IS_LOCATED_AT' | translate}}:
+            {{faculty.address | translate}}
           </div>
           <legend style="padding-top: 10px;"></legend>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
             <button style="width: 300px;" (click)="goDetailInstitution(institution.id)" class="btn btn-primary">
-              Подробнее об университете
+              {{'MORE_ABOUT_THE_UNIVERSITY' | translate}}
             </button>
           </div>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
             <button style="width: 300px;" (click)="goSpecialityInstitution(institution.id)" class="btn btn-primary">
-              Все специальности университета
+              {{'ALL_SPECIALITY_UNIVERSITY' | translate}}
             </button>
           </div>
         </div>
