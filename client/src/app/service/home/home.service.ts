@@ -1,9 +1,6 @@
-import {Observable} from "rxjs/Observable";
 import {Injectable} from "@angular/core";
-import {Response} from "@angular/http";
-import { Headers, Http } from '@angular/http';
+import {Response, Headers, Http} from "@angular/http";
 import "rxjs/Rx";
-import {TagModel} from "../../model/tag.model";
 
 
 @Injectable()
@@ -20,20 +17,6 @@ export class HomeService {
     headers.append('Content-Type', 'application/json');
     headers.append('x-auth-token', localStorage.getItem('x-auth-token'));
     return headers;
-  }
-
-  sendTags(tags: TagModel[]): Observable<any> {
-    return this.http
-      .post(this.tagUrl, JSON.stringify(tags), {headers: this.prepareHeaders()})
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
-
-  getTags(): Observable<any> {
-    let getTagsUrl = "http://localhost:8080/search/get";
-    return this.http.get(getTagsUrl, {headers: this.prepareHeaders()})
-      .map(this.extractData)
-      .catch(this.handleError);
   }
 
   private extractData(res: Response) {

@@ -2,7 +2,7 @@
  * Created by DENIS on 29.04.2017.
  */
 import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SpecialityModel} from "../../model/speciality.model";
 import {SpecialityService} from "../../service/speciality/speciality.service";
 import {EducationInstitutionService} from "../../service/education-institution/education-institution.service";
@@ -27,7 +27,8 @@ export class SpecialityDetailComponent implements OnInit {
   public text: string;
 
   constructor(private route: ActivatedRoute, private specialityService: SpecialityService,
-              private searchService: SearchService, private facultyService: FacultyService) {
+              private searchService: SearchService, private facultyService: FacultyService,
+              private router: Router) {
 
   }
 
@@ -59,17 +60,26 @@ export class SpecialityDetailComponent implements OnInit {
       });
   }
 
+  goDetailInstitution(id: number) {
+    this.router.navigate(['/institution/', id]);
+  }
+
+  goSpecialityInstitution(id: number) {
+    this.router.navigate(['/institution/' + id + '/speciality']);
+  }
+/*
   addComment(id: number) {
     let comment: Comment;
     comment = new Comment();
     let date = new Date();
     comment.specialityId = id;
     comment.date = date.getDay().toLocaleString() + "-" + date.getMonth().toLocaleString() + "-" + date.getFullYear().toLocaleString();
-    if(this.text == "") {
+    if (this.text == "") {
       this.text = "checking...";
     }
     comment.text = this.text;
     comment.username = "null";
-    this.specialityService.addComment(comment).subscribe(res => {});
-  }
+    this.specialityService.addComment(comment).subscribe(res => {
+    });
+  }*/
 }
