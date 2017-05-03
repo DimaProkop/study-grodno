@@ -24,28 +24,18 @@ export class BookmarksComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.init();
+  }
+
+  init() {
     this.showTab('1');
     this.specialities = [];
     this.institutions = [];
+    this.showTab("1");
   }
 
   showTab(tab_id: string) {
-    //set tab for request
-    if(tab_id == "1") {
-      this.bookmarkService.getByChoice(1).subscribe(
-        res => {
-          console.log(res);
-          this.specialities = res;
-        }
-      )
-    }else if(tab_id == "2") {
-      this.bookmarkService.getByChoice(2).subscribe(
-        res => {
-          console.log(res);
-          this.institutions = res;
-        }
-      )
-    }
+
     let tab: string;
     tab = "tab-" + tab_id;
     jQuery('ul.tabs li').removeClass('current');
@@ -53,6 +43,19 @@ export class BookmarksComponent implements OnInit {
 
     jQuery('#tabs-' + tab).addClass('current');
     jQuery("#" + tab).addClass('current');
+
+    if (tab_id == "1") {
+      this.bookmarkService.getByChoice(1).subscribe(
+        result => {
+          this.specialities = result;
+        });
+    } else if (tab_id == "2") {
+      this.bookmarkService.getByChoice(2).subscribe(
+        result => {
+          this.institutions = result;
+        }
+      )
+    }
   }
 
   goDetail(id) {

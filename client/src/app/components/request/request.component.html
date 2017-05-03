@@ -3,29 +3,29 @@
     <div class="panel panel-primary">
       <div class="panel-body">
         <form class="form-horizontal" *ngIf="personInfo">
-          <legend style="text-align: center;">Персональные данные</legend>
+          <legend style="text-align: center;">{{'PERSONAL_INFO' | translate}}</legend>
           <div class="row">
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="firstName" class="control-label">Имя: </label>
-                <input required type="text" class="form-control required" id="firstName" placeholder="Введите имя..."
+                <label for="firstName" class="control-label">{{'FIRST_NAME' | translate}}: </label>
+                <input required type="text" class="form-control required" id="firstName" placeholder="{{'FIRST_NAME' | translate}}..."
                        [(ngModel)]="personInfo.firstName" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="lastName" class="control-label">Фамилия: </label>
-                <input required type="text" class="form-control required" id="lastName" placeholder="Введите фамилию..."
+                <label for="lastName" class="control-label">{{'SURNAME' | translate}}: </label>
+                <input type="text" class="form-control required" id="lastName" placeholder="{{'SURNAME' | translate}}..."
                        [(ngModel)]="personInfo.lastName" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="middleName" class="control-label">Отчество(Если есть): </label>
-                <input required type="text" class="form-control" id="middleName" placeholder="Введите отчество..."
+                <label for="middleName" class="control-label">{{'PATRONYMIC' | translate}}: </label>
+                <input required type="text" class="form-control" id="middleName" placeholder="{{'PATRONYMIC' | translate}}..."
                        [(ngModel)]="personInfo.middleName" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
@@ -34,18 +34,19 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="gender" class="control-label">Пол: </label>
-                <select class="form-control required" id="gender" [(ngModel)]="personInfo.gender"
+                <label for="gender" class="control-label">{{'GENDER' | translate}}: </label>
+                <select class="selectpicker form-control required" id="gender" [(ngModel)]="personInfo.gender"
                         [ngModelOptions]="{standalone: true}">
-                  <option>Мужской</option>
-                  <option>Женский</option>
+                  <option [selected]="personInfo.gender == ''" disabled value="">{{'SELECT_A_VALUE' | translate}}</option>
+                  <option value="Мужской">{{'MALE' | translate}}</option>
+                  <option value="Женский">{{'FEMALE' | translate}}</option>
                 </select>
               </div>
             </div>
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="citizenship" class="control-label">Гражданство: </label>
+                <label for="citizenship" class="control-label">{{'CITIZENSHIP' | translate}}: </label>
                 <select class="form-control required" id="citizenship" [(ngModel)]="personInfo.citizenship"
                         [ngModelOptions]="{standalone: true}">
                   <option *ngFor="let citizenship of countries.getCountries()">{{citizenship.title}}</option>
@@ -55,38 +56,36 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="dateOfBirth" class="control-label">Дата рождения: </label>
-                <input type="date" class="form-control required" id="dateOfBirth" placeholder="Введите дату..."
+                <label for="dateOfBirth" class="control-label">{{'DATE_OF_BIRTH' | translate}}: </label>
+                <input type="date" class="form-control required" id="dateOfBirth" placeholder="{{'DATE_OF_BIRTH' | translate}}..."
                        [(ngModel)]="personInfo.dateOfBirth"
                        [ngModelOptions]="{standalone: true}">
               </div>
             </div>
           </div>
-          <legend style="text-align: center;">Образовательные навыки</legend>
+          <legend style="text-align: center;">{{'EDUCATIONAL_SKILLS' | translate}}</legend>
           <div class="row">
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-5">
               <div class="d-flex flex-column">
-                <label for="currentLevelOfEducation" class="control-label">Уровень имеющегося образования: </label>
+                <label for="currentLevelOfEducation" class="control-label">{{'LEVEL_OF_EDUCATION_AVAILABLE' | translate}}: </label>
                 <select type="text" class="form-control required" id="currentLevelOfEducation"
-                        placeholder="Уровень имеющегося образования..."
                         [(ngModel)]="personInfo.currentLevelOfEducation"
                         [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let currentLevelOfEducation of currentLevelsOfEducation'>
-                    {{currentLevelOfEducation}}
+                    {{currentLevelOfEducation | translate}}
                   </option>
                 </select>
               </div>
             </div>
             <div style="margin-left: 50px;" class="form-group col-sm-5">
               <div class="d-flex flex-column">
-                <label for="countryEducation" class="control-label">Страна, где законечено учебное заведение: </label>
-                <select required class="form-control required" id="countryEducation"
-                        placeholder="Страна, где законечено учебное заведение..."
+                <label for="countryEducation" class="control-label">{{'COUNTRY_WHERE_THE_INSTITUTION_IS_ENROLLED' | translate}}: </label>
+                <select class="form-control required" id="countryEducation"
                         [(ngModel)]="personInfo.countryEducation"
                         [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let countryEducation of countries.getCountries()'>
-                    {{countryEducation.title}}
+                    {{countryEducation.title | translate}}
                   </option>
                 </select>
               </div>
@@ -96,20 +95,18 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-7">
               <div class="d-flex flex-column">
-                <label for="nameCompletedInstitution" class="control-label">Наименование учебного учреждения, которое
-                  вы
-                  закончили: </label>
+                <label for="nameCompletedInstitution" class="control-label">{{'NAME_OF_THE_INSTITUTION_THAT_YOU_GRADUATED_FROM' | translate}}: </label>
                 <input type="text" class="form-control required" id="nameCompletedInstitution"
-                       placeholder="Наименование учебного учреждения, которое вы закончили..."
+                       placeholder="{{'NAME_OF_THE_INSTITUTION_THAT_YOU_GRADUATED_FROM' | translate}}..."
                        [(ngModel)]="personInfo.nameCompletedInstitution"
                        [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div style="margin-left: 50px;" class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="yearOfEnding" class="control-label">Год окончания: </label>
+                <label for="yearOfEnding" class="control-label">{{'YEAR_OF_ENDING' | translate}}: </label>
                 <input type="text" class="form-control required" id="yearOfEnding"
-                       placeholder="Год окончания..."
+                       placeholder="{{'YEAR_OF_ENDING' | translate}}..."
                        [(ngModel)]="personInfo.yearOfEnding"
                        [ngModelOptions]="{standalone: true}">
               </div>
@@ -120,18 +117,17 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="nativeLanguage" class="control-label">Родной язык: </label>
+                <label for="nativeLanguage" class="control-label">{{'NATIVE_LANGUAGE' | translate}}: </label>
                 <input required type="text" class="form-control required" id="nativeLanguage"
-                       placeholder="Родной язык..."
+                       placeholder="{{'NATIVE_LANGUAGE' | translate}}..."
                        [(ngModel)]="personInfo.nativeLanguage" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="russianLanguageLevel" class="control-label">Уровень русского языка: </label>
+                <label for="russianLanguageLevel" class="control-label">{{'LEVEL_OF_RUSSIAN' | translate}}: </label>
                 <select required type="text" class="form-control required" id="russianLanguageLevel"
-                        placeholder="Уровень русского языка..."
                         [(ngModel)]="personInfo.russianLanguageLevel" [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let russianLanguageLevel of russianLanguageLevels'>
                     {{russianLanguageLevel}}
@@ -142,9 +138,8 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="сertificateInRussian" class="control-label">Сертификат по русскому языку: </label>
-                <select required type="text" class="form-control required" id="сertificateInRussian"
-                        placeholder="Сертификат по русскому языку..."
+                <label for="сertificateInRussian" class="control-label">{{'CERTIFICATE_IN_RUSSIAN_LANGUAGE' | translate}}: </label>
+                <select type="text" class="form-control required" id="сertificateInRussian"
                         [(ngModel)]="personInfo.certificateInRussian" [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let certificateInRussian of certificatesInRussian'>
                     {{certificateInRussian}}
@@ -158,12 +153,11 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="englishLanguageLevel" class="control-label">Уровень английского языка: </label>
-                <select required type="text" class="form-control required" id="englishLanguageLevel"
-                        placeholder="Уровень английского языка..."
+                <label for="englishLanguageLevel" class="control-label">{{'LEVEL_OF_ENGLISH' | translate}}: </label>
+                <select type="text" class="form-control required" id="englishLanguageLevel"
                         [(ngModel)]="personInfo.englishLanguageLevel" [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let englishLanguageLevel of englishLanguageLevels'>
-                    {{englishLanguageLevel}}
+                    {{englishLanguageLevel | translate}}
                   </option>
                 </select>
               </div>
@@ -171,12 +165,11 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="сertificateInEnglish" class="control-label">Сертификат по английскому языку: </label>
-                <select required type="text" class="form-control required" id="сertificateInEnglish"
-                        placeholder="Сертификат по английскому языку..."
+                <label for="сertificateInEnglish" class="control-label">{{'CERTIFICATE_IN_ENGLISH' | translate}}: </label>
+                <select type="text" class="form-control required" id="сertificateInEnglish"
                         [(ngModel)]="personInfo.certificateInEnglish" [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let certificateInEnglish of certificatesInEnglish'>
-                    {{certificateInEnglish}}
+                    {{certificateInEnglish | translate}}
                   </option>
                 </select>
               </div>
@@ -184,39 +177,37 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-3">
               <div class="d-flex flex-column">
-                <label for="otherLanguages" class="control-label">Владение другими языками: </label>
+                <label for="otherLanguages" class="control-label">{{'KNOWLEDGE_OF_OTHER_LANGUAGES' | translate}}: </label>
                 <input required type="text" class="form-control required" id="otherLanguages"
-                       placeholder="Владение другими языками..."
+                       placeholder="{{'KNOWLEDGE_OF_OTHER_LANGUAGES' | translate}}..."
                        [(ngModel)]="personInfo.otherLanguages" [ngModelOptions]="{standalone: true}">
               </div>
             </div>
           </div>
-          <legend style="text-align: center;">Где хочу учиться</legend>
+          <legend style="text-align: center;">{{'WHERE_I_WANT_TO_STUDY' | translate}}</legend>
 
           <div class="row">
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-6">
               <div class="d-flex flex-column">
-                <label for="levelOfEducationDesired" class="control-label">Уровень образования, которое хочу
-                  получить</label>
+                <label for="levelOfEducationDesired" class="control-label">{{'LEVEL_OF_EDUCATION_I_WANT_TO_RECEIVE' | translate}}:</label>
                 <select type="text" class="form-control required" id="levelOfEducationDesired"
-                        placeholder="Уровень образования, которое хочу получить..."
                         [ngModel]="personInfo.levelOfEducationDesired"
                         (ngModelChange)="onChangeLevel($event)"
                         [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let itemLevelDesired of levelsOfEducationDesired'
                           [selected]="itemLevelDesired.id == personInfo.levelOfEducationDesired.id"
                           [ngValue]="itemLevelDesired">
-                    {{itemLevelDesired.name}}
+                    {{itemLevelDesired.name | translate}}
                   </option>
                 </select>
               </div>
             </div>
             <div style="margin-left: 50px;" class="form-group col-sm-4">
               <div class="d-flex flex-column">
-                <label for="yearOfReceipt" class="control-label">Планируемый год поступления </label>
+                <label for="yearOfReceipt" class="control-label">{{'PLANNED_YEAR_OF_RECEIPT' | translate}}: </label>
                 <input type="text" class="form-control required" id="yearOfReceipt"
-                       placeholder="Планируемый год поступления..."
+                       placeholder="{{'PLANNED_YEAR_OF_RECEIPT' | translate}}..."
                        [(ngModel)]="personInfo.yearOfReceipt"
                        [ngModelOptions]="{standalone: true}">
               </div>
@@ -227,7 +218,7 @@
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-4">
               <div class="d-flex flex-column">
-                <label for="directionPicker" class="control-label">Выберите направление: </label>
+                <label for="directionPicker" class="control-label">{{'CHOOSE_A_DESTINATION' | translate}}: </label>
                 <select class="form-control required" id="directionPicker" (ngModelChange)="onChangeDirection($event)"
                         [ngModel]="personInfo.selectedDirection"
                         [ngModelOptions]="{standalone: true}">
@@ -239,8 +230,7 @@
             </div>
             <div style="margin-left: 50px;" class="form-group col-sm-6">
               <div class="d-flex flex-column">
-                <label for="selectedEducationInstitution1" class="control-label">Выберите учреждение
-                  образования: </label>
+                <label for="selectedEducationInstitution1" class="control-label">{{'SELECT_AN_INSTITUTION_OF_EDUCATION' | translate}}: </label>
                 <ss-multiselect-dropdown id="selectedEducationInstitution1" [settings]="settings" [texts]="texts"
                                          [options]="educationInstitutionOptions"
                                          [(ngModel)]="educationInstitutionModel"
@@ -250,7 +240,7 @@
             </div>
           </div>
 
-          <legend style="text-align: center;">Дополнительная информация</legend>
+          <legend style="text-align: center;">{{'ADDITIONAL_INFORMATION' | translate}}</legend>
           <div class="row">
             <div class="col-sm-1"></div>
             <div class="form-group col-sm-11">
@@ -263,10 +253,10 @@
             <div class="col-sm-4"></div>
             <div style="margin-left: 50px;" class="form-group col-sm-6">
               <button class="btn btn-primary btn-lg" (click)="send(false)">
-                <span class="glyphicon glyphicon-check" aria-hidden="true"></span> Сохранить
+                <span class="glyphicon glyphicon-check" aria-hidden="true"></span> {{'SAVE' | translate}}
               </button>
               <button class="btn btn-primary btn-lg" (click)="send(true)">
-                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Отправить в ВУЗ
+                <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{'SEND_TO_UNIVERSITY' | translate}}
               </button>
             </div>
           </div>

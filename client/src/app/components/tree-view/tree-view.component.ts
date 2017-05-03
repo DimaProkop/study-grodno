@@ -1,14 +1,15 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {TreeNode, TREE_ACTIONS, KEYS, IActionMapping, TreeComponent} from 'angular-tree-component';
+import {Component, OnInit} from "@angular/core";
 import {EducationInstitutionService} from "../../service/education-institution/education-institution.service";
 import {FacultyModel} from "../../model/faculty.model";
 import {SpecialityModel} from "../../model/speciality.model";
 import {EducationInstitutionModel} from "../../model/education-institution.model";
 import {isNullOrUndefined} from "util";
 import {Store} from "@ngrx/store";
+import {UserModel} from "../../model/user.model";
 import {GET_USER} from "../../reducers/role.reducer";
 
 @Component({
+  moduleId: module.id,
   selector: 'tree-view',
   templateUrl: 'tree-view.component.html',
   styles: ['tree-view.component.css'],
@@ -29,12 +30,15 @@ export class TreeViewComponent implements OnInit {
   entity: any;
   temp: any[] = [];
   nodes: any[] = [];
+  currentUser: UserModel;
 
   constructor(private educationInstitutionService: EducationInstitutionService,
               private store: Store<any>) {
   }
 
   ngOnInit() {
+
+    this.currentUser = new UserModel();
 
     this.store.select(x => x.roleUserReducer)
       .subscribe((x) => {

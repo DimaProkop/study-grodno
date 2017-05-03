@@ -35,22 +35,23 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-default">
-      <div *ngIf="comments">
-      <b>Отзывы</b>
-      <div class="panel-heading" *ngFor="let c of comments">
-        Who: <strong>{{c.username}}</strong> ------------------ Date: <i>{{c.date}}</i>
-      </div>
-      <legend>
-        <div class="panel-body" *ngFor="let c of comments">
-          Message: {{c.text}}
-        </div>
-      </legend>
-      </div>
-    </div>
-    <input class="text-area" type="text" [(ngModel)]="text"/>
-    <button class="btn btn-default" (click)="addComment(speciality.id)"></button>
   </div>
+  <!--div class="panel panel-default">
+    <div *ngIf="comments">
+    <b>Отзывы</b>
+    <div class="panel-heading" *ngFor="let c of comments">
+      Who: <strong>{{c.username}}</strong> ------------------ Date: <i>{{c.date}}</i>
+    </div>
+    <legend>
+      <div class="panel-body" *ngFor="let c of comments">
+        Message: {{c.text}}
+      </div>
+    </legend>
+    </div>
+  </div>
+  <input class="text-area" type="text" [(ngModel)]="text"/>
+  <button class="btn btn-default" (click)="addComment(speciality.id)"></button>
+</div-->
   <div *ngIf="institution && faculty" class="col-md-4">
     <div class="panel panel-success">
       <div class="panel-body">
@@ -60,7 +61,8 @@
         <div class="row">
           <legend class="text-center"><h4>Контактная информация</h4></legend>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">{{institution.address}}</div>
-          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center"><b><a href="{{institution.site}}">{{institution.site}}</a></b>
+          <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center"><b><a
+            href="{{institution.site}}">{{institution.site}}</a></b>
           </div>
           <legend style="padding-top: 10px;"></legend>
           <legend class="text-center">Факультет</legend>
@@ -70,10 +72,14 @@
           </div>
           <legend style="padding-top: 10px;"></legend>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
-            <button style="width: 300px;" class="btn btn-primary">Подробнее об университете</button>
+            <button style="width: 300px;" (click)="goDetailInstitution(institution.id)" class="btn btn-primary">
+              Подробнее об университете
+            </button>
           </div>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
-            <button style="width: 300px;" class="btn btn-primary">Все специальности университета</button>
+            <button style="width: 300px;" (click)="goSpecialityInstitution(institution.id)" class="btn btn-primary">
+              Все специальности университета
+            </button>
           </div>
         </div>
       </div>

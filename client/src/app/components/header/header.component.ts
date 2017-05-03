@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {LoginService} from "../../service/login/login.service";
 import {AUTHORIZED} from "../../reducers/user.reducer";
 import {Store} from "@ngrx/store";
+import {TranslateService} from "@ngx-translate/core";
 import {Router} from "@angular/router";
 import {MailService} from "../../service/mail/mail.service";
 
@@ -16,10 +17,9 @@ export class HeaderComponent implements OnInit {
   private isAuthorize: boolean;
   private count: number;
 
-  constructor(private loginService: LoginService,
-              private router: Router,
+  constructor(private router: Router, private loginService: LoginService,
               private store: Store<any>,
-              private mailService: MailService) {
+              private translateService: TranslateService, private mailService: MailService) {
   }
 
   ngOnInit() {
@@ -30,21 +30,28 @@ export class HeaderComponent implements OnInit {
       .subscribe((x) => {
         console.log(x);
         this.isAuthorize = x === AUTHORIZED;
-        if (this.isAuthorize) {
-          this.mailService.getInc()
-            .subscribe(x => {
-              this.count = x;
-            });
+        if (!this.isAuthorize) {
+          console.log("LOGIN ACCESSIBLE NOW");
+          if (this.isAuthorize) {
+            this.mailService.getInc()
+              .subscribe(x => {
+                this.count = x;
+              });
+          }
         }
       });
   }
-
 
   logout() {
     this.loginService.logout()
       .subscribe(() => {
 
       })
+  }
+
+  changeLanguage(lang: string) {
+    localStorage.setItem("lang", lang);
+    this.translateService.use(lang);
   }
 
 }

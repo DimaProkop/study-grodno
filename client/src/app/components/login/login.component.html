@@ -1,50 +1,47 @@
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
 <div class="container">
+  <div class="col-md-2"></div>
 
-  <div class="form-group">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <label for="login" class="sr-only">Email address</label>
-    <div>
-      <input [(ngModel)]="login" type="email" id="login" class="form-control" placeholder="Email address" required>
-    </div>
-    <label for="password" class="sr-only">Password</label>
-    <div>
-      <input [(ngModel)]="password" type="password" id="password" class="form-control" placeholder="Password" required>
-    </div>
-    <button (click)="authenticate()" class="btn btn-lg btn-primary btn-block">
-      Sign in
-    </button>
-  </div>
+  <form class="form-horizontal col-md-8">
+    <div class="col-md-2"></div>
+    <div class="form-group col-md-12">
+      <div class="panel panel-primary">
+        <div class="panel-body">
 
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <h3>New User? Go to</h3>
+          <legend style="text-align: center;">{{'PLEASE_SIGN_IN' | translate}}</legend>
+          <label for="login" class="control-label col-md-3">{{'EMAIL_ADDRESS' | translate}}:</label>
+          <div class="form-group col-md-9">
+            <input [(ngModel)]="login" [ngModelOptions]="{standalone: true}" type="email" id="login"
+                   class="form-control"
+                   placeholder="{{'EMAIL_ADDRESS' | translate}}" required>
+          </div>
+          <label for="password" class="control-label col-md-3">{{'PASSWORD' | translate}}:</label>
+          <div class="form-group col-md-9">
+            <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" id="password"
+                   class="form-control"
+                   placeholder="{{'PASSWORD' | translate}}" required>
+          </div>
+          <div class="col-md-3"></div>
+          <div class="form-group col-md-6">
+            <button (click)="authenticate()" class="btn btn-lg btn-primary btn-block">
+              {{'SIGN_IN' | translate}}
+            </button>
+
+          </div>
+
+          <div class="form-group col-md-12">
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-9">
+                <h3>{{'NO_ACCOUNT' | translate}} <a routerLink="/sign-up">
+                  <span class="label label-default">{{'REGISTRATION' | translate}}</span>
+                </a></h3>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-1">
-        <a routerLink="/sign-up">
-          <h1><span class="label label-default">Registration</span></h1>
-        </a>
-      </div>
-      <div class="col-md-3"></div>
-      </div>
-  </div>
+    </div>
+  </form>
+
+
 </div> <!-- /container -->
-
-
-</html>
