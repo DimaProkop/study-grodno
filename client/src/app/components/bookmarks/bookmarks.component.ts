@@ -5,6 +5,9 @@ import {BookmarksService} from "../../service/bookmarks/bookmarks.service";
 import {EducationInstitutionModel} from "../../model/education-institution.model";
 import {Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
+import {Store} from "@ngrx/store";
+import {UserState, LOGOUT} from "../../reducers/user.reducer";
+import {UserAction} from "../../actions/user.action";
 
 @Component({
   selector: 'app-favourites',
@@ -20,7 +23,7 @@ export class BookmarksComponent implements OnInit {
 
 
   constructor(private bookmarkService: BookmarksService,
-              private router: Router) {
+              private router: Router, private store: Store<UserState>) {
   }
 
   ngOnInit() {

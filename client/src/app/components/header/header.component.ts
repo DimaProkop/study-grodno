@@ -32,12 +32,11 @@ export class HeaderComponent implements OnInit {
         this.isAuthorize = x === AUTHORIZED;
         if (!this.isAuthorize) {
           console.log("LOGIN ACCESSIBLE NOW");
-          if (this.isAuthorize) {
-            this.mailService.getInc()
-              .subscribe(x => {
-                this.count = x;
-              });
-          }
+        }else if (this.isAuthorize) {
+          this.mailService.getInc()
+            .subscribe(x => {
+              this.count = x;
+            });
         }
       });
   }

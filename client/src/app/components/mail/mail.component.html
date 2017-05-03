@@ -25,14 +25,14 @@
       <table class="table table-condensed" *ngFor="let m of messages">
         <thead>
         <tr>
-          <th>Who write</th>
+          <th>From</th>
           <th>Date</th>
           <th>Header</th>
         </tr>
         </thead>
         <tbody>
         <tr (click)="detail(m.id)">
-          <td>{{m.username}}</td>
+          <td>{{m.fromId}}</td>
           <td>{{m.date}}</td>
           <td>{{m.header}}</td>
         </tr>
@@ -45,14 +45,14 @@
         <table class="table table-condensed" *ngFor="let m of messages">
           <thead>
           <tr>
-            <th>Who write</th>
+            <th>Who</th>
             <th>Date</th>
             <th>Header</th>
           </tr>
           </thead>
           <tbody>
-          <tr (click)="detail(m.id)">
-            <td>{{m.username}}</td>
+          <tr>
+            <td>{{m.toId}}</td>
             <td>{{m.date}}</td>
             <td>{{m.header}}</td>
           </tr>

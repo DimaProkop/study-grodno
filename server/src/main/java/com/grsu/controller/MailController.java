@@ -32,17 +32,15 @@ public class MailController {
 
     @RequestMapping(value = "/getMessages={flag}", method = RequestMethod.PUT)
     public ResponseEntity getMessages(@PathVariable boolean flag) {
-        User user = SecurityUtils.getCurrentUser();
-
         List<Message> messages = messageRepository.findAll();
         if (flag) {
             messages = messages.stream()
-                    .filter(m -> m.getUsername().equals(user.getLogin())
+                    .filter(m -> m.getToId().equals(SecurityUtils.getCurrentUserLogin())
                             && m.getStatus().equals("incoming"))
                     .collect(Collectors.toList());
         } else {
             messages = messages.stream()
-                    .filter(m -> m.getUsername().equals(user.getLogin())
+                    .filter(m -> m.getFromId().equals(SecurityUtils.getCurrentUserLogin())
                             && m.getStatus().equals("sending"))
                     .collect(Collectors.toList());
         }
@@ -56,19 +54,19 @@ public class MailController {
 
     @RequestMapping(value = "/getIncs", method = RequestMethod.GET)
     public ResponseEntity getIncs() {
-        User user = SecurityUtils.getCurrentUser();
         List<Message> messages = messageRepository.findAll().stream()
                 .filter(m -> m.getStatus().equals("incoming")
-                        && m.getUsername().equals(user.getLogin())).collect(Collectors.toList());
+                        && m.getToId().equals(SecurityUtils.getCurrentUserLogin())).collect(Collectors.toList());
         return ResponseEntity.ok(messages.size());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/add")
     public ResponseEntity addMessage(@RequestBody MessageDTO dto) {
+        LocalDate date = LocalDate.now();
         Message message = new Message();
         //set in incoming message
-        message.setUsername(userRepository.findOneUserByLogin(dto.getUsername()).getLogin());
-        LocalDate date = LocalDate.now();
+        message.setToId(userRepository.findOneUserByLogin(dto.getToId()).getLogin());
+        message.setFromId(SecurityUtils.getCurrentUserLogin());
         message.setDate(date.toString());
         message.setHeader(dto.getHeader());
         message.setText(dto.getText());
@@ -80,7 +78,8 @@ public class MailController {
         newMessage.setDate(date.toString());
         newMessage.setHeader(dto.getHeader());
         newMessage.setText(dto.getText());
-        newMessage.setUsername(SecurityUtils.getCurrentUser().getLogin());
+        newMessage.setToId(userRepository.findOneUserByLogin(dto.getToId()).getLogin());
+        newMessage.setFromId(SecurityUtils.getCurrentUserLogin());
         newMessage.setStatus("sending");
         messageRepository.save(newMessage);
         return ResponseEntity.ok(message);

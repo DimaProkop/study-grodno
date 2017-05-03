@@ -2,6 +2,12 @@
  * Created by dionp on 01.05.2017.
  */
 export class Bookmark {
-  constructor(private choiceId: number,
-              private contentId: number) {}
+
+  choiceId: number;
+  contentId: number;
+  constructor(choiceId: number,
+              contentId: number) {
+    this.choiceId = choiceId;
+    this.contentId = contentId;
+  }
 }

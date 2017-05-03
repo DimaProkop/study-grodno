@@ -21,6 +21,7 @@ export class SpecialityComponent implements OnInit {
   public specialities: SpecialityModel[];
   public searchParams: SearchModel;
   public institution: any[];
+  public bookmarks: Bookmark[];
 
   constructor(private searchService: SearchService, private route: ActivatedRoute,
               private router: Router, private element: ElementRef,
@@ -29,14 +30,12 @@ export class SpecialityComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.bookmarks = [];
     this.searchParams = new SearchModel();
     this.initParams();
     this.findByParams();
 
-    this.store.select(x => x.roleUserReducer)
-      .subscribe((x) => {
-        console.log(x);
-      });
+
   }
 
   onChanged(entity) {
@@ -52,6 +51,16 @@ export class SpecialityComponent implements OnInit {
 
         for (let i = 0; i < this.specialities.length; i++) {
 
+          this.bookmarksService.getAll()
+            .subscribe(x => {
+              this.bookmarks = x;
+              for (let j=0;j<this.bookmarks.length;j++) {
+                if(this.bookmarks[j].contentId === this.specialities[i].id) {
+                  console.log("YY");
+                  jQuery(this.element.nativeElement).find('#' + this.specialities[i].id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
+                }
+              }
+            });
           this.searchService.getInsitutionBySpeciality(this.specialities[i].id).subscribe(item => {
             this.institution.push({
               id: this.specialities[i].id,
@@ -60,6 +69,7 @@ export class SpecialityComponent implements OnInit {
           });
         }
       });
+
   }
 
   getInstitution(id) {
@@ -89,6 +99,7 @@ export class SpecialityComponent implements OnInit {
         this.searchParams.form = !isNullOrUndefined(params['form']) ? params['form'] : "";
         this.searchParams.duration = !isNullOrUndefined(params['duration']) ? params['duration'] : "";
       });
+
   }
 
   goDetail(id) {
@@ -96,15 +107,15 @@ export class SpecialityComponent implements OnInit {
   }
 
   addAndRemoveClassToFavorites(id) {
-    this.bookmarksService.addBookmark(new Bookmark(1, id)).subscribe(
-      result => {
-        if (jQuery(this.element.nativeElement).find('#' + id).hasClass('glyphicon glyphicon-star-empty')) {
-          jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
-        } else {
-          jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star").addClass("glyphicon glyphicon-star-empty");
-        }
-      }
-    );
+    if (jQuery(this.element.nativeElement).find('#' + id).hasClass('glyphicon glyphicon-star-empty')) {
+      jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
+      this.bookmarksService.addBookmark(new Bookmark(1, id)).subscribe(res => {
+      });
+    } else {
+      jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star").addClass("glyphicon glyphicon-star-empty");
+      this.bookmarksService.deleteBookmark(new Bookmark(1, id)).subscribe(res => {
+      });
+    }
   }
 }
 

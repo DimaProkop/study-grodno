@@ -59,9 +59,9 @@ export class MailDetailComponent implements OnInit {
     let newMessage: MessageModel;
     newMessage = new MessageModel();
     if (!this.message) {
-      newMessage.username = this.education.user.login;
+      newMessage.toId = this.education.user.login;
     } else {
-      newMessage.username = this.message.username;
+      newMessage.toId = this.message.fromId;
     }
     newMessage.header = this.header;
     newMessage.text = this.text;

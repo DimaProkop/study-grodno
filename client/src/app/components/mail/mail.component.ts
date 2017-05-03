@@ -27,6 +27,7 @@ export class MailComponent implements OnInit {
     if(tab_id == "1") {
       this.mailService.getMessages(true)
         .subscribe(x => {
+          console.log(x);
           this.messages = x;
         });
     }else if(tab_id == "2") {
