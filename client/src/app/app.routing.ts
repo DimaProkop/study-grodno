@@ -24,6 +24,7 @@ import {SignUpComponent} from "./components/sign-up/sign-up.component";
 import {NewsDetailComponent} from "./components/news-detail/news-detail.component";
 import {MailDetailComponent} from "./components/mail-detail/mail-detail.component";
 import {MailComponent} from "./components/mail/mail.component";
+import {FooterComponent} from "./components/footer/footer.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -35,7 +36,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'header', component: HeaderComponent},
-  {path: 'tags', component: SpecialityComponent},
+  {path: 'footer', component: FooterComponent},
   {path: 'bookmarks', component: BookmarksComponent},
   {path: 'institution', component: EducationInstitutionComponent},
   {path: 'news/:id', component: NewsDetailComponent},

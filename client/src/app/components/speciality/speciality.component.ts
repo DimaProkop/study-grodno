@@ -56,7 +56,6 @@ export class SpecialityComponent implements OnInit {
               this.bookmarks = x;
               for (let j=0;j<this.bookmarks.length;j++) {
                 if(this.bookmarks[j].contentId === this.specialities[i].id) {
-                  console.log("YY");
                   jQuery(this.element.nativeElement).find('#' + this.specialities[i].id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
                 }
               }
