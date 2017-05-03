@@ -106,12 +106,12 @@ export class SpecialityComponent implements OnInit {
   }
 
   addAndRemoveClassToFavorites(id) {
-    if (jQuery(this.element.nativeElement).find('#' + id).hasClass('glyphicon glyphicon-star-empty')) {
-      jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
+    if (jQuery(this.element.nativeElement).find('#' + id).hasClass('fa fa-bookmark-o')) {
+      jQuery(this.element.nativeElement).find('#' + id).removeClass("fa fa-bookmark-o").addClass("fa fa-bookmark");
       this.bookmarksService.addBookmark(new Bookmark(1, id)).subscribe(res => {
       });
     } else {
-      jQuery(this.element.nativeElement).find('#' + id).removeClass("glyphicon glyphicon-star").addClass("glyphicon glyphicon-star-empty");
+      jQuery(this.element.nativeElement).find('#' + id).removeClass("fa fa-bookmark").addClass("fa fa-bookmark");
       this.bookmarksService.deleteBookmark(new Bookmark(1, id)).subscribe(res => {
       });
     }
