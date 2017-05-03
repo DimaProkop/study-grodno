@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/logout").permitAll()
                 .antMatchers("/api/signUp").permitAll()
-                .antMatchers("/**").authenticated();
+                .antMatchers("/**").permitAll();
     }
 
     @Bean

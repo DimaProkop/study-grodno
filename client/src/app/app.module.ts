@@ -53,6 +53,8 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 export function HttpLoaderFactory(http: Http) {
   return new TranslateHttpLoader(http);
 }
+import { MailComponent } from './components/mail/mail.component';
+import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
 
 @NgModule({
   imports: [
@@ -98,7 +100,9 @@ export function HttpLoaderFactory(http: Http) {
     NewsBuilderComponent,
     NewsComponent,
     NewsDetailComponent,
-    SignUpComponent
+    SignUpComponent,
+    MailComponent,
+    MailDetailComponent
   ],
   providers: [
     HomeService,

@@ -5,7 +5,6 @@ export class Comment {
 
   public id: number;
   public specialityId: number;
-  public date: string;
   public text: string;
   public username: string;
 

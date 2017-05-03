@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+  <legend>
+    <div style="float:right;">
+      <button class="btn btn-success" (click)="newMessage()">New message</button>
+    </div>
+    <h1>Your messages</h1>
+  </legend>
+  <ul class="tabs">
+    <li class="tab-link current" (click)="showTab('1')" id="tabs-tab-1">Incoming</li>
+    <li class="tab-link" (click)="showTab('2')" id="tabs-tab-2">Sending</li>
+  </ul>
+
+  <div id="tab-1" class="tab-content current">
+    <div class="container">
+      <table class="table table-condensed" *ngFor="let m of messages">
+        <thead>
+        <tr>
+          <th>Who write</th>
+          <th>Date</th>
+          <th>Header</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr (click)="detail(m.id)">
+          <td>{{m.username}}</td>
+          <td>{{m.date}}</td>
+          <td>{{m.header}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="tab-2" class="tab-content">
+      <div class="container">
+        <table class="table table-condensed" *ngFor="let m of messages">
+          <thead>
+          <tr>
+            <th>Who write</th>
+            <th>Date</th>
+            <th>Header</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr (click)="detail(m.id)">
+            <td>{{m.username}}</td>
+            <td>{{m.date}}</td>
+            <td>{{m.header}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+
+</body>
+</html>

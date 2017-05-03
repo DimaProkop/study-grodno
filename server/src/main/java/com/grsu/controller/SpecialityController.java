@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +44,8 @@ public class SpecialityController {
     public ResponseEntity addComment(@RequestBody CommentDTO dto) {
         Comment comment = new Comment();
         comment.setSpecialityId(dto.getSpecialityId());
-        comment.setDate(dto.getDate());
+        LocalDate date = LocalDate.now();
+        comment.setDate(date.toString());
         comment.setText(dto.getText());
         comment.setUsername(SecurityUtils.getCurrentUserLogin());
         commentRepository.save(comment);

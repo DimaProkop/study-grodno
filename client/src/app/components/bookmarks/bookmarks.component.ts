@@ -28,6 +28,7 @@ export class BookmarksComponent implements OnInit {
   }
 
   init() {
+    this.showTab('1');
     this.specialities = [];
     this.institutions = [];
     this.showTab("1");
@@ -43,13 +44,12 @@ export class BookmarksComponent implements OnInit {
     jQuery('#tabs-' + tab).addClass('current');
     jQuery("#" + tab).addClass('current');
 
-    if(tab_id == "1") {
+    if (tab_id == "1") {
       this.bookmarkService.getByChoice(1).subscribe(
         result => {
           this.specialities = result;
-        }
-      )
-    }else if(tab_id == "2") {
+        });
+    } else if (tab_id == "2") {
       this.bookmarkService.getByChoice(2).subscribe(
         result => {
           this.institutions = result;
