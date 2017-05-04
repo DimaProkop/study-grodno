@@ -1,7 +1,7 @@
 <div *ngIf="speciality" class="container" style="margin: 90px">
-  <legend><h3 class="text-center">{{speciality.name}}</h3></legend>
+  <legend><h3 class="text-center"><b>{{speciality.name}}</b></h3></legend>
   <div class="col-md-8">
-    <div class="panel panel-success">
+    <div class="panel panel-footer">
       <div class="panel-body">
         <legend>Основная информация о специальности</legend>
         <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">Направление: <span
@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-success">
+    <div class="panel panel-heading">
       <div class="panel-body">
         <legend>Контакты для связи</legend>
         <div style="padding-top: 3px;padding-bottom: 3px;">Контактное лицо: <span><b>(Имя) (Фамилия) (Отчество). Тел. +(Номер телефона).</b> </span>
@@ -53,7 +53,7 @@
   <button class="btn btn-default" (click)="addComment(speciality.id)"></button>
 </div-->
   <div *ngIf="institution && faculty" class="col-md-4">
-    <div class="panel panel-success">
+    <div class="panel panel-heading">
       <div class="panel-body">
         <div class="row">
           <img class="center-block" src="https://upload.wikimedia.org/wikipedia/ru/c/cd/LogoGrGU.png"/>
@@ -72,12 +72,12 @@
           </div>
           <legend style="padding-top: 10px;"></legend>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
-            <button style="width: 300px;" (click)="goDetailInstitution(institution.id)" class="btn btn-primary">
+            <button style="width: 250px; padding: 25px" (click)="goDetailInstitution(institution.id)" class="button button-style button-style-dark button-style-icon fa fa-university">
               Подробнее об университете
             </button>
           </div>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
-            <button style="width: 300px;" (click)="goSpecialityInstitution(institution.id)" class="btn btn-primary">
+            <button style="width: 250px; padding: 25px" (click)="goSpecialityInstitution(institution.id)" class="button button-style button-style-dark button-style-icon fa fa-institution">
               Все специальности университета
             </button>
           </div>

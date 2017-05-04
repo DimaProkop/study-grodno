@@ -1,21 +1,28 @@
 <div class="container" style="margin: 90px">
   <div class="row" *ngIf="message">
-    <div >
+    <div>
       <div class="col-md-{{size}}">
         <div class="panel panel-footer text-center" role="alert">
-          <h3>From: <strong>{{message.fromId}}</strong>
-            <button (click)="ok()" class="btn btn-primary">Answer him.</button>
+          <h3 class="logo">
+            <strong>
+              From user: {{message.fromId}}
+            </strong>
           </h3>
+          <a (click)="ok()" style="background-color: #1769ff"
+             class="button button-style button-style-dark button-style-icon fa fa-reply smoth-scroll"> Reply</a>
         </div>
 
         <div class="panel panel-footer">
-          <div class="input-group col-md-12 input-offset">
-            <b>Header:</b> {{message.header}}
-            <div class="right-pill"><b>Date:</b> {{message.date}}</div>
-          </div>
+          <div class="panel-body">
+            <div class="input-group col-md-12 input-offset">
+              <b>Header:</b> {{message.header}}
+              <div class="right-pill"><b>Date:</b> {{message.date}}</div>
+            </div>
 
-          <div class="input-group col-md-12 input-offset">
-            <b>Text message:</b> {{message.text}}
+            <div class="input-group col-md-12 input-offset">
+              <b>Text message:</b> {{message.text}}
+            </div>
+
           </div>
 
         </div>
@@ -23,25 +30,27 @@
     </div>
 
     <div *ngIf="an">
-      <div class="col-md-6" >
+      <div class="col-md-6">
 
-        <label>Header: </label>
-        <div class="input-group col-md-12 input-offset">
-          <input class="form-control" [(ngModel)]="header" type="text"
-                 id="newHeader" placeholder="Header">
-        </div>
+        <div class="panel-body">
 
-        <label>Message: </label>
-        <div class="input-group col-md-12 input-offset">
+          <label>Header: </label>
+          <div class="input-group col-md-12 input-offset">
+            <input class="form-control" [(ngModel)]="header" type="text"
+                   id="newHeader" placeholder="Header">
+          </div>
+
+          <label>Message: </label>
+          <div class="input-group col-md-12 input-offset">
           <textarea class="form-control" type="text" id="newText"
-                 placeholder="Text message" [(ngModel)]="text" ></textarea>
-        </div>
+                    placeholder="Text message" [(ngModel)]="text"></textarea>
+          </div>
 
-        <div class="right-pill">
-          <button (click)="answer()"
-                  class="btn btn-primary">
-            Send
-          </button>
+          <div class="right-pill">
+            <a (click)="answer()" style="background-color: #1769ff"
+               class="button button-style button-style-dark button-style-icon fa fa-send smoth-scroll"> Send</a>
+          </div>
+
         </div>
 
       </div>
@@ -66,16 +75,14 @@
       <label>Message: </label>
       <div class="input-group col-md-12 input-offset">
           <textarea class="form-control" type="text" id="textarea"
-                    placeholder="Text message" [(ngModel)]="text" ></textarea>
+                    placeholder="Text message" [(ngModel)]="text"></textarea>
       </div>
 
 
-
       <div class="form-group">
-        <button style="float: right" (click)="answer()"
-                class="btn btn-primary">
-          Send
-        </button>
+        <a (click)="answer()" style="background-color: #2B2A59; float: right"
+           class="button button-style button-style-dark button-style-icon fa fa-send smoth-scroll"> Send
+        </a>
       </div>
     </div>
   </div>
