@@ -56,7 +56,7 @@ export class SpecialityComponent implements OnInit {
               this.bookmarks = x;
               for (let j=0;j<this.bookmarks.length;j++) {
                 if(this.bookmarks[j].contentId === this.specialities[i].id) {
-                  jQuery(this.element.nativeElement).find('#' + this.specialities[i].id).removeClass("glyphicon glyphicon-star-empty").addClass("glyphicon glyphicon-star");
+                  jQuery(this.element.nativeElement).find('#' + this.specialities[i].id).removeClass("fa fa-bookmark-o").addClass("fa fa-bookmark");
                 }
               }
             });
@@ -111,7 +111,7 @@ export class SpecialityComponent implements OnInit {
       this.bookmarksService.addBookmark(new Bookmark(1, id)).subscribe(res => {
       });
     } else {
-      jQuery(this.element.nativeElement).find('#' + id).removeClass("fa fa-bookmark").addClass("fa fa-bookmark");
+      jQuery(this.element.nativeElement).find('#' + id).removeClass("fa fa-bookmark").addClass("fa fa-bookmark-o");
       this.bookmarksService.deleteBookmark(new Bookmark(1, id)).subscribe(res => {
       });
     }
