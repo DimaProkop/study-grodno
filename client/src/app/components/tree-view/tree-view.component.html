@@ -1,23 +1,23 @@
 <div class="col-lg-5">
-  <div class="panel-group">
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        Список учреждений образования
-        <button type="button" class="btn btn-success btn-sm" title="Добавить учреждение образования" (click)="addNode(tree, node);"><span class="fa fa-plus" aria-hidden="true"></span></button>
-      </div>
-      <div class="panel-body" style="height: 400px;">
-        <tree-root #tree [nodes]="nodes" [options]="templateOptions" [focused]="true" (onEvent)="onEvent($event);">
-          <template #treeNodeTemplate let-node>
-            <span>{{ node.data.name }}</span>
-            <button [disabled]="!node.data.isFocus" class="btn btn-success btn-sm" *ngIf="node.level <= 2" (click)="onAdded($event, tree, node); tree.treeModel.expandAll();">
-              <span class="fa fa-plus" aria-hidden="true"></span> {{node.data.actionName}}
-            </button>
-            <button [disabled]="!node.data.isFocus" class="btn btn-success btn-sm" *ngIf="node.level == 1" (click)="saveTree(node);">
-              <span class="fa fa-save" aria-hidden="true"></span> Сохранить
-            </button>
-          </template>
-        </tree-root>
-      </div>
+  <div class="panel panel-heading">
+    <div class="panel-body" style="height: 600px;">
+      <legend>Список учреждений образования
+      <button type="button" class="btn btn-success btn-sm" title="Добавить учреждение образования"
+              (click)="addNode(tree, node);"><span class="fa fa-plus" aria-hidden="true"></span></button>
+      </legend>
+      <tree-root #tree [nodes]="nodes" [options]="templateOptions" [focused]="true" (onEvent)="onEvent($event);">
+        <template #treeNodeTemplate let-node>
+          <span>{{ node.data.name }}</span>
+          <button [disabled]="!node.data.isFocus" class="btn btn-success btn-sm" *ngIf="node.level <= 2"
+                  (click)="onAdded($event, tree, node); tree.treeModel.expandAll();">
+            <span class="fa fa-plus" aria-hidden="true"></span> {{node.data.actionName}}
+          </button>
+          <button [disabled]="!node.data.isFocus" class="btn btn-success btn-sm" *ngIf="node.level == 1"
+                  (click)="saveTree(node);">
+            <span class="fa fa-save" aria-hidden="true"></span> Сохранить
+          </button>
+        </template>
+      </tree-root>
     </div>
   </div>
 </div>
