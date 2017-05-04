@@ -1,0 +1,16 @@
+.panel{
+  padding: 20px;
+  background: lightblue;
+  background: -moz-radial-gradient(center, ellipse cover, #ff0000, #ffcfcf);
+  background: -webkit-radial-gradient(center, ellipse cover, #ff0000, #ffcfcf);
+  background: -o-radial-gradient(center, ellipse cover, #ff0000, #ffcfcf);
+  background: -ms-radial-gradient(center, ellipse cover, #ff0000, #ffcfcf);
+  font-size: 16px;
+}
+
+hr {
+  border: none; /* Убираем границу */
+  background-color: silver; /* Цвет линии */
+  color: red; /* Цвет линии для IE6-7 */
+  height: 2px; /* Толщина линии */
+}

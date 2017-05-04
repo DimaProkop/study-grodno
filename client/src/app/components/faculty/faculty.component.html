@@ -2,7 +2,7 @@
 <div id="preloader">
   <div class="loader"></div>
 </div>
-<div class="container" *ngIf="faculties" style="margin: 90px">
+<div class="container" *ngIf="faculties" style="margin-top:90px">
 
   <div class="col-lg-12">
     <div class="panel panel-success">
@@ -14,7 +14,7 @@
           </div>
           <div class="col-lg-6">
             {{'ADDRESS' | translate}}: <b>{{faculty.address | translate}}.</b>
-            <ul class="list-inline">
+            <ul class="list-unstyled">
               {{'SPECIALITIES' | translate}}:
               <li *ngFor="let speciality of faculty.specialities"><a class="btn btn-primary" routerLink="/speciality/{{speciality.id}}">{{speciality.name}}</a>
               </li>

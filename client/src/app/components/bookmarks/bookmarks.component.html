@@ -67,7 +67,10 @@
             </div>
           </div>
           <div style="padding-left: 15px;" class="row">
-            <div class="col-lg-4"></div>
+            <div class="col-lg-3  thumbnail">
+              <img width="250px" height="100px" src="http://grodno24.com/assets/images/2014/01/grsu.jpg"/>
+            </div>
+            <div class="col-lg-1"></div>
             <div class="col-lg-6">
               <div class="row">{{'CITY' | translate}}: <b>{{institution.city | translate}}.</b></div>
               <div class="row" style="padding-top: 3px;">{{'ADDRESS' | translate}}: <b>{{institution.address |
@@ -81,18 +84,16 @@
               </div>
               <div class="row" style="padding-top: 3px;">{{'COUNT_FACULTY' | translate}}: <b>{{institution.faculties.length}}.</b>
               </div>
-              <div class="row" style="padding-top: 3px;">{{'COUNT_SPECIALITY' | translate}}: <b>{{getCountSpeciality(institution.id)}}.</b>
-              </div>
             </div>
           </div>
-          <div class="row" style="padding-left: 15px;">
-            <a (click)="goDetailInstitution(institution.id)"
-               class="button button-style button-style-dark button-style-icon">{{'MORE_ABOUT_THE_UNIVERSITY'
-              | translate}}</a>
+          <div class="row" style="padding-left: 15px; ">
+            <a style="background-color: #d8be10" (click)="goDetailInstitution(institution.id)"
+               class="button button-style button-style-dark button-style-icon">{{'MORE_ABOUT_THE_UNIVERSITY' | translate}}</a>
           </div>
         </div>
       </div>
     </div>
+    <legend></legend>
   </div>
   <div id="tab-3" class="tab-content">
     Новости

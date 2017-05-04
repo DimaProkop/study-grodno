@@ -43,7 +43,7 @@ public class BookmarkController {
         User user = SecurityUtils.getCurrentUser();
         List<Bookmark> bookmarks = bookmarkRepository.findAll();
         bookmarks = bookmarks.stream()
-                .filter(b -> b.getUser().getId().equals(user.getId()))
+                .filter(b -> b.getUser() != null && b.getUser().getId().equals(user.getId()))
                 .collect(Collectors.toList());
         return ResponseEntity.ok(bookmarks);
     }
