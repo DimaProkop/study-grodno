@@ -7,12 +7,10 @@
 <body>
 <div class="container" style="margin: 90px">
 
-  <legend>
     <div style="float:right;">
-      <button class="btn btn-success" (click)="newMessage()">New message</button>
+      <a class="button button-style button-style-dark button-style-icon fa fa-send-o" (click)="newMessage()">New message</a>
     </div>
-    <h1>Your messages</h1>
-  </legend>
+    <h1><b>Your messages</b></h1>
   <ul class="tabs">
     <li class="tab-link current" (click)="showTab('1')" id="tabs-tab-1">Incoming</li>
     <li class="tab-link" (click)="showTab('2')" id="tabs-tab-2">Sending</li>

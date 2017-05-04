@@ -1,7 +1,11 @@
 <div *ngIf="speciality" class="container" style="margin: 90px">
+<<<<<<< HEAD
   <legend><h3 class="text-center">{{speciality.name | translate}}</h3></legend>
+=======
+  <legend><h3 class="text-center"><b>{{speciality.name}}</b></h3></legend>
+>>>>>>> master
   <div class="col-md-8">
-    <div class="panel panel-success">
+    <div class="panel panel-footer">
       <div class="panel-body">
         <legend>{{ 'BASIC_INFORMATION_ABOUT_THE_SPECIALITY' | translate}}</legend>
         <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">{{ 'DIRECTION' |
@@ -30,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="panel panel-success">
+    <div class="panel panel-heading">
       <div class="panel-body">
         <legend>{{ 'CONTACTS_FOR_COMMUNICATION' | translate}}</legend>
         <div style="padding-top: 3px;padding-bottom: 3px;">{{ 'THE_CONTACT_PERSON' | translate}}: <span><b>(Имя) (Фамилия) (Отчество). {{'TEL' | translate}}. +(Номер телефона).</b> </span>
@@ -57,7 +61,7 @@
   <button class="btn btn-default" (click)="addComment(speciality.id)"></button>
 </div-->
   <div *ngIf="institution && faculty" class="col-md-4">
-    <div class="panel panel-success">
+    <div class="panel panel-heading">
       <div class="panel-body">
         <div class="row">
           <img class="center-block" src="https://upload.wikimedia.org/wikipedia/ru/c/cd/LogoGrGU.png"/>
@@ -78,13 +82,13 @@
           </div>
           <legend style="padding-top: 10px;"></legend>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
-            <button style="width: 300px;" (click)="goDetailInstitution(institution.id)" class="btn btn-primary">
-              {{'MORE_ABOUT_THE_UNIVERSITY' | translate}}
+            <button style="width: 250px; padding: 25px" (click)="goDetailInstitution(institution.id)" class="button button-style button-style-dark button-style-icon fa fa-university">
+              Подробнее об университете
             </button>
           </div>
           <div style="padding-top: 3px;padding-bottom: 3px;" class="row text-center">
-            <button style="width: 300px;" (click)="goSpecialityInstitution(institution.id)" class="btn btn-primary">
-              {{'ALL_SPECIALITY_UNIVERSITY' | translate}}
+            <button style="width: 250px; padding: 25px" (click)="goSpecialityInstitution(institution.id)" class="button button-style button-style-dark button-style-icon fa fa-institution">
+              Все специальности университета
             </button>
           </div>
         </div>
