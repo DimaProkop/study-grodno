@@ -21,29 +21,36 @@
             </legend>
             <div class="row">
               <div class="col-md-6">
-                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">{{'DIRECTION' | translate}}:
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">
+                  {{'DIRECTION' | translate}}:
                   <span
                     *ngFor="let direction of speciality.directions"><b>{{direction.name  | translate}}</b> </span></div>
                 <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.levelsOfEducation.length > 0">
                   {{'LEVEL_OF_EDUCATION' | translate}}: <span
                   *ngFor="let level of speciality.levelsOfEducation"><b>{{level.name | translate}}.</b> </span></div>
-                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.languagesLearning.length > 0">{{'LANGUAGE_OF_INSTRUCTION' | translate}}: <span
-                    *ngFor="let language of speciality.languagesLearning"><b>{{language.name | translate}}.</b> </span></div>
-                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.duration">{{'DURATION' | translate}}:
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.languagesLearning.length > 0">
+                  {{'LANGUAGE_OF_INSTRUCTION' | translate}}: <span
+                  *ngFor="let language of speciality.languagesLearning"><b>{{language.name | translate}}.</b> </span>
+                </div>
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.duration">{{'DURATION' |
+                  translate}}:
                   <span><b>{{speciality.duration}} {{'YEARS' | translate}}.</b> </span></div>
               </div>
               <div class="col-md-6">
-                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.formsOfEducation.length > 0">{{'FORM_OF_EDUCATION' | translate}}:
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.formsOfEducation.length > 0">
+                  {{'FORM_OF_EDUCATION' | translate}}:
                   <span
                     *ngFor="let form of speciality.formsOfEducation"><b>{{form.name | translate}}.</b> </span></div>
-                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.freeEducation">{{'FREE_EDUCATION' | translate}}:
+                <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.freeEducation">{{'FREE_EDUCATION' |
+                  translate}}:
                   <span><b>{{speciality.freeEducation.toString() | translate}}.</b> </span></div>
                 <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.price">{{'PRICE' | translate}}:
                   <span><b>{{speciality.price}} {{'DOLLARS_IN_YEAR' | translate}}.</b> </span>
                 </div>
               </div>
             </div>
-            <a style="background-color: #d8be10" class="button button-style button-style-dark button-style-icon" (click)="goDetail(speciality.id)">{{'MORE_ABOUT_THE_SPECIALITY' | translate}}</a>
+            <a style="background-color: #d8be10" class="button button-style button-style-dark button-style-icon"
+               (click)="goDetail(speciality.id)">{{'MORE_ABOUT_THE_SPECIALITY' | translate}}</a>
           </div>
         </div>
       </div>
@@ -51,7 +58,41 @@
     <legend></legend>
   </div>
   <div id="tab-2" class="tab-content">
-    Университеты
+    <div class="col-lg-12">
+      <div class="panel panel-success">
+        <div class="panel-body" *ngFor="let institution of institutions">
+          <div class="row">
+            <div class="col-md-12">
+              <legend><h3><b>{{institution.name | translate}}</b></h3></legend>
+            </div>
+          </div>
+          <div style="padding-left: 15px;" class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-6">
+              <div class="row">{{'CITY' | translate}}: <b>{{institution.city | translate}}.</b></div>
+              <div class="row" style="padding-top: 3px;">{{'ADDRESS' | translate}}: <b>{{institution.address |
+                translate}}.</b></div>
+              <div class="row" style="padding-top: 3px;">{{'SITE' | translate}}: <b><a href="{{institution.site}}">{{institution.site}}</a>.</b>
+              </div>
+              <div class="row" style="padding-top: 3px;">{{'EMAIL' | translate}}: <b>{{institution.primaryMail}}.</b>
+              </div>
+              <div class="row" style="padding-top: 3px;">{{'FEEDBACK' | translate}}:
+                <b>{{institution.mailFeedback}}.</b>
+              </div>
+              <div class="row" style="padding-top: 3px;">{{'COUNT_FACULTY' | translate}}: <b>{{institution.faculties.length}}.</b>
+              </div>
+              <div class="row" style="padding-top: 3px;">{{'COUNT_SPECIALITY' | translate}}: <b>{{getCountSpeciality(institution.id)}}.</b>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="padding-left: 15px;">
+            <a (click)="goDetailInstitution(institution.id)"
+               class="button button-style button-style-dark button-style-icon">{{'MORE_ABOUT_THE_UNIVERSITY'
+              | translate}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="tab-3" class="tab-content">
     Новости

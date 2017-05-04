@@ -5,6 +5,8 @@ import {Component, OnInit} from '@angular/core';
 import {EducationInstitutionService} from "../../service/education-institution/education-institution.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {EducationInstitutionModel} from "../../model/education-institution.model";
+import * as jQuery from 'jquery';
+
 
 @Component({
   selector: 'app-education-institution-description',
@@ -20,6 +22,9 @@ export class EducationInstitutionDescriptionComponent implements OnInit {
   }
 
   ngOnInit() {
+    jQuery(document).ready(function () {
+      jQuery(this).scrollTop(0);
+    });
     this.init();
   }
 

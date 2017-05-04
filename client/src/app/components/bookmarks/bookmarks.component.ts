@@ -65,6 +65,10 @@ export class BookmarksComponent implements OnInit {
     this.router.navigate(['speciality/', id]);
   }
 
+  goDetailInstitution(id) {
+    this.router.navigate(['institution/', id]);
+  }
+
   getInstitution(id) {
 
     if (isNullOrUndefined(this.institution)) {
