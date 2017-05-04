@@ -24,6 +24,9 @@ export class EducationInstitutionComponent implements OnInit {
               private store: Store<any>) { }
 
   ngOnInit() {
+    jQuery(document).ready(function () {
+      jQuery(this).scrollTop(0);
+    });
     this.init();
   }
 

@@ -1,7 +1,6 @@
 import {Component, OnInit, ElementRef} from "@angular/core";
-import * as jQuery from 'jquery';
-import {Store} from "@ngrx/store";
-import {UserModel} from "../../model/user.model";
+import {Router} from "@angular/router";
+
 
 @Component({
   moduleId: module.id,
@@ -11,20 +10,15 @@ import {UserModel} from "../../model/user.model";
 })
 export class HomeComponent implements OnInit {
 
-  public user: UserModel;
 
-  constructor(private store: Store<any>,
-              private element: ElementRef) {
+  constructor(private router: Router) {
   }
 
   ngOnInit(): void {
+
   }
 
-  showPanel() {
-    jQuery("div#panel").slideUp("slow");
-  }
-
-  hidePanel() {
-    jQuery("div#panel").slideDown("slow");
+  goToNews(id: number) {
+      this.router.navigate(['news', id]);
   }
 }
