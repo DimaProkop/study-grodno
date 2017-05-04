@@ -55,6 +55,7 @@ export function HttpLoaderFactory(http: Http) {
 }
 import { MailComponent } from './components/mail/mail.component';
 import { MailDetailComponent } from './components/mail-detail/mail-detail.component';
+import {EducationInstitutionDescriptionComponent} from "./components/education-institution-description/education-institution-description.component";
 
 @NgModule({
   imports: [
@@ -102,7 +103,8 @@ import { MailDetailComponent } from './components/mail-detail/mail-detail.compon
     NewsDetailComponent,
     SignUpComponent,
     MailComponent,
-    MailDetailComponent
+    MailDetailComponent,
+    EducationInstitutionDescriptionComponent
   ],
   providers: [
     HomeService,

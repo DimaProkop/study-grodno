@@ -14,4 +14,6 @@ public interface EducationInstitutionService {
     List<EducationInstitution> getInstitutionByDirectionId(Long id);
 
     List<EducationInstitution> getAll();
+
+    List<EducationInstitution> getInstitutionByUser(Long userId);
 }

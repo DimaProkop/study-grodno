@@ -15,7 +15,7 @@
 
           <legend>
             <div class="row">
-              <div class="col-md-11">{{speciality.name}}</div>
+              <div class="col-md-11">{{speciality.name | translate}}</div>
               <div class="col-md-1">
                 <a style="text-align: right;" (click)="addAndRemoveClassToFavorites(speciality.id)">
                   <span id="{{speciality.id}}" class="fa fa-bookmark-o"></span>
@@ -24,13 +24,13 @@
             </div>
             <br>
             <span style="font-size: 16px;" *ngIf="getInstitution(speciality.id)"><a
-              routerLink="/institution/getInstitution(speciality.id).id">{{getInstitution(speciality.id).name}}</a> / {{getInstitution(speciality.id).city | translate}}</span>
+              routerLink="/institution/{{getInstitution(speciality.id).id}}">{{getInstitution(speciality.id).name | translate}}</a> / {{getInstitution(speciality.id).city | translate}}</span>
           </legend>
           <div class="row">
             <div class="col-md-6">
               <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.directions.length > 0">{{'DIRECTION' | translate}}:
                 <span
-                  *ngFor="let direction of speciality.directions"><b>{{direction.name}}</b> </span></div>
+                  *ngFor="let direction of speciality.directions"><b>{{direction.name | translate}}</b> </span></div>
               <div style="padding-top: 3px;padding-bottom: 3px;" *ngIf="speciality.levelsOfEducation.length > 0">
                 {{'LEVEL_OF_EDUCATION' | translate}}: <span
                 *ngFor="let level of speciality.levelsOfEducation"><b>{{level.name | translate}}.</b> </span></div>
@@ -50,11 +50,9 @@
             </div>
           </div>
           <div class="row">
-            <legend>
               <div class="col-md-10">
                 <a class="button button-style button-style-dark button-style-icon fa fa-arrow-right smoth-scroll" (click)="goDetail(speciality.id)">{{'MORE_ABOUT_THE_SPECIALITY' | translate}}</a>
               </div>
-            </legend>
           </div>
         </div>
       </div>

@@ -1,8 +1,10 @@
 package com.grsu.controller;
 
 import com.grsu.entity.EducationInstitution;
+import com.grsu.entity.User;
 import com.grsu.repository.EducationInstitutionRepository;
 import com.grsu.service.EducationInstitutionService;
+import com.grsu.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +38,12 @@ public class EducationInstitutionController {
 
         EducationInstitution educationInstitution = requestBody;
 
+        User user = SecurityUtils.getCurrentUser();
+
+        if(user.getRole().equals("admin")) {
+            educationInstitution.setUser(user);
+        }
+
         educationInstitutionService.adjustSave(educationInstitution);
 
         return ResponseEntity.ok(educationInstitution);
@@ -45,6 +53,12 @@ public class EducationInstitutionController {
     public ResponseEntity update(@RequestBody EducationInstitution requestBody){
 
         EducationInstitution educationInstitution = requestBody;
+
+        User user = SecurityUtils.getCurrentUser();
+
+        if(user.getRole().equals("admin")) {
+            educationInstitution.setUser(user);
+        }
 
         educationInstitutionService.adjustSave(educationInstitution);
 
@@ -62,5 +76,18 @@ public class EducationInstitutionController {
     @RequestMapping(value = "/direction={id}", method = RequestMethod.GET)
     public ResponseEntity getInstitutionByDirectionId(@PathVariable Long id) {
         return ResponseEntity.ok(educationInstitutionService.getInstitutionByDirectionId(id));
+    }
+
+    @RequestMapping(value = "/by-current-user", method = RequestMethod.GET)
+    public ResponseEntity getInstitutionByCurrentUser() {
+
+        User user = SecurityUtils.getCurrentUser();
+
+        if(user.getRole().equals("owner")) {
+            return ResponseEntity.ok(educationInstitutionRepository.findAll());
+        } else {
+
+            return  ResponseEntity.ok(educationInstitutionService.getInstitutionByUser(user.getId()));
+        }
     }
 }

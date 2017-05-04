@@ -43,6 +43,12 @@ export class EducationInstitutionService {
       .catch(this.handleError);
   }
 
+  getInstitutionByCurrentUser(): Observable<EducationInstitutionModel[]> {
+    return this.http.get(this.educationInstitutionURL  + "/by-current-user", { headers: this.prepareHeaders() })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   getById(id: number): Observable<EducationInstitutionModel> {
     return this.http.get(this.educationInstitutionURL + "/" + id, { headers: this.prepareHeaders() })
       .map(this.extractData)

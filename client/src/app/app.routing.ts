@@ -24,6 +24,7 @@ import {SignUpComponent} from "./components/sign-up/sign-up.component";
 import {NewsDetailComponent} from "./components/news-detail/news-detail.component";
 import {MailDetailComponent} from "./components/mail-detail/mail-detail.component";
 import {MailComponent} from "./components/mail/mail.component";
+import {EducationInstitutionDescriptionComponent} from "./components/education-institution-description/education-institution-description.component";
 import {FooterComponent} from "./components/footer/footer.component";
 
 const routes: Routes = [
@@ -47,7 +48,7 @@ const routes: Routes = [
     {path: 'speciality', component: SpecialityComponent},
     {path: 'faculty', component: FacultyComponent},
     {path: 'news', component: NewsComponent},
-    {path: 'description', component: SpecialityComponent},
+    {path: 'description', component: EducationInstitutionDescriptionComponent},
   ]
   },
   {path: 'speciality', component: SpecialityComponent},

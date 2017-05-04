@@ -223,7 +223,7 @@
                         [ngModel]="personInfo.selectedDirection"
                         [ngModelOptions]="{standalone: true}">
                   <option *ngFor='let direction of directions' [ngValue]="direction">
-                    {{direction.name}}
+                    {{direction.name | translate}}
                   </option>
                 </select>
               </div>
