@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin: 90px">
   <div class="col-md-2"></div>
 
   <form class="form-horizontal col-md-8">
@@ -7,7 +7,7 @@
       <div class="panel panel-primary">
         <div class="panel-body">
 
-          <legend style="text-align: center;">{{'PLEASE_SIGN_IN' | translate}}</legend>
+          <legend style="text-align: center;"><b>{{'PLEASE_SIGN_IN' | translate}}</b></legend>
           <label for="login" class="control-label col-md-3">{{'EMAIL_ADDRESS' | translate}}:</label>
           <div class="form-group col-md-9">
             <input [(ngModel)]="login" [ngModelOptions]="{standalone: true}" type="email" id="login"
@@ -22,9 +22,9 @@
           </div>
           <div class="col-md-3"></div>
           <div class="form-group col-md-6">
-            <button (click)="authenticate()" class="btn btn-lg btn-primary btn-block">
+            <a (click)="authenticate()" class="button button-style button-style-icon fa fa-sign-in smoth-scroll">
               {{'SIGN_IN' | translate}}
-            </button>
+            </a>
 
           </div>
 
@@ -32,9 +32,9 @@
             <div class="row">
               <div class="col-md-3"></div>
               <div class="col-md-9">
-                <h3>{{'NO_ACCOUNT' | translate}} <a routerLink="/sign-up">
+                <h2>{{'NO_ACCOUNT' | translate}} <a routerLink="/sign-up">
                   <span class="label label-default">{{'REGISTRATION' | translate}}</span>
-                </a></h3>
+                </a></h2>
               </div>
             </div>
           </div>

@@ -110,7 +110,7 @@
 
         $(window).load(function(){
         $(".typing").typed({
-            strings: ["Choose what you like.", "Best universities in country.", "Always your - GrSU.by."],    /* You can change the home section typing text from
+            strings: ["Choose what you like.", "Best universities in country.", "Always your - GRSU.BY"],    /* You can change the home section typing text from
 	                                                                                            here and do not use "&" use "and" */
             typeSpeed: 50
           });

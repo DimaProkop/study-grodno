@@ -1,6 +1,6 @@
-<div class="container" style="margin: 80px">
+<div class="container" style="margin: 90px">
   <div class="col-lg-4 col-md-4 col-sm-4" style="width: 330px;">
-    <div class="panel panel-primary">
+    <div class="panel panel-success">
       <div class="panel-body">
         <legend class="text-center">{{'SEARCH_SPECIALITIES'| translate}}</legend>
         <app-search (onChanged)="onChanged($event)"></app-search>
@@ -10,7 +10,7 @@
   <div class="col-md-1"></div>
   <div class="col-md-7">
     <div class="row" *ngFor="let speciality of specialities">
-      <div class="panel panel-primary">
+      <div class="panel panel-success">
         <div class="panel-body">
 
           <legend>
@@ -18,7 +18,7 @@
               <div class="col-md-11">{{speciality.name | translate}}</div>
               <div class="col-md-1">
                 <a style="text-align: right;" (click)="addAndRemoveClassToFavorites(speciality.id)">
-                  <span id="{{speciality.id}}" class="glyphicon glyphicon-star-empty"></span>
+                  <span id="{{speciality.id}}" class="fa fa-bookmark-o"></span>
                 </a>
               </div>
             </div>
@@ -51,7 +51,7 @@
           </div>
           <div class="row">
               <div class="col-md-10">
-                <button (click)="goDetail(speciality.id)" class="btn btn-primary">{{'MORE_ABOUT_THE_SPECIALITY' | translate}}</button>
+                <a class="button button-style button-style-dark button-style-icon fa fa-arrow-right smoth-scroll" (click)="goDetail(speciality.id)">{{'MORE_ABOUT_THE_SPECIALITY' | translate}}</a>
               </div>
           </div>
         </div>

@@ -41,7 +41,6 @@ export class LoginService {
   }
 
   logout(): Observable<any>{
-    console.log(this.logoutURL);
     return this.http.get(this.logoutURL, {headers: HeadersService.prepareHeaders()})
       .do(res => {
         let token = localStorage.getItem(this.tokenName);

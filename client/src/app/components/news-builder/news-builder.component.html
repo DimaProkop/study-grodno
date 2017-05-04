@@ -1,4 +1,4 @@
-<div class="panel panel-primary col-sm-6" *ngIf="currentNews">
+<div class="panel panel-heading col-sm-6" *ngIf="currentNews" >
   <div class="panel-body" style="padding: 20px 20px;">
     <legend>Добавление/Редактирование новости</legend>
     <form class="form-horizontal">
@@ -32,15 +32,13 @@
       </div>
       <div class="form-group">
         <div class="col-sm-5"></div>
-        <button class="btn btn-success btn-lg" (click)="save()">
-          <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> Сохранить
-        </button>
+        <a (click)="save()" class="button button-style button-style-dark button-style-icon fa fa-save">Save</a>
       </div>
     </form>
   </div>
 </div>
 <div class="col-sm-1"></div>
-<div class="panel panel-primary col-sm-5" *ngIf="news && news.length > 0">
+<div class="panel panel-heading col-sm-5" *ngIf="news && news.length > 0">
   <div class="panel-body" style="padding: 20px 20px;">
     <legend>Добавление/Редактирование новости</legend>
     <table class="table">
@@ -54,7 +52,7 @@
         <td>{{item.id}}</td>
         <td>{{item.title}}</td>
         <td>{{item.createDate}}</td>
-        <td><a (click)="edit(item.id)"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        <td><a (click)="edit(item.id)"><span class="fa fa-pencil"></span></a></td>
       </tr>
     </table>
   </div>

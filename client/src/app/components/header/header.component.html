@@ -4,7 +4,7 @@
 
       <div class="col-sm-3">
         <div class="logo">
-          <a >{{ 'LOGO' | translate }}</a>
+          <a routerLink="/home">{{ 'LOGO' | translate }}</a>
         </div>
       </div>
 
@@ -22,19 +22,19 @@
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
                 <li>
-                  <a (click)="changeLanguage('ru')"><span class="fa fa-sign-language" id="ru">РУС</span></a>
+                  <a (click)="changeLanguage('ru')"><span class="fa fa-android" id="ru">РУС</span></a>
                 </li>
                 <li>
-                  <a (click)="changeLanguage('en')"><span class="fa fa-american-sign-language-interpreting" id="en">ENG</span></a>
+                  <a (click)="changeLanguage('en')"><span class="fa fa-apple" id="en">ENG</span></a>
                 </li>
                 <li *ngIf="isAuthorize">
                   <a routerLink="/mail" routerLinkActive="active">Messages <span class="badge">{{count}}</span></a>
                 </li>
                 <li *ngIf="isAuthorize"><a routerLink="/bookmarks" routerLinkActive="active"><span
-                  class="fa fa-bookmark"></span> {{ 'BOOKMARKS' | translate }}</a></li>
+                  class="fa fa-bookmark-o"></span> {{ 'BOOKMARKS' | translate }}</a></li>
                 <li *ngIf="!isAuthorize"><a routerLink="/login" routerLinkActive="active"><span
-                  class="fa fa-hand-o-left"></span> {{ 'LOGIN' | translate }}</a></li>
-                <li *ngIf="isAuthorize"><a href="" (click)="logout()"><span class="fa fa-hand-o-down"></span> {{ 'LOGOUT' | translate }}</a>
+                  class="fa fa-sign-in"></span> {{ 'LOGIN' | translate }}</a></li>
+                <li *ngIf="isAuthorize"><a href="" (click)="logout()"><span class="fa fa-sign-out"></span> {{ 'LOGOUT' | translate }}</a>
                 </li>
               </ul>
             </div>
